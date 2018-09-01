@@ -30,11 +30,11 @@ int main(int argc, char* argv[])
 
 	// TODO: Add code here that will print out max characters
 	// stored by your CString object
-	cout << "Maximum number of characters stored: " << STORED << endl;
+	cout << "\nMaximum number of characters stored: " << STORED << endl;
 
 	for (int i = 1; i < argc; i++)
 	{
-		process(argv[i], cout);
+		w1::process(argv[i], cout);
 	}
 
 	return 0;
