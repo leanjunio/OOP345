@@ -40,9 +40,11 @@ namespace w1
 	{
 		os << m_String;
 	}
-	/*std::ostream& CString::operator<<(CString &string)
-	{
 
-		return os;
-	}*/
+	//  Read on https://www.tutorialspoint.com/cplusplus/input_output_operators_overloading.htm
+	std::ostream& CString::operator<<(CString& str)
+	{
+		// TODO: insert return statement here
+	}
+
 }
