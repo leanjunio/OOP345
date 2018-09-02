@@ -21,8 +21,9 @@ namespace w1
 		CString();
 		CString(const char* string);
 		void display(std::ostream& os) const;
-		std::ostream& operator<<(CString&);
 	};
+
+	std::ostream& operator<<(std::ostream& os, CString& string);
 }
 
 #endif // !_W1_CSTRING_H

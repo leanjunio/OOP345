@@ -32,7 +32,7 @@ namespace w1
 			m_String[0] = '\0';
 		else
 		{
-			strncpy_s(m_String, string, MAX);
+			std::strncpy(m_String, string, MAX);
 			m_String[MAX + 1] = '\0';
 		}
 	}
@@ -41,10 +41,9 @@ namespace w1
 		os << m_String;
 	}
 
-	//  Read on https://www.tutorialspoint.com/cplusplus/input_output_operators_overloading.htm
-	std::ostream& CString::operator<<(CString& str)
+	std::ostream& operator<<(std::ostream& os, CString& string)
 	{
-		// TODO: insert return statement here
+		string.display(os);
+		return os;
 	}
-
 }
