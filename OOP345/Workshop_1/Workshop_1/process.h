@@ -1,3 +1,11 @@
+// Name: Lean Junio
+// Seneca Student ID: 019-109-123
+// Seneca email: ljjunio@myseneca.ca
+// Date of completion: September 2 2018 September
+//
+// I confirm that the content of this file is created by me,
+// with the exception of the parts provided to me by my professor.
+
 #ifndef _W1_PROCESS_H
 #define _W1_PROCESS_H
 
