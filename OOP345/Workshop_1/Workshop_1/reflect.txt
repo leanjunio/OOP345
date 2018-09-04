@@ -1,0 +1,5 @@
+I learned how to use the extern keyword in order to allow a variable to exist in another translation unit but be looked up in another as well make that variable last a lifetime of the program
+
+I learned how to use argv and argc in order to use data from the command line
+
+
