@@ -1,0 +1,16 @@
+Script started on Fri 31 Aug 2018 02:17:05 PM EDT
+]0;cornel.barna@**********[?1034h[32m•[1m[38;5;214m tmp [1m[38;5;11m›[0m ws oop345 btp305
+[38;5;9mBegin Testing the Program!
+--------------------------[0m
+
+Command Line: ws oop345 btp305 
+Maximum number of characters stored: 3
+0: oop
+1: btp
+
+[38;5;9m------------------------
+End Testing the Program![0m
+]0;cornel.barna@**********[32m•[1m[38;5;214m tmp [1m[38;5;11m›[0m exit
+exit
+
+Script done on Fri 31 Aug 2018 02:17:15 PM EDT
