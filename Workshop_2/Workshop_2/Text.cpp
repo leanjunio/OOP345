@@ -30,9 +30,8 @@ namespace w2
 		std::stringstream buffer;
 
 		buffer << file.rdbuf();
-
-		m_StringPtr = new std::string;
-		*m_StringPtr = buffer.str();
+		std::string buf_string(buffer.str());
+		m_StringPtr.reset(&buf_string);
 	}
 
 	Text::Text(const Text & other)
@@ -46,10 +45,9 @@ namespace w2
 		if (this != &old)
 		{
 			m_FileName = old.m_FileName;
-			delete m_StringPtr;
 
 			if (old.m_StringPtr != nullptr)
-				m_StringPtr = new std::string(*old.m_StringPtr);
+				m_StringPtr.reset(new std::string);
 			else
 				m_StringPtr = nullptr;
 		}
@@ -58,7 +56,7 @@ namespace w2
 
 	Text::~Text()
 	{
-		delete m_StringPtr;
+		//delete m_StringPtr;
 	}
 	size_t Text::size() const
 	{

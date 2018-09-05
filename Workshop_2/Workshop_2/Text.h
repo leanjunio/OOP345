@@ -10,12 +10,13 @@
 #define _W2_TEXT_H
 
 #include <string>
+#include <memory>
 
 namespace w2
 {
 	class Text
 	{
-		std::string* m_StringPtr;
+		std::unique_ptr<std::string> m_StringPtr;
 		std::string m_FileName;
 	public:
 		Text(std::string file = "Unknown");
