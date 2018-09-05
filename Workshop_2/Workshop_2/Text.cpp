@@ -58,7 +58,7 @@ namespace w2
 
 	Text::~Text()
 	{
-		delete[] m_StringPtr;
+		delete m_StringPtr;
 	}
 	size_t Text::size() const
 	{
