@@ -15,9 +15,11 @@ namespace w2
 {
 	class Text
 	{
-		std::string m_StringPtr;
+		std::string* m_StringPtr;
+		std::string m_FileName;
 	public:
-		Text(const std::string file = "");
+		Text(std::string file = "Unknown");
+		void readFile();
 		Text(const Text& src);
 		Text& operator=(const Text& src);
 		Text(Text&& src);
