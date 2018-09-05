@@ -6,6 +6,7 @@
 // I confirm that the content of this file is created by me,
 // with the exception of the parts provided to me by my professor.
 
+#include <iostream>
 #include <string>
 #include <cstring>
 #include <fstream>
@@ -22,13 +23,15 @@ namespace w2
 	}
 
 	void Text::readFile()
-		// reads the file into m_StringPtr
+		// reads the file into m_StringPtr by using a stringstream buffer
+		// Allocates memory for a std::string
 	{
 		std::ifstream file(m_FileName);
 		std::stringstream buffer;
 
-		// BUG: NOT READING THE FILE
 		buffer << file.rdbuf();
+
+		m_StringPtr = new std::string;
 		*m_StringPtr = buffer.str();
 	}
 
