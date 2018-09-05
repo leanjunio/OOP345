@@ -32,7 +32,7 @@ namespace w1
 			m_String[0] = '\0';
 		else
 		{
-			std::strncpy(m_String, string, MAX);
+			strncpy_s(m_String, string, MAX);
 			m_String[MAX + 1] = '\0';
 		}
 	}

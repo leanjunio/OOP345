@@ -14,8 +14,9 @@ namespace w1
 {
 	void process(const char * string, std::ostream & os)
 	{
+		static int counter = 0;
 		CString str(string);
-		os << str << std::endl;
+		os << counter++ << ": " << str << std::endl;
 	}
 }
 

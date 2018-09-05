@@ -34,7 +34,6 @@ int main(int argc, char* argv[])
 
 	for (int i = 1; i < argc; i++)
 	{
-		cout << i - 1 << ": ";
 		w1::process(argv[i], cout);
 	}
 
