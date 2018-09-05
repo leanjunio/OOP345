@@ -20,10 +20,10 @@ namespace w2
 	public:
 		Text(std::string file = "Unknown");
 		void readFile();
-		Text(const Text& src);
-		Text& operator=(const Text& src);
-		Text(Text&& src);
-		Text& operator=(Text&& src);
+		Text(const Text& other);
+		Text& operator=(const Text& old);
+		/*Text(Text&& src);
+		Text& operator=(Text&& src);*/
 		~Text();
 
 		// Returns the number of records of text data
