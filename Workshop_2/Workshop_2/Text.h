@@ -18,7 +18,7 @@ namespace w2
 		std::string* m_StringPtr;
 		std::string m_FileName;
 	public:
-		explicit Text(std::string file = "Unknown");
+		explicit Text(const std::string file = "Unknown");
 		void readFile();
 		Text(const Text&);
 		Text& operator=(const Text&);
