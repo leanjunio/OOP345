@@ -18,7 +18,8 @@ namespace w2
 	// Accepts a filename and set to safe-empty
 	Text::Text(std::string file)
 		: m_FileName(file), 
-		m_StringPtr(new std::string)
+		m_StringPtr(new std::string),
+		m_Count(0)
 	{
 		if (m_FileName != "Unknown" && !m_FileName.empty())
 			readFile();
@@ -30,13 +31,15 @@ namespace w2
 		std::ifstream file(m_FileName);
 		std::stringstream buffer;
 
-		buffer << file.rdbuf();
-		*m_StringPtr = buffer.str();
+		// put the file text in m_StringPtr and count
+		while (std::getline(file, *m_StringPtr))
+			m_Count++;
 	}
 
 	// Copy Constructor
 	Text::Text(const Text& other)
-		: m_StringPtr(new std::string)
+		: m_StringPtr(new std::string),
+		m_Count(other.m_Count)
 	{
 		memcpy(m_StringPtr, other.m_StringPtr, sizeof(std::string));
 	}
@@ -47,6 +50,7 @@ namespace w2
 		if (this == &old)
 			return *this;
 
+		m_Count = old.m_Count;
 		m_FileName = old.m_FileName;
 		memcpy(m_StringPtr, old.m_StringPtr, sizeof(std::string));
 		return *this;
@@ -54,7 +58,8 @@ namespace w2
 
 	// Move Constructor
 	Text::Text(Text&& src)
-		: m_StringPtr(src.m_StringPtr)
+		: m_StringPtr(src.m_StringPtr),
+		m_Count(src.m_Count)
 	{
 		src.m_StringPtr = nullptr;
 	}
@@ -66,6 +71,7 @@ namespace w2
 			return *this;
 
 		m_FileName = src.m_FileName;
+		m_Count = src.m_Count;
 		m_StringPtr = src.m_StringPtr;
 
 		src.m_StringPtr = nullptr;
@@ -78,8 +84,9 @@ namespace w2
 	{
 		m_StringPtr = nullptr;
 	}
+
 	size_t Text::size() const
 	{
-		return size_t(1);
+		return m_Count;
 	}
 }
