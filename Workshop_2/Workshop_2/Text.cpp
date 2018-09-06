@@ -8,7 +8,6 @@
 
 #include <iostream>
 #include <string>
-#include <cstring>
 #include <fstream>
 #include <sstream>
 #include "Text.h"
@@ -23,8 +22,7 @@ namespace w2
 	}
 
 	void Text::readFile()
-		// reads the file into m_StringPtr by using a stringstream buffer
-		// Allocates memory for a std::string
+		// read the file into string
 	{
 		std::ifstream file(m_FileName);
 		std::stringstream buffer;
@@ -56,7 +54,7 @@ namespace w2
 
 	Text::~Text()
 	{
-		//delete m_StringPtr;
+		// m_StringPtr.reset();
 	}
 	size_t Text::size() const
 	{

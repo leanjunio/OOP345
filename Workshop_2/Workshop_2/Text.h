@@ -16,7 +16,7 @@ namespace w2
 {
 	class Text
 	{
-		std::unique_ptr<std::string> m_StringPtr;
+		std::unique_ptr<std::string> m_StringPtr = std::make_unique<std::string>();
 		std::string m_FileName;
 	public:
 		Text(std::string file = "Unknown");
