@@ -31,8 +31,6 @@ namespace w2
 		std::stringstream buffer;
 
 		buffer << file.rdbuf();
-
-		m_StringPtr = new std::string;
 		*m_StringPtr = buffer.str();
 	}
 
