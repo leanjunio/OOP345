@@ -19,7 +19,7 @@ namespace w2
 	Text::Text(std::string file)
 		: m_FileName(file), 
 		m_StringPtr(new std::string),
-		count(0)
+		m_Count(0)
 	{
 		if (m_FileName != "Unknown" && !m_FileName.empty())
 			readFile();
@@ -33,13 +33,13 @@ namespace w2
 
 		// put the file text in m_StringPtr and count
 		while (std::getline(file, *m_StringPtr))
-			count++;
+			m_Count++;
 	}
 
 	// Copy Constructor
 	Text::Text(const Text& other)
 		: m_StringPtr(new std::string),
-		count(other.count)
+		m_Count(other.m_Count)
 	{
 		memcpy(m_StringPtr, other.m_StringPtr, sizeof(std::string));
 	}
@@ -50,7 +50,7 @@ namespace w2
 		if (this == &old)
 			return *this;
 
-		count = old.count;
+		m_Count = old.m_Count;
 		m_FileName = old.m_FileName;
 		memcpy(m_StringPtr, old.m_StringPtr, sizeof(std::string));
 		return *this;
@@ -59,7 +59,7 @@ namespace w2
 	// Move Constructor
 	Text::Text(Text&& src)
 		: m_StringPtr(src.m_StringPtr),
-		count(src.count)
+		m_Count(src.m_Count)
 	{
 		src.m_StringPtr = nullptr;
 	}
@@ -71,7 +71,7 @@ namespace w2
 			return *this;
 
 		m_FileName = src.m_FileName;
-		count = src.count;
+		m_Count = src.m_Count;
 		m_StringPtr = src.m_StringPtr;
 
 		src.m_StringPtr = nullptr;
@@ -82,12 +82,11 @@ namespace w2
 	// Destructor
 	Text::~Text()
 	{
-		// delete m_StringPtr;
 		m_StringPtr = nullptr;
 	}
 
 	size_t Text::size() const
 	{
-		return count;
+		return m_Count;
 	}
 }

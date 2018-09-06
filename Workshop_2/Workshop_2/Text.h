@@ -18,7 +18,7 @@ namespace w2
 	{
 		std::string* m_StringPtr;
 		std::string m_FileName;
-		size_t count;
+		size_t m_Count;
 	public:
 		explicit Text(const std::string file = "Unknown");
 		void readFile();
