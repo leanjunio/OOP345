@@ -6,10 +6,8 @@
 // I confirm that the content of this file is created by me,
 // with the exception of the parts provided to me by my professor.
 
-#include <algorithm>
 #include <iostream>
 #include <string>
-#include <cstring>
 #include <fstream>
 #include <sstream>
 #include "Text.h"
@@ -33,27 +31,34 @@ namespace w2
 		std::stringstream buffer;
 
 		// put the file text in m_StringPtr and count
+		// ERROR: Doesn't permanently get stored in m_StringPtr
 		while (std::getline(file, *m_StringPtr))
 			m_Count++;
 	}
 
 	// Copy Constructor
 	Text::Text(const Text& other)
-		: m_StringPtr(new std::string),
+		: m_FileName(other.m_FileName),
+		m_StringPtr(new std::string(*other.m_StringPtr)),
 		m_Count(other.m_Count)
 	{
-		memcpy(m_StringPtr, other.m_StringPtr, sizeof(std::string));
 	}
 
 	// Copy Assignment Operator
-	Text & Text::operator=(const Text & old)
+	Text& Text::operator=(const Text& old)
 	{
 		if (this == &old)
 			return *this;
 
+		delete m_StringPtr;
 		m_Count = old.m_Count;
 		m_FileName = old.m_FileName;
-		memcpy(m_StringPtr, old.m_StringPtr, sizeof(std::string));
+
+		if (old.m_StringPtr != nullptr)
+			m_StringPtr = new std::string(*old.m_StringPtr);
+		else
+			m_StringPtr = nullptr;
+
 		return *this;
 	}
 
@@ -83,6 +88,7 @@ namespace w2
 	// Destructor
 	Text::~Text()
 	{
+		delete m_StringPtr;
 		m_StringPtr = nullptr;
 	}
 
