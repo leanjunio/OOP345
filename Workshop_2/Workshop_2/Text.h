@@ -19,12 +19,12 @@ namespace w2
 		std::unique_ptr<std::string> m_StringPtr = std::make_unique<std::string>();
 		std::string m_FileName;
 	public:
-		Text(std::string file = "Unknown");
+		explicit Text(const std::string file = "Unknown");
 		void readFile();
-		Text(const Text& other);
-		Text& operator=(const Text& old);
-		/*Text(Text&& src);
-		Text& operator=(Text&& src);*/
+		Text(const Text&);
+		Text& operator=(const Text&);
+		Text(Text&&);
+		Text& operator=(Text&&);
 		~Text();
 
 		// Returns the number of records of text data
