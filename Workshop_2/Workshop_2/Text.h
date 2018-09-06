@@ -16,8 +16,8 @@ namespace w2
 {
 	class Text
 	{
-		std::string* m_StringPtr;
 		std::string m_FileName;
+		std::string* m_StringPtr;
 		size_t m_Count;
 	public:
 		explicit Text(const std::string file = "Unknown");
