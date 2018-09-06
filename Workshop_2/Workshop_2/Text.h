@@ -18,12 +18,12 @@ namespace w2
 		std::string* m_StringPtr;
 		std::string m_FileName;
 	public:
-		Text(std::string file = "Unknown");
+		explicit Text(std::string file = "Unknown");
 		void readFile();
-		Text(const Text& other);
-		Text& operator=(const Text& old);
-		/*Text(Text&& src);
-		Text& operator=(Text&& src);*/
+		Text(const Text&);
+		Text& operator=(const Text&);
+		Text(Text&&);
+		Text& operator=(Text&&);
 		~Text();
 
 		// Returns the number of records of text data
