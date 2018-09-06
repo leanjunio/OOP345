@@ -18,11 +18,11 @@ namespace w2
 	// Accepts a filename and set to safe-empty
 	Text::Text(std::string file)
 		: m_FileName(file), 
-		m_StringPtr(nullptr)
+		m_StringPtr(new std::string)
 	{
 		if (m_FileName != "Unknown" && !m_FileName.empty())
 			readFile();
-	}
+	} 
 
 	// Read file into std::string::m_StringPtr
 	void Text::readFile()
@@ -38,54 +38,47 @@ namespace w2
 
 	// Copy Constructor
 	Text::Text(const Text& other)
-		: m_StringPtr(nullptr)
+		: m_StringPtr(new std::string)
 	{
-		*this = other;
+		memcpy(m_StringPtr, other.m_StringPtr, sizeof(std::string));
 	}
 
 	// Copy Assignment Operator
 	Text & Text::operator=(const Text & old)
 	{
-		if (this != &old)
-		{
-			delete m_StringPtr;
-			m_FileName = old.m_FileName;
-			m_StringPtr = new std::string(*old.m_StringPtr);
-		}
-		else
-			m_StringPtr = nullptr;
+		if (this == &old)
+			return *this;
+
+		m_FileName = old.m_FileName;
+		memcpy(m_StringPtr, old.m_StringPtr, sizeof(std::string));
 		return *this;
 	}
 
 	// Move Constructor
 	Text::Text(Text&& src)
-		: m_StringPtr(nullptr)
+		: m_StringPtr(src.m_StringPtr)
 	{
-		*this = std::move(src);
+		src.m_StringPtr = nullptr;
 	}
 
 	// Move operator
 	Text& Text::operator=(Text&& src)
 	{
-		if (this != &src)
-		{
-			delete m_StringPtr;
+		if (this == &src)
+			return *this;
 
-			m_FileName = src.m_FileName;
-			m_StringPtr = src.m_StringPtr;
+		m_FileName = src.m_FileName;
+		m_StringPtr = src.m_StringPtr;
 
-			src.m_StringPtr = nullptr;
-			src.m_FileName = "";
-		}
-		else
-			m_StringPtr = nullptr;
+		src.m_StringPtr = nullptr;
+		src.m_FileName = "";
 		return *this;
 	}
 
 	// Destructor
 	Text::~Text()
 	{
-		delete m_StringPtr;
+		m_StringPtr = nullptr;
 	}
 	size_t Text::size() const
 	{
