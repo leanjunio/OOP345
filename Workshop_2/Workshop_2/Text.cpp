@@ -41,7 +41,7 @@ namespace w2
 		: m_StringPtr(new std::string),
 		m_Count(other.m_Count)
 	{
-		wmemcpy(m_StringPtr, other.m_StringPtr, sizeof(std::string));
+		memcpy(m_StringPtr, other.m_StringPtr, sizeof(std::string));
 	}
 
 	// Copy Assignment Operator
@@ -52,7 +52,7 @@ namespace w2
 
 		m_Count = old.m_Count;
 		m_FileName = old.m_FileName;
-		wmemcpy(m_StringPtr, old.m_StringPtr, sizeof(std::string));
+		memcpy(m_StringPtr, old.m_StringPtr, sizeof(std::string));
 		return *this;
 	}
 
