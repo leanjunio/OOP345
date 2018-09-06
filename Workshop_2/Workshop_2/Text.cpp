@@ -76,7 +76,6 @@ namespace w2
 	// Destructor
 	Text::~Text()
 	{
-		// delete m_StringPtr;
 		m_StringPtr = nullptr;
 	}
 	size_t Text::size() const
