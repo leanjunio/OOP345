@@ -26,21 +26,12 @@ namespace w2
 
 	// Read file into std::string::m_StringPtr
 	void Text::readFile()
-<<<<<<< HEAD
-		// read the file into string
-=======
->>>>>>> w2_windows
 	{
 		std::ifstream file(m_FileName);
 		std::stringstream buffer;
 
 		buffer << file.rdbuf();
-<<<<<<< HEAD
-		std::string buf_string(buffer.str());
-		m_StringPtr.reset(&buf_string);
-=======
 		*m_StringPtr = buffer.str();
->>>>>>> w2_windows
 	}
 
 	// Copy Constructor
@@ -53,23 +44,11 @@ namespace w2
 	// Copy Assignment Operator
 	Text & Text::operator=(const Text & old)
 	{
-<<<<<<< HEAD
-		if (this != &old)
-		{
-			m_FileName = old.m_FileName;
-
-			if (old.m_StringPtr != nullptr)
-				m_StringPtr.reset(new std::string);
-			else
-				m_StringPtr = nullptr;
-		}
-=======
 		if (this == &old)
 			return *this;
 
 		m_FileName = old.m_FileName;
 		memcpy(m_StringPtr, old.m_StringPtr, sizeof(std::string));
->>>>>>> w2_windows
 		return *this;
 	}
 
@@ -97,13 +76,10 @@ namespace w2
 	// Destructor
 	Text::~Text()
 	{
-<<<<<<< HEAD
-		// m_StringPtr.reset();
-=======
 		// delete m_StringPtr;
 		m_StringPtr = nullptr;
->>>>>>> w2_windows
 	}
+
 	size_t Text::size() const
 	{
 		return size_t(1);
