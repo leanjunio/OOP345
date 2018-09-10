@@ -18,6 +18,13 @@ void dumpMemory(void* p, size_t size)
 //		std::cout << i << std::endl;
 //}
 
+int& getVal(int& val)
+{
+	return val;
+}
+
+void foo(int&&) {}
+
 int main()
 {
 	int a[] = {10, 2345};
@@ -26,12 +33,11 @@ int main()
 	
 	// References
 	{
-		int val;
-		int&& ref = 10;
-		int& a = val;		// L value reference
-
-
-		val = a;
+		int val = -3;
+		// int&& ref = 10;
+		// int& a = val;		// L value reference
+		getVal(val) = 43;
+		foo(std::move(val));
 	}
 
 	std::cin.get();
