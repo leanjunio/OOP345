@@ -15,25 +15,25 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Text.h">
+    <ClCompile Include="Workshop_2\Workshop_2\Text.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Workshop_2\Workshop_2\w2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Workshop_2\Workshop_2\Text.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Text.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="w2.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="gutenberg_shakespeare">
+    <None Include="Workshop_2\Workshop_2\gutenberg_shakespeare">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="reflect.txt">
+    <Text Include="Workshop_2\Workshop_2\reflect.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
