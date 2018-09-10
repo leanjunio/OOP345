@@ -15,6 +15,7 @@
 namespace w2
 {	
 	// Accepts a filename and set to safe-empty
+	// 
 	Text::Text(std::string file)
 		: m_FileName(file), 
 		m_StringPtr(new std::string),
