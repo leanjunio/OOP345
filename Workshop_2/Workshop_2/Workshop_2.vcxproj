@@ -18,6 +18,19 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Workshop_2\Text.cpp" />
+    <ClCompile Include="Workshop_2\w2.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Workshop_2\gutenberg_shakespeare" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Workshop_2\reflect.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Workshop_2\Text.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{19117455-93FA-4752-9BA7-F79D29B8C037}</ProjectGuid>
@@ -114,16 +127,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClInclude Include="Text.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Text.cpp" />
-    <ClCompile Include="w2.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="gutenberg_shakespeare" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
