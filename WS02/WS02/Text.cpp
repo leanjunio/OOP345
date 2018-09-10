@@ -15,34 +15,53 @@
 namespace w2
 {	
 	// Accepts a filename and set to safe-empty
-	// 
 	Text::Text(std::string file)
 		: m_FileName(file), 
-		m_StringPtr(new std::string),
+		m_StringPtr(nullptr),
 		m_Count(0)
 	{
+		// If all the conditions are met
 		if (m_FileName != "Unknown" && !m_FileName.empty())
+		{
+			countLines();
 			readFile();
+		}
 	} 
 
 	// Read file into std::string::m_StringPtr
 	void Text::readFile()
 	{
+		std::string buf;
 		std::ifstream file(m_FileName);
-		std::stringstream buffer;
 
-		// put the file text in m_StringPtr and count
-		// ERROR: Doesn't permanently get stored in m_StringPtr
-		while (std::getline(file, *m_StringPtr))
+		m_StringPtr = new std::string[m_Count];
+
+		auto i = 0;
+
+		// ERROR: Not saving buf in the memory...
+		while (std::getline(file, buf))
+		{
+			m_StringPtr[i] = buf;
+			i++;
+		}
+	}
+
+	// Counts how many lines are in the file
+	void Text::countLines()
+	{
+		std::ifstream file(m_FileName);
+		std::string buf;
+
+		while (std::getline(file, buf))
 			m_Count++;
 	}
 
-	// Copy Constructor
+	// Copy Constructor - copies the elements from other into 'this'
 	Text::Text(const Text& other)
 		: m_FileName(other.m_FileName),
-		m_StringPtr(new std::string(*other.m_StringPtr)),
 		m_Count(other.m_Count)
 	{
+		memcpy(m_StringPtr, other.m_StringPtr, sizeof(*m_StringPtr));
 	}
 
 	// Copy Assignment Operator
@@ -51,12 +70,12 @@ namespace w2
 		if (this == &old)
 			return *this;
 
-		delete m_StringPtr;
+		delete[] m_StringPtr;
 		m_Count = old.m_Count;
 		m_FileName = old.m_FileName;
 
 		if (old.m_StringPtr != nullptr)
-			m_StringPtr = new std::string(*old.m_StringPtr);
+			memcpy(m_StringPtr, old.m_StringPtr, sizeof(*m_StringPtr));
 		else
 			m_StringPtr = nullptr;
 
@@ -89,7 +108,7 @@ namespace w2
 	// Destructor
 	Text::~Text()
 	{
-		delete m_StringPtr;
+		delete[] m_StringPtr;
 		m_StringPtr = nullptr;
 	}
 

@@ -22,6 +22,7 @@ namespace w2
 	public:
 		explicit Text(const std::string file = "Unknown");
 		void readFile();
+		void countLines();
 		Text(const Text&);
 		Text& operator=(const Text&);
 		Text(Text&&);
