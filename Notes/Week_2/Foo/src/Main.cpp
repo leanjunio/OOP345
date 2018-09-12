@@ -10,6 +10,7 @@ public:
     Foo(size_t cnt)
         : m_Count(cnt)
     {
+        std::cout << "Foo(size_t): " << this << std::endl;
         m_Ptr = new short[cnt];
         m_Count = cnt;
 
@@ -28,6 +29,7 @@ public:
     Foo(const Foo& other)
         : m_Count(other.m_Count)
     {
+        std::cout << "Copy C: " << this << " from " << &other << std::endl;
         m_Ptr = new short[m_Count];
 
         for (size_t i =0; i < m_Count; i++)
@@ -37,6 +39,7 @@ public:
     // Move Constructor
     Foo(Foo&& other)
     {
+        std::cout << "Move C: " << this << " from " << &other << std::endl;
         m_Count = other.m_Count;
         m_Ptr = other.m_Ptr;            // shallow copy the address from other
         other.m_Ptr = nullptr;
