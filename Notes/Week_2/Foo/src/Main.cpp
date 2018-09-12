@@ -81,9 +81,17 @@ public:
     
 };
 
+Foo processData()
+{
+    Foo res = 2;
+    return res;         // calls the move constructor to wherever its returning to .. (line 18)
+}
+
 int main()
 {
     Foo f = 5;
-    Foo x = f;      // copy constructor
-    f = Foo(54);    // Move constructor since Foo(54) is now an R-value
+    Foo x = f;          // copy constructor
+    f = Foo(54);        // Move constructor since Foo(54) is now an R-value
+    f = processData();  // calls the move assignment of whatever the function is returning
+    std::cin.get();
 }
