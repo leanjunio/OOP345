@@ -82,12 +82,8 @@ namespace w2
 
 	// Move Constructor
 	Text::Text(Text&& src)
-		: m_FileName(src.m_FileName),
-		m_Count(src.m_Count)
 	{
-		delete[] m_StringPtr;
-		m_StringPtr = src.m_StringPtr;
-		src.m_StringPtr = nullptr;
+		*this = std::move(src);
 	}
 
 	// Move operator
@@ -97,10 +93,9 @@ namespace w2
 		{
 			m_FileName = src.m_FileName;
 			m_Count = src.m_Count;
-			m_StringPtr = src.m_StringPtr;
 
+			m_StringPtr = src.m_StringPtr;
 			src.m_StringPtr = nullptr;
-			src.m_FileName = "";
 		}
 		return *this;
 	}
@@ -108,11 +103,8 @@ namespace w2
 	// Destructor
 	Text::~Text()
 	{
-		std::cout << "Before delete: " << m_StringPtr << " size: " << sizeof(*m_StringPtr) << std::endl;
 		delete[] m_StringPtr;
-		std::cout << "After delete: " << m_StringPtr << " size: " << sizeof(*m_StringPtr) << std::endl;
 		m_StringPtr = nullptr;
-		std::cout << "After nullptr: " << m_StringPtr << " size: " << sizeof(*m_StringPtr) << std::endl;
 	}
 
 	size_t Text::size() const

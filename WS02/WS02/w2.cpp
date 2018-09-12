@@ -72,24 +72,6 @@ int main(int argc, char* argv[])
 		begin = std::chrono::high_resolution_clock::now();
 	}
 
-	// Lean's Scope
-	//{
-	//	w2::Text first;
-	//	w2::Text second(argv[1]);
-
-	//	// copy b to first
-	//	first = second;
-
-	//	// return an r-value reference of b to first
-	//	first = std::move(second);
-
-	//	// new element c
-	//	w2::Text c = first;
-
-	//	// return an r value reference of first to d
-	//	w2::Text d = std::move(first);
-	//}
-
 	end = std::chrono::high_resolution_clock::now();
 	std::cout << "Destructor "
 		<< std::setw(10) << TIMEP(begin, end) << " nanoseconds"
