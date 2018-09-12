@@ -64,8 +64,8 @@ namespace w2
 	Text& Text::operator=(const Text& old)
 	{
 		// Shallow Copy
-		this->m_Count = old.m_Count;		
-		this->m_FileName = old.m_FileName;
+		m_Count = old.m_Count;		
+		m_FileName = old.m_FileName;
 
 		if (this != &old)
 		{
@@ -85,31 +85,34 @@ namespace w2
 		: m_FileName(src.m_FileName),
 		m_Count(src.m_Count)
 	{
-		delete[] this->m_StringPtr;
-		this->m_StringPtr = src.m_StringPtr;
+		delete[] m_StringPtr;
+		m_StringPtr = src.m_StringPtr;
 		src.m_StringPtr = nullptr;
 	}
 
 	// Move operator
 	Text& Text::operator=(Text&& src)
 	{
-		if (this == &src)
-			return *this;
+		if (this != &src)
+		{
+			m_FileName = src.m_FileName;
+			m_Count = src.m_Count;
+			m_StringPtr = src.m_StringPtr;
 
-		m_FileName = src.m_FileName;
-		m_Count = src.m_Count;
-		m_StringPtr = src.m_StringPtr;
-
-		src.m_StringPtr = nullptr;
-		src.m_FileName = "";
+			src.m_StringPtr = nullptr;
+			src.m_FileName = "";
+		}
 		return *this;
 	}
 
 	// Destructor
 	Text::~Text()
 	{
+		std::cout << "Before delete: " << m_StringPtr << " size: " << sizeof(*m_StringPtr) << std::endl;
 		delete[] m_StringPtr;
+		std::cout << "After delete: " << m_StringPtr << " size: " << sizeof(*m_StringPtr) << std::endl;
 		m_StringPtr = nullptr;
+		std::cout << "After nullptr: " << m_StringPtr << " size: " << sizeof(*m_StringPtr) << std::endl;
 	}
 
 	size_t Text::size() const

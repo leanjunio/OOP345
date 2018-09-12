@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 	auto begin = std::chrono::high_resolution_clock::now();
 	auto end = std::chrono::high_resolution_clock::now();
 
-	/*{
+	{
 		begin = std::chrono::high_resolution_clock::now();
 		w2::Text a;
 		end = std::chrono::high_resolution_clock::now();
@@ -70,25 +70,25 @@ int main(int argc, char* argv[])
 			<< " - d.size = " << d.size() << std::endl;
 
 		begin = std::chrono::high_resolution_clock::now();
-	} */
+	}
 
 	// Lean's Scope
-	{
-		w2::Text first;
-		w2::Text second(argv[1]);
+	//{
+	//	w2::Text first;
+	//	w2::Text second(argv[1]);
 
-		// copy b to first
-		first = second;
+	//	// copy b to first
+	//	first = second;
 
-		// return an r-value reference of b to first
-		// ** first = std::move(second);
+	//	// return an r-value reference of b to first
+	//	first = std::move(second);
 
-		// new element c
-		w2::Text c = first;
+	//	// new element c
+	//	w2::Text c = first;
 
-		// return an r value reference of first to d
-		// ** w2::Text d = std::move(first);
-	}
+	//	// return an r value reference of first to d
+	//	w2::Text d = std::move(first);
+	//}
 
 	end = std::chrono::high_resolution_clock::now();
 	std::cout << "Destructor "
