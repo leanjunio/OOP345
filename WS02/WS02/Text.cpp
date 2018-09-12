@@ -31,18 +31,20 @@ namespace w2
 	// Read file into std::string::m_StringPtr
 	void Text::readFile()
 	{
-		std::string buf;
+		std::string buf;					// will contain one line from the file
 		std::ifstream file(m_FileName);
 
-		m_StringPtr = new std::string[m_Count];
+		// m_StringPtr = new std::string[m_Count];
 
-		auto i = 0;
+		// auto i = 0;
 
 		// ERROR: Not saving buf in the memory...
 		while (std::getline(file, buf))
 		{
-			m_StringPtr[i] = buf;
-			i++;
+			/*m_StringPtr[i] = buf;
+			i++;*/
+
+			std::cout << "Current line: " << buf << std::endl;
 		}
 	}
 
