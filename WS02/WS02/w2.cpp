@@ -81,13 +81,13 @@ int main(int argc, char* argv[])
 		first = second;
 
 		// return an r-value reference of b to first
-		first = std::move(second);
+		// ** first = std::move(second);
 
 		// new element c
 		w2::Text c = first;
 
 		// return an r value reference of first to d
-		w2::Text d = std::move(first);
+		// ** w2::Text d = std::move(first);
 	}
 
 	end = std::chrono::high_resolution_clock::now();

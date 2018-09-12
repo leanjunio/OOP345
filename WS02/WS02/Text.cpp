@@ -16,9 +16,9 @@ namespace w2
 {	
 	// Accepts a filename and set to safe-empty
 	Text::Text(std::string file)
-		: m_FileName(file), 
-		m_StringPtr(nullptr),
-		m_Count(0)
+		: m_Count(0),
+		m_StringPtr(new std::string[m_Count]),
+		m_FileName(file)
 	{
 		// If all the conditions are met
 		if (m_FileName != "Unknown" && !m_FileName.empty())
@@ -31,20 +31,16 @@ namespace w2
 	// Read file into std::string::m_StringPtr
 	void Text::readFile()
 	{
-		std::string buf;					// will contain one line from the file
-		std::ifstream file(m_FileName);
+		std::string buf;							// will contain one line from the file
+		std::ifstream file(m_FileName);	
+		int i = 0;
 
-		// m_StringPtr = new std::string[m_Count];
+		m_StringPtr = new std::string[m_Count];		// allocate memory of size m_Count
 
-		// auto i = 0;
-
-		// ERROR: Not saving buf in the memory...
-		while (std::getline(file, buf))
+		while (std::getline(file, buf))				// goes through the file while storing one line at a time in buf
 		{
-			/*m_StringPtr[i] = buf;
-			i++;*/
-
-			std::cout << "Current line: " << buf << std::endl;
+			m_StringPtr[i] = buf;
+			i++;
 		}
 	}
 
@@ -60,35 +56,37 @@ namespace w2
 
 	// Copy Constructor - copies the elements from other into 'this'
 	Text::Text(const Text& other)
-		: m_FileName(other.m_FileName),
-		m_Count(other.m_Count)
 	{
-		memcpy(m_StringPtr, other.m_StringPtr, sizeof(*m_StringPtr));
+		*this = other;
 	}
 
 	// Copy Assignment Operator
 	Text& Text::operator=(const Text& old)
 	{
-		if (this == &old)
-			return *this;
+		// Shallow Copy
+		this->m_Count = old.m_Count;		
+		this->m_FileName = old.m_FileName;
 
-		delete[] m_StringPtr;
-		m_Count = old.m_Count;
-		m_FileName = old.m_FileName;
+		if (this != &old)
+		{
+			// Allocate new memory
+			delete[] m_StringPtr;
+			m_StringPtr = new std::string[m_Count];
 
-		if (old.m_StringPtr != nullptr)
-			memcpy(m_StringPtr, old.m_StringPtr, sizeof(*m_StringPtr));
-		else
-			m_StringPtr = nullptr;
-
+			// Deep copy - copies the content of the resource not just the address
+			for (size_t i = 0; i < m_Count; i++)
+				m_StringPtr[i] = old.m_StringPtr[i];
+		}
 		return *this;
 	}
 
 	// Move Constructor
 	Text::Text(Text&& src)
-		: m_StringPtr(src.m_StringPtr),
+		: m_FileName(src.m_FileName),
 		m_Count(src.m_Count)
 	{
+		delete[] this->m_StringPtr;
+		this->m_StringPtr = src.m_StringPtr;
 		src.m_StringPtr = nullptr;
 	}
 
