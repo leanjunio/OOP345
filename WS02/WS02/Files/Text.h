@@ -20,7 +20,7 @@ namespace w2
 		std::string* m_StringPtr;
 		size_t m_Count;
 	public:
-		explicit Text(const std::string file = "Unknown");
+		explicit Text(const std::string file = "gutenberg_shakespeare");
 		void readFile();
 		void countLines();
 		Text(const Text&);

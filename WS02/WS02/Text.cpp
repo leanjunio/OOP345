@@ -107,6 +107,7 @@ namespace w2
 		m_StringPtr = nullptr;
 	}
 
+	// Return size of Count
 	size_t Text::size() const
 	{
 		return m_Count;
