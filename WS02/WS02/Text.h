@@ -10,18 +10,18 @@
 #define _W2_TEXT_H
 
 #include <string>
+#include <vector>
 
 namespace w2
 {
 	class Text
 	{
 		std::string m_FileName;
-		std::string* m_StringPtr;
+		std::vector<std::string> m_StringPtr;
 		size_t m_Count;
 	public:
 		Text(const std::string file = "Unknown");
 		void readFile();
-		void countLines();
 		Text(const Text&);
 		Text& operator=(const Text&);
 		Text(Text&&);

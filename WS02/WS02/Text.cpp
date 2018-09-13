@@ -16,13 +16,11 @@ namespace w2
 	// Accepts a filename and set to safe-empty
 	Text::Text(std::string file)
 		: m_Count(0),
-		m_StringPtr(new std::string[m_Count]),
 		m_FileName(file)
 	{
 		// If all the conditions are met
 		if (!m_FileName.empty())
 		{
-			countLines();
 			readFile();
 		}
 	} 
@@ -34,23 +32,11 @@ namespace w2
 		std::ifstream file(m_FileName);	
 		int i = 0;
 
-		m_StringPtr = new std::string[m_Count];		// allocate memory of size m_Count
-
 		while (std::getline(file, buf))				// goes through the file while storing one line at a time in buf
 		{
-			m_StringPtr[i] = buf;
-			i++;
-		}
-	}
-
-	// Counts how many lines are in the file
-	void Text::countLines()
-	{
-		std::ifstream file(m_FileName);
-		std::string buf;
-
-		while (std::getline(file, buf))
+			m_StringPtr.push_back(buf);
 			m_Count++;
+		}
 	}
 
 	// Copy Constructor - copies the elements from other into 'this'
@@ -68,13 +54,7 @@ namespace w2
 
 		if (this != &old)
 		{
-			// Allocate new memory
-			delete[] m_StringPtr;
-			m_StringPtr = new std::string[m_Count];
-
-			// Deep copy - copies the content of the resource not just the address
-			for (size_t i = 0; i < m_Count; i++)
-				m_StringPtr[i] = old.m_StringPtr[i];
+			m_StringPtr = old.m_StringPtr;
 		}
 		return *this;
 	}
@@ -94,7 +74,6 @@ namespace w2
 			m_Count = src.m_Count;
 
 			m_StringPtr = src.m_StringPtr;
-			src.m_StringPtr = nullptr;
 		}
 		return *this;
 	}
@@ -102,8 +81,6 @@ namespace w2
 	// Destructor
 	Text::~Text()
 	{
-		delete[] m_StringPtr;
-		m_StringPtr = nullptr;
 	}
 
 	// Return size of Count
