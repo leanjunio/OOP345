@@ -12,16 +12,16 @@
 
 int main(int argc, char* argv[])
 {
-	// if (argc == 1)
-	// {
-	// 	std::cout << argv[0] << ": missing file operand\n";
-	// 	return 1;
-	// }
-	// else if (argc != 2)
-	// {
-	// 	std::cout << argv[0] << ": too many arguments\n";
-	// 	return 2;
-	// }
+	if (argc == 1)
+	{
+		std::cout << argv[0] << ": missing file operand\n";
+		return 1;
+	}
+	else if (argc != 2)
+	{
+		std::cout << argv[0] << ": too many arguments\n";
+		return 2;
+	}
 
 	auto begin = std::chrono::high_resolution_clock::now();
 	auto end = std::chrono::high_resolution_clock::now();
