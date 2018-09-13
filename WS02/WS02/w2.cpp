@@ -71,6 +71,7 @@ int main(int argc, char* argv[])
 
 		begin = std::chrono::high_resolution_clock::now();
 	}
+
 	end = std::chrono::high_resolution_clock::now();
 	std::cout << "Destructor "
 		<< std::setw(10) << TIMEP(begin, end) << " nanoseconds"

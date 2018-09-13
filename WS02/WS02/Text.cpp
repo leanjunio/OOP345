@@ -9,89 +9,104 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <sstream>
 #include "Text.h"
 
 namespace w2
 {	
 	// Accepts a filename and set to safe-empty
 	Text::Text(std::string file)
-		: m_FileName(file), 
-		m_StringPtr(new std::string),
-		m_Count(0)
+		: m_Count(0),
+		m_StringPtr(new std::string[m_Count]),
+		m_FileName(file)
 	{
-		if (m_FileName != "Unknown" && !m_FileName.empty())
+		// If all the conditions are met
+		if (!m_FileName.empty())
+		{
+			countLines();
 			readFile();
+		}
 	} 
 
 	// Read file into std::string::m_StringPtr
 	void Text::readFile()
 	{
-		std::ifstream file(m_FileName);
-		std::stringstream buffer;
+		std::string buf;							// will contain one line from the file
+		std::ifstream file(m_FileName);	
+		int i = 0;
 
-		// put the file text in m_StringPtr and count
-		// ERROR: Doesn't permanently get stored in m_StringPtr
-		while (std::getline(file, *m_StringPtr))
+		m_StringPtr = new std::string[m_Count];		// allocate memory of size m_Count
+
+		while (std::getline(file, buf))				// goes through the file while storing one line at a time in buf
+		{
+			m_StringPtr[i] = buf;
+			i++;
+		}
+	}
+
+	// Counts how many lines are in the file
+	void Text::countLines()
+	{
+		std::ifstream file(m_FileName);
+		std::string buf;
+
+		while (std::getline(file, buf))
 			m_Count++;
 	}
 
-	// Copy Constructor
+	// Copy Constructor - copies the elements from other into 'this'
 	Text::Text(const Text& other)
-		: m_FileName(other.m_FileName),
-		m_StringPtr(new std::string(*other.m_StringPtr)),
-		m_Count(other.m_Count)
 	{
+		*this = other;
 	}
 
 	// Copy Assignment Operator
 	Text& Text::operator=(const Text& old)
 	{
-		if (this == &old)
-			return *this;
-
-		delete m_StringPtr;
-		m_Count = old.m_Count;
+		// Shallow Copy
+		m_Count = old.m_Count;		
 		m_FileName = old.m_FileName;
 
-		if (old.m_StringPtr != nullptr)
-			m_StringPtr = new std::string(*old.m_StringPtr);
-		else
-			m_StringPtr = nullptr;
+		if (this != &old)
+		{
+			// Allocate new memory
+			delete[] m_StringPtr;
+			m_StringPtr = new std::string[m_Count];
 
+			// Deep copy - copies the content of the resource not just the address
+			for (size_t i = 0; i < m_Count; i++)
+				m_StringPtr[i] = old.m_StringPtr[i];
+		}
 		return *this;
 	}
 
 	// Move Constructor
 	Text::Text(Text&& src)
-		: m_StringPtr(src.m_StringPtr),
-		m_Count(src.m_Count)
 	{
-		src.m_StringPtr = nullptr;
+		*this = std::move(src);
 	}
 
 	// Move operator
 	Text& Text::operator=(Text&& src)
 	{
-		if (this == &src)
-			return *this;
+		if (this != &src)
+		{
+			m_FileName = src.m_FileName;
+			m_Count = src.m_Count;
 
-		m_FileName = src.m_FileName;
-		m_Count = src.m_Count;
-		m_StringPtr = src.m_StringPtr;
-
-		src.m_StringPtr = nullptr;
-		src.m_FileName = "";
+			m_StringPtr = src.m_StringPtr;
+			src.m_StringPtr = nullptr;
+		}
 		return *this;
 	}
 
 	// Destructor
 	Text::~Text()
 	{
-		delete m_StringPtr;
+		delete[] m_StringPtr;
 		m_StringPtr = nullptr;
 	}
 
+	// Return size of Count
 	size_t Text::size() const
 	{
 		return m_Count;
