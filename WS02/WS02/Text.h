@@ -10,7 +10,6 @@
 #define _W2_TEXT_H
 
 #include <string>
-#include <memory>
 
 namespace w2
 {
@@ -20,7 +19,7 @@ namespace w2
 		std::string* m_StringPtr;
 		size_t m_Count;
 	public:
-		explicit Text(const std::string file = "Unknown");
+		Text(const std::string file = "Unknown");
 		void readFile();
 		void countLines();
 		Text(const Text&);
