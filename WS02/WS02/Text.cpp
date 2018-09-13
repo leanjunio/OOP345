@@ -9,7 +9,6 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <sstream>
 #include "Text.h"
 
 namespace w2
@@ -21,7 +20,7 @@ namespace w2
 		m_FileName(file)
 	{
 		// If all the conditions are met
-		if (m_FileName != "Unknown" && !m_FileName.empty())
+		if (!m_FileName.empty())
 		{
 			countLines();
 			readFile();
