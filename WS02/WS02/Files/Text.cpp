@@ -9,7 +9,6 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include <sstream>
 #include "Text.h"
 
 namespace w2
@@ -21,7 +20,7 @@ namespace w2
 		m_FileName(file)
 	{
 		// If all the conditions are met
-		if (m_FileName != "Unknown" && !m_FileName.empty())
+		if (!m_FileName.empty())
 		{
 			countLines();
 			readFile();
@@ -93,6 +92,9 @@ namespace w2
 		{
 			m_FileName = src.m_FileName;
 			m_Count = src.m_Count;
+
+			// Deallocate the memory for the current object's m_StringPtr
+			delete[] m_StringPtr;
 
 			m_StringPtr = src.m_StringPtr;
 			src.m_StringPtr = nullptr;
