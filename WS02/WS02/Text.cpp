@@ -93,6 +93,9 @@ namespace w2
 			m_FileName = src.m_FileName;
 			m_Count = src.m_Count;
 
+			// Deallocate the memory for the current object's m_StringPtr
+			delete[] m_StringPtr;
+
 			m_StringPtr = src.m_StringPtr;
 			src.m_StringPtr = nullptr;
 		}
