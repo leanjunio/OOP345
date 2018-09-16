@@ -16,8 +16,8 @@ namespace w2
 	// Accepts a filename and set to safe-empty
 	Text::Text(std::string file)
 		:m_FileName(file)
-		,m_StringPtr(new std::string[m_Count]),
-		,m_Count(0),
+		,m_StringPtr(new std::string[m_Count])
+		,m_Count(0)
 	{
 		// If all the conditions are met
 		if (!m_FileName.empty())
