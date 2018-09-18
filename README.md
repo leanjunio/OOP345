@@ -4,7 +4,7 @@ This repository contains Workshops, Projects, Notes, and other course work for F
 ### Finished Workshops
 - [x] WS01 - Memory, Linkage and Storage Classes, From One Translation Unit to Another
 - [x] WS02 - Copy and Move Semantics
-- [ ] WS03 - Class Templates
+- [x] WS03 - Class Templates
 - [ ] WS04 - Containers
 - [ ] WS05 - Lambda Expressions
 - [ ] WS06 - STL Containers
@@ -23,5 +23,8 @@ This repository contains Workshops, Projects, Notes, and other course work for F
   - https://msdn.microsoft.com/en-us/library/dd293665.aspx?f=255&MSPPError=-2147217396
 - Clas Templates:
   - http://users.cis.fiu.edu/~weiss/Deltoid/vcstl/templates
+- Vectors:
+  - http://www.cplusplus.com/reference/vector/vector/
+  - http://www.cplusplus.com/reference/vector/vector/vector/
   
 
