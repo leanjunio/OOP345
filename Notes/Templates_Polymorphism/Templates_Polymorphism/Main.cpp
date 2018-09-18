@@ -40,8 +40,8 @@ public:
 	}
 };
 
-template <typename T>
-int Foo<T>::m_Count = 0;
+template <>
+int Foo<double>::m_Count = 100;
 
 int main()
 {
