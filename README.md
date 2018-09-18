@@ -21,5 +21,7 @@ This repository contains Workshops, Projects, Notes, and other course work for F
   - https://www.quora.com/Does-the-address-of-a-pointer-lie-in-a-stack-or-heap-in-C++
 - Move Constructors and Move Assignment Operators:
   - https://msdn.microsoft.com/en-us/library/dd293665.aspx?f=255&MSPPError=-2147217396
+- Clas Templates:
+  - http://users.cis.fiu.edu/~weiss/Deltoid/vcstl/templates
   
 
