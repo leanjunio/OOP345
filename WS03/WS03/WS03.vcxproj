@@ -115,8 +115,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="List.cpp" />
-    <ClCompile Include="Pair.cpp" />
     <ClCompile Include="w3.cpp" />
   </ItemGroup>
   <ItemGroup>
