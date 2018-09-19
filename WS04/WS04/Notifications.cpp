@@ -7,8 +7,7 @@
 namespace w4
 {
 	Notifications::Notifications()
-	{
-		
+	{	
 	}
 
 	Notifications::Notifications(const Notifications & other)
@@ -37,12 +36,8 @@ namespace w4
 	{
 		if (this != &other)
 		{
-			int v_Size = other.m_Messages->size();
-
-			for (size_t i = 0; i < v_Size; i++)
-				this->m_Messages[i] = other.m_Messages[i];
-
-			other.m_Messages->clear();
+			this->m_Messages = other.m_Messages;
+			(other.m_Messages).clear();
 		}
 
 		return *this;
@@ -54,7 +49,7 @@ namespace w4
 	}
 	void Notifications::operator+=(const Message & msg)
 	{
-		this->m_Messages->push_back(msg);
+		m_Messages.push_back(msg);
 	}
 	void Notifications::display(std::ostream & os) const
 	{
