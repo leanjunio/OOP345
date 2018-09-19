@@ -58,9 +58,9 @@ namespace w4
 	}
 	void Notifications::display(std::ostream & os) const
 	{
-		for (size_t i = 0; i < m_Messages->size(); i++)
+		/*for (size_t i = 0; i < m_Messages->size(); i++)
 		{
 			m_Messages[i].display(os);
-		}
+		}*/
 	}
 }

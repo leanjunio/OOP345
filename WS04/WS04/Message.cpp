@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "Message.h"
 
 namespace w4
@@ -19,7 +20,18 @@ namespace w4
 		std::string temp;
 
 		while (std::getline(in, temp))
-			std::cout << temp << std::endl;
+		{
+			m_User = temp.substr(0, temp.find(" "));	// get the first word
+			
+			// find the index of '@'
+			int atSymbol = temp.find('@');
+
+			if (atSymbol != -1)
+				m_Reply = temp.substr(atSymbol, temp.find(' '));
+
+			std::cout << m_Reply << std::endl;
+
+		}
 	}
 
 	bool Message::empty() const
