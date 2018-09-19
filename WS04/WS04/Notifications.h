@@ -10,6 +10,7 @@ namespace w4
 {
 	class Notifications
 	{
+		// An 'array' of messages from the file
 		std::vector<Message> m_Messages;
 	public:
 		Notifications();

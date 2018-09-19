@@ -24,13 +24,12 @@ namespace w4
 			m_User = temp.substr(0, temp.find(" "));	// get the first word
 			
 			// find the index of '@'
-			int atSymbol = temp.find('@');
+			size_t atSymbol = temp.find('@');
 
 			if (atSymbol != -1)
 				m_Reply = temp.substr(atSymbol, temp.find(' '));
 
 			std::cout << m_Reply << std::endl;
-
 		}
 	}
 

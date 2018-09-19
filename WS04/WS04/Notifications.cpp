@@ -6,7 +6,6 @@
 
 namespace w4
 {
-	//
 	Notifications::Notifications()
 	{
 		
@@ -24,9 +23,7 @@ namespace w4
 		// Called via: `Notifications::n1 = Notifications::n2;`
 	{
 		if (this != &other)
-		{
-			
-		}
+			this->m_Messages = other.m_Messages;
 
 		return *this;
 	}
@@ -40,7 +37,7 @@ namespace w4
 	{
 		if (this != &other)
 		{
-			size_t v_Size = other.m_Messages->size();
+			int v_Size = other.m_Messages->size();
 
 			for (size_t i = 0; i < v_Size; i++)
 				this->m_Messages[i] = other.m_Messages[i];
