@@ -115,6 +115,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Message.cpp" />
+    <ClCompile Include="Notifications.cpp" />
+    <ClCompile Include="w4.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Message.h" />
+    <ClInclude Include="Notifications.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="tweets.dat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
