@@ -10,11 +10,11 @@ namespace w4
 
 	class Notifications
 	{
-		std::vector<Message> m_Messages[10];
+		std::vector<Message> m_Messages[MAX_OBJECTS];
 	public:
 		Notifications();
 		Notifications(const Notifications&);
-		Notifications& operator=(Notifications&);
+		Notifications& operator=(const Notifications&);
 		Notifications(Notifications&&);
 		Notifications& operator=(Notifications&&);
 		~Notifications();

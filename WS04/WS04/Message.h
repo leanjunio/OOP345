@@ -18,7 +18,6 @@ namespace w4
 		Message(std::ifstream& in, char c);
 		bool empty() const;
 		void display(std::ostream& os) const;
-		~Message();
 	};
 }
 
