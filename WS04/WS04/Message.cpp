@@ -1,23 +1,22 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
 #include "Message.h"
 
 namespace w4
 {
 	Message::Message(void)
 		// Default constructor for safe-empty check
-		: Message("", "", "", "", '\0')
+		: Message("", "", "")
 	{
 	}
 
-	Message::Message(String message, String user, String tweet, String reply, char delimeter)
+	Message::Message(String user, String tweet, String reply)
 		// Parameterized constructor that creates an object based on the parameters
-		: m_Message{message}
-		, m_User{user}
+		: m_User{user}
 		, m_Tweet{tweet}
 		, m_Reply{reply}
-		, m_Delimeter{delimeter}
 	{
 	}
 
@@ -25,44 +24,64 @@ namespace w4
 		// Retrieves an ifstream for the file, parses the file into different Message objects
 		// Create a temporary object that can fill the members
 	{
-		std::string line;
+		std::vector<std::string> line;
+		std::string ln;
 
-		while (std::getline(in, line))
+		// Read the file into lines
+		while (std::getline(in, ln, c))
+			line.push_back(ln);
+
+		// Parse all the lines in the vector
+		for (std::string ln : line)
 		{
+			std::string user, reply, tweet;
 			Message temp;
 
-			// Get the user
-			temp.m_User = line.substr(0, line.find(" "));	
+			// Take the user and erase it from the line
+			user = ln.substr(0, ln.find(' '));
+			ln.erase(ln.find(user), ln.find(' ') + 1);
+
+			// Check if there is a reply tagged
+			// if so, save it
+			bool replyExists = ln.find('@') != -1;
 			
-			// Erase the user from the line
-			// find position of the user
-			size_t p_User = line.find(temp.m_User);
-			std::cout << "user's position: " << p_User << std::endl;
-
-			// position of @
-			size_t atSymbol = line.find('@');
-
-			// If there's an '@' in the string
-			// That means there's a reply
-			// EraseTake the reply into m_Reply
-			if (atSymbol != -1)
+			if (replyExists)
 			{
-
+				reply = ln.substr(0, ln.find(' '));
+				ln.erase(ln.find(reply), ln.find(' ') + 1);
 			}
-			else m_Reply = { "" };
+			else 
+				reply = "";
 
-			std::cout << "Current m_Reply [" << &temp.m_Reply << "]: " << temp.m_Reply << std::endl;
+			// let tweet get the remaining string in 'ln'
+			tweet = ln;
+
+			// check if at least tweet and user exists
+			// if so, create an object
+			bool check = (tweet.size() > 0 && user.size() > 0);
+
+			if (!check)
+			{
+				Message non("", "", '\0');
+				*this = non;
+			}
+			else
+			{
+				Message t(user, tweet, reply);
+				*this = t;
+			}
 		}
+
+		std::cout << line.size() << std::endl;
 	}
 
 	Message::~Message()
 	{
-		std::cout << "Called " << this << " ~Message()" << std::endl;
 	}
 
 	bool Message::empty() const
 	{
-		return (m_Message.empty() && m_User.empty() && m_Tweet.empty() && m_Reply.empty() && m_Delimeter == '\0');
+		return (m_User.empty() && m_Tweet.empty() && m_Reply.empty());
 	}
 
 	void Message::display(std::ostream & os) const

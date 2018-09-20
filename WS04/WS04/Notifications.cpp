@@ -45,7 +45,7 @@ namespace w4
 
 	Notifications::~Notifications()
 	{
-		std::cout << "Destructor called" << std::endl;
+		// std::cout << "Destructor called" << std::endl;
 	}
 	void Notifications::operator+=(const Message & msg)
 	{
@@ -53,9 +53,6 @@ namespace w4
 	}
 	void Notifications::display(std::ostream & os) const
 	{
-		/*for (size_t i = 0; i < m_Messages->size(); i++)
-		{
-			m_Messages[i].display(os);
-		}*/
+		std::cout << "m_Messages count: " << m_Messages.size() << std::endl;
 	}
 }

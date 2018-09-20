@@ -18,7 +18,7 @@ w4::Notifications collect(std::ifstream& in, char recDelim)
 		w4::Message message(in, recDelim);
 		if (!message.empty())
 			notifications += std::move(message);
-	} while (in);
+	} while (in);	// ERROR
 
 	return notifications;
 }

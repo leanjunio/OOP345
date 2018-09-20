@@ -10,14 +10,12 @@ namespace w4
 {
 	class Message
 	{
-		std::string m_Message;
 		std::string m_User;
 		std::string m_Tweet;
 		std::string m_Reply;
-		char m_Delimeter;
 	public:
 		Message();
-		Message(String message, String user, String tweet, String reply, char delimeter);
+		Message(String user, String tweet, String reply);
 		Message(std::ifstream& in, char c);
 		~Message();
 		bool empty() const;
