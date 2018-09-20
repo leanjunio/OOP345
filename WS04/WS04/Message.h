@@ -8,8 +8,10 @@ using String = std::string;
 
 namespace w4
 {
+
 	class Message
 	{
+		static int indexer;
 		std::string m_User;
 		std::string m_Tweet;
 		std::string m_Reply;
@@ -21,6 +23,8 @@ namespace w4
 		bool empty() const;
 		void display(std::ostream& os) const;
 	};
+
+	String readNthLine(std::ifstream& in, int N);
 }
 
 #endif // !_W4_MESSAGE_H

@@ -6,6 +6,8 @@
 
 namespace w4
 {
+	int Message::indexer = 0;
+
 	Message::Message(void)
 		// Default constructor for safe-empty check
 		: Message("", "", "")
@@ -21,6 +23,7 @@ namespace w4
 	}
 
 	Message::Message(std::ifstream & in, char c)
+		// Retrieves
 		// Retrieves an ifstream for the file, parses the file into different Message objects
 		// Create a temporary object that can fill the members
 	{
@@ -92,5 +95,19 @@ namespace w4
 			os << " Reply : " << m_Reply << "\n";
 		
 		os << " Tweet : " << m_Tweet << std::endl;
+	}
+
+	std::string readNthLine(std::ifstream & in, int N)
+		// Reads the line 'N' in the passed file
+		// returns the line of the string at N
+	{
+		std::string s;
+
+		// Skip N amount of lines
+		for (int i = 0; i < N; i++)
+			std::getline(in, s);
+
+		std::getline(in, s);
+		return s;
 	}
 }
