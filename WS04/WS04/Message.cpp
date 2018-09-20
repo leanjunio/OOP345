@@ -5,31 +5,45 @@
 
 namespace w4
 {
-	Message::Message()
-		: m_Delimeter{'\0'},
-		m_Message{""},
-		m_Reply{""},
-		m_Tweet{""},
-		m_User{""}
+	Message::Message(void)
+		: m_Delimeter{'\0'}
+		, m_Message{""}
+		, m_Reply{""}
+		, m_Tweet{""}
+		, m_User{""}
+	{
+	}
+
+	Message::Message(String message, String user, String tweet, String reply, char delimeter)
+		: m_Message{message}
+		, m_User{user}
+		, m_Tweet{tweet}
+		, m_Reply{reply}
+		, m_Delimeter{delimeter}
+		// Constructor that allows parametric construction of Message object
 	{
 	}
 
 	Message::Message(std::ifstream & in, char c)
 		: m_Delimeter{c}
+		// Retrieves an ifstream for the file, parses the file into different Message objects
 	{
-		std::string temp;
+		std::string line;
 
-		while (std::getline(in, temp))
+		while (std::getline(in, line))
 		{
-			m_User = temp.substr(0, temp.find(" "));	// get the first word
+			Message temp;
+			std::string currentLine = line;
+			temp.m_User = currentLine.substr(0, currentLine.find(" "));	// get the first word
 			
+			std::cout << "Current temp: " << currentLine << std::endl;
 			// find the index of '@'
-			size_t atSymbol = temp.find('@');
+			size_t atSymbol = currentLine.find('@');
 
 			if (atSymbol != -1)
-				m_Reply = temp.substr(atSymbol, temp.find(' '));
+				temp.m_Reply = currentLine.substr(atSymbol, currentLine.find(' '));
 
-			std::cout << m_Reply << std::endl;
+			std::cout << "Current m_Reply [" << &temp.m_Reply << "]: " << temp.m_Reply << std::endl;
 		}
 	}
 

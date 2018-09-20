@@ -4,6 +4,8 @@
 #include <fstream>
 #include <string>
 
+using String = std::string;
+
 namespace w4
 {
 	class Message
@@ -15,6 +17,7 @@ namespace w4
 		char m_Delimeter;
 	public:
 		Message();
+		Message(String message = "", String user="", String tweet="", String reply="", char delimeter='\0');
 		Message(std::ifstream& in, char c);
 		bool empty() const;
 		void display(std::ostream& os) const;
