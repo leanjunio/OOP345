@@ -40,7 +40,6 @@ int main(int argc, char** argv)
 	} while (keepreading);
 
 	cout << "\nPrice List\n-----------\n";
-	std::cout << "Inventory size: " << inventory.size() << std::endl;
 	for (int i = 0; i < inventory.size(); i++)
 		cout << inventory[i].getKey()
 		<< " : " << inventory[i].getValue() << std::endl;
