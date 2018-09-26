@@ -1,5 +1,23 @@
 #include <iostream>
 
+template <typename T>
+struct Category
+{
+	static const char* const name = "prvalue";
+};
+
+template <typename T>
+struct Category<T&>
+{
+	static const char* const* name = "lvalue";
+};
+
+template <typename T>
+struct Category<T&&>
+{
+	static const char* const* name = "xvalue";
+};
+
 int main()
 {
 	/// SIZEOF
@@ -47,7 +65,10 @@ int main()
 	}
 
 	{
-
+		int val = 10;
+		std::cout << "Category: " << Category<decltype((10))>::name << std::endl;
+		std::cout << "Category: " << Category<decltype((val))>::name << std::endl;
+		std::cout << "Category: " << Category<decltype((std::move(val)))>::name << std::endl;
 	}
 	std::cin.get();
 }
