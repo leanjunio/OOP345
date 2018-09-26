@@ -36,5 +36,18 @@ int main()
 		decltype(a * b) c;
 		std::cout << typeid(c).name() << std::endl;
 	}
+
+	{
+		char* str = nullptr;
+		// if (str[0] != '\0' && str != nullptr) - WILL CRASH
+		//	std::cout << str << std::endl;
+
+		// if (str[0] != '\0' || str != nullptr) // - WILL CRASH
+		//	std::cout << str << std::endl;
+	}
+
+	{
+
+	}
 	std::cin.get();
 }
