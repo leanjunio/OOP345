@@ -61,7 +61,7 @@ namespace w4
 
 		if (!check)
 		{
-			*this = Message("", "", '\0');
+			*this = Message("", "", '\0');	// ERROR OCCURS AT END OF PROGRAM
 		}
 		else
 		{
