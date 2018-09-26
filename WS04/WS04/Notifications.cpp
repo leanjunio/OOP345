@@ -45,9 +45,9 @@ namespace w4
 
 	Notifications::~Notifications()
 	{
-		// std::cout << "Destructor called" << std::endl;
 	}
 	void Notifications::operator+=(const Message & msg)
+		// Pushes the passed msg parameter into the vector m_Messages
 	{
 		m_Messages.push_back(msg);
 	}

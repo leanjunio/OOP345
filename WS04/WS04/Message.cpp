@@ -23,59 +23,52 @@ namespace w4
 	}
 
 	Message::Message(std::ifstream & in, char c)
-		// Retrieves
 		// Retrieves an ifstream for the file, parses the file into different Message objects
 		// Create a temporary object that can fill the members
 	{
-		std::vector<std::string> line;
-		std::string ln;
+		//std::vector<String> line;
+		String ln;
 
 		// Read the file into lines
-		while (std::getline(in, ln, c))
-			line.push_back(ln);
 
-		// Parse all the lines in the vector
-		for (std::string ln : line)
-		{
-			std::string user, reply, tweet;
-			Message temp;
+		std::getline(in, ln, c);
 
-			// Take the user and erase it from the line
-			user = ln.substr(0, ln.find(' '));
-			ln.erase(ln.find(user), ln.find(' ') + 1);
+		String user, reply, tweet;
+		Message temp;
 
-			// Check if there is a reply tagged
-			// if so, save it
-			bool replyExists = ln.find('@') != -1;
+		// Take the user and erase it from the line
+		user = ln.substr(0, ln.find(' '));
+		ln.erase(ln.find(user), ln.find(' ') + 1);
+
+		// Check if there is a reply tagged
+		// if so, save it
+		bool replyExists = ln.find('@') != -1;
 			
-			if (replyExists)
-			{
-				reply = ln.substr(0, ln.find(' '));
-				ln.erase(ln.find(reply), ln.find(' ') + 1);
-			}
-			else 
-				reply = "";
+		if (replyExists)
+		{
+			reply = ln.substr(0, ln.find(' '));
+			ln.erase(ln.find(reply), ln.find(' ') + 1);
+		}
+		else 
+			reply = "";
 
-			// let tweet get the remaining string in 'ln'
-			tweet = ln;
+		// let tweet get the remaining string in 'ln'
+		tweet = ln;
 
-			// check if at least tweet and user exists
-			// if so, create an object
-			bool check = (tweet.size() > 0 && user.size() > 0);
+		// check if at least tweet and user exists
+		// if so, create an object
+		bool check = (tweet.size() > 0 && user.size() > 0);
 
-			if (!check)
-			{
-				Message non("", "", '\0');
-				*this = non;
-			}
-			else
-			{
-				Message t(user, tweet, reply);
-				*this = t;
-			}
+		if (!check)
+		{
+			*this = Message("", "", '\0');
+		}
+		else
+		{
+			*this = Message(user, tweet, reply);
 		}
 
-		std::cout << line.size() << std::endl;
+		display(std::cout);
 	}
 
 	Message::~Message()
@@ -95,19 +88,5 @@ namespace w4
 			os << " Reply : " << m_Reply << "\n";
 		
 		os << " Tweet : " << m_Tweet << std::endl;
-	}
-
-	std::string readNthLine(std::ifstream & in, int N)
-		// Reads the line 'N' in the passed file
-		// returns the line of the string at N
-	{
-		std::string s;
-
-		// Skip N amount of lines
-		for (int i = 0; i < N; i++)
-			std::getline(in, s);
-
-		std::getline(in, s);
-		return s;
 	}
 }
