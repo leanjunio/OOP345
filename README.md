@@ -26,5 +26,7 @@ This repository contains Workshops, Projects, Notes, and other course work for F
 - Vectors:
   - http://www.cplusplus.com/reference/vector/vector/
   - http://www.cplusplus.com/reference/vector/vector/vector/
+- Brace Initialization:
+  - https://youtu.be/SmriQ5zXeAk?t=4m19s
   
 
