@@ -83,7 +83,7 @@ namespace w4
 
 	void Message::display(std::ostream & os) const
 	{
-		os << "\nMessage\n" << " User  : " << this->m_User << "\n";
+		os << "Message\n" << " User  : " << this->m_User << "\n";
 
 		if (this->m_Reply.length() > 0)
 			os << " Reply : " << m_Reply << "\n";

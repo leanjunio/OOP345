@@ -46,7 +46,7 @@ int main(int argc, char* argv[])
 		return 3;
 	}
 
-	std::cout << "\nNotifications\n=============\n";
+	std::cout << "\nNotifications\n=============\n\n";
 	w4::Notifications notifications = collect(file, REC_DELIMITER);
 
 	notifications.display(std::cout);
