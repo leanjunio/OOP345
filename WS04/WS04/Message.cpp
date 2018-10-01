@@ -49,7 +49,7 @@ namespace w4
 
 		// Check if there is a reply tagged
 		// if so, save it
-		bool replyExists = ln.find('@') != -1;
+		bool replyExists = ln.find('@') != static_cast<size_t>(-1);
 			
 		if (replyExists)
 		{
