@@ -53,6 +53,7 @@ namespace w4
 			
 		if (replyExists)
 		{
+			ln.erase(0, 1);
 			reply = ln.substr(0, ln.find(' '));
 			ln.erase(ln.find(reply), ln.find(' ') + 1);
 		}
