@@ -1,3 +1,11 @@
+// Name: Lean Junio
+// Seneca Student ID: 019109123
+// Seneca email: ljjunio@myseneca.ca	
+// Date of completion: 10/1/2018
+//
+// I confirm that the content of this file is created by me,
+// with the exception of the parts provided to me by my professor.
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -6,8 +14,6 @@
 
 namespace w4
 {
-	int Message::indexer = 0;
-
 	Message::Message()
 		// Default constructor for safe-empty check
 		: Message("", "", "")
