@@ -53,6 +53,7 @@ namespace w4
 	}
 	void Notifications::display(std::ostream & os) const
 	{
-		std::cout << "m_Messages count: " << m_Messages.size() << std::endl;
+		for (Message m : m_Messages)
+			m.display(os);
 	}
 }

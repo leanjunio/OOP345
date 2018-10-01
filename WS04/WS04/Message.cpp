@@ -8,7 +8,7 @@ namespace w4
 {
 	int Message::indexer = 0;
 
-	Message::Message(void)
+	Message::Message()
 		// Default constructor for safe-empty check
 		: Message("", "", "")
 	{
@@ -26,11 +26,9 @@ namespace w4
 		// Retrieves an ifstream for the file, parses the file into different Message objects
 		// Create a temporary object that can fill the members
 	{
-		//std::vector<String> line;
 		String ln;
 
 		// Read the file into lines
-
 		std::getline(in, ln, c);
 
 		String user, reply, tweet;
@@ -38,7 +36,10 @@ namespace w4
 
 		// Take the user and erase it from the line
 		user = ln.substr(0, ln.find(' '));
-		ln.erase(ln.find(user), ln.find(' ') + 1);
+
+		// find the position of user and the next space and delete them
+		auto userPOS = ln.find(user);
+		ln.erase(userPOS, user.length() + 1);
 
 		// Check if there is a reply tagged
 		// if so, save it
@@ -57,18 +58,12 @@ namespace w4
 
 		// check if at least tweet and user exists
 		// if so, create an object
-		bool check = (tweet.size() > 0 && user.size() > 0);
+		bool ifTweetExists = !tweet.empty();
 
-		if (!check)
-		{
-			*this = Message("", "", '\0');	// ERROR OCCURS AT END OF PROGRAM
-		}
-		else
-		{
+		if (ifTweetExists)
 			*this = Message(user, tweet, reply);
-		}
 
-		display(std::cout);
+		// display(std::cout);
 	}
 
 	Message::~Message()
@@ -82,7 +77,7 @@ namespace w4
 
 	void Message::display(std::ostream & os) const
 	{
-		os << "Message\n" << " User  : " << this->m_User << "\n";
+		os << "\nMessage\n" << " User  : " << this->m_User << "\n";
 
 		if (this->m_Reply.length() > 0)
 			os << " Reply : " << m_Reply << "\n";
