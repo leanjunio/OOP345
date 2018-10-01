@@ -88,6 +88,6 @@ namespace w4
 		if (this->m_Reply.length() > 0)
 			os << " Reply : " << m_Reply << "\n";
 		
-		os << " Tweet : " << m_Tweet << std::endl;
+		os << " Tweet : " << m_Tweet << "\n\n";
 	}
 }
