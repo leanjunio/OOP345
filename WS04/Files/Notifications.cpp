@@ -61,7 +61,7 @@ namespace w4
 		m_Messages.push_back(msg);
 	}
 	void Notifications::display(std::ostream & os) const
-	{
+	{	
 		for (Message m : m_Messages)
 			m.display(os);
 	}
