@@ -18,6 +18,7 @@ namespace sict
 	/// Receive an unmodifiable reference to one of the enumeration constants
 	/// Returns the address of string that represents that constant
 	template <typename T>
+	
 
 }
 

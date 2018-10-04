@@ -10,6 +10,7 @@
 #define _SICT_GRADES_H
 
 #include <iostream>
+#include <fstream>
 
 namespace sict
 {
@@ -21,9 +22,10 @@ namespace sict
 	class Grades
 	{
 	public:
-		/// Receives a reference to the output stream (os) as well as the address of the expression to be used (F)
+		/// Receives a reference to the output stream (os) as well as the address of the expression to be used (F) to determine the letter grade
+		/// Displays the student number, student grade, and letter equivalent (using the template function in Letter.h)
 		void displayGrades(std::ostream&, F) const;
-		Grades();
+		Grades(const char*);
 		~Grades();
 	};
 }

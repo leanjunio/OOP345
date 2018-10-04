@@ -10,7 +10,12 @@
 
 namespace sict
 {
-	Grades::Grades()
+	void Grades::displayGrades(std::ostream & os, F) const
+	{
+
+	}
+	Grades::Grades(const char* file)
+		// Read the file
 	{
 	}
 }
