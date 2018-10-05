@@ -38,24 +38,40 @@ namespace sict
 	void Grades::counter(std::ifstream& file)
 	{
 		std::string buf;
+		int num = 0;
 		while(std::getline(file, buf))
-			this->recordCounter++;
+			num++;
+
+		recordCounter = num;
 	}
 
 	void Grades::readFile(std::ifstream& file)
 		// reads the contents of the file into the members
 	{
-		int i = 0;
+		int i = 0, sn;
+		double grade;
 		std::string buf;
 
 		// set allocated address
-		// ptr_StudentGrades = new int[recordCounter];
-		// ptr_StudentGrades = new double[recordCounter];
-		// if (file.is_open())
-		// {
-		// 	while()
-		// }
-		std::cout << "ptr_StudentGrades: " << ptr_StudentGrades << std::endl;
-		std::cout << "ptr_StudentGrades: " << ptr_StudentGrades << std::endl;
+		ptr_StudentNumbers = new int[recordCounter];
+		ptr_StudentGrades = new double[recordCounter];
+
+		if (file.is_open())
+		{
+			while(std::getline(file >> sn >> grade))
+			{
+				ptr_StudentGrades[i] = grade;
+				ptr_StudentNumbers[i] = sn;
+				i++;
+			}
+		}
+
+		// test
+		
+		for(size_t i = 0; i < recordCounter; i++)
+		{
+			std::cout << ptr_StudentNumbers[i] << std::endl;
+		}
+		
 	}
 }
