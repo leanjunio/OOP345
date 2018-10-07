@@ -10,7 +10,7 @@
 
 namespace sict
 {
-	void Grades::displayGrades(std::ostream & os, F) const
+	void Grades::displayGrades(std::ostream & os, Letter letter) const
 	{
 
 	}
