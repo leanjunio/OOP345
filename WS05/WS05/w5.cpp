@@ -55,7 +55,7 @@ int main(int argc, char* argv[]) {
 		return letterGrade;
 	};
 
-	grades.displayGrades(std::cout, funcLetter(24.2));
+	grades.displayGrades(std::cout, );
 
 	return 0;
 }

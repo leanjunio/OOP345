@@ -12,7 +12,7 @@
 namespace sict
 {
 	/// Enumeration constant that identifies the letter grades in a course
-	enum Letter { Aplus, A, Bplus, B, Cplus, C, Dplus, D, F };
+	enum class Letter { Aplus, A, Bplus, B, Cplus, C, Dplus, D, F };
 
 	/// A template function that converts each enumeration constant into a C-style null-terminated string
 	/// Receive an unmodifiable reference to one of the enumeration constants
@@ -20,21 +20,21 @@ namespace sict
 	template <typename T>
 	const char* convert(const T& letter)
 	{
-		if (letter == Aplus)
+		if (letter == Letter::Aplus)
 			return "A+";
-		else if (letter == A)
+		else if (letter == Letter::A)
 			return "A";
-		else if (letter == Bplus)
+		else if (letter == Letter::Bplus)
 			return "B+";
-		else if (letter == B)
+		else if (letter == Letter::B)
 			return "B";
-		else if (letter == Cplus)
+		else if (letter == Letter::Cplus)
 			return "C+";
-		else if (letter == C)
+		else if (letter == Letter::C)
 			return "C";
-		else if (letter == Dplus)
+		else if (letter == Letter::Dplus)
 			return "D+";
-		else if (letter == D)
+		else if (letter == Letter::D)
 			return "D";
 		else
 			return "F";
