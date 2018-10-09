@@ -18,26 +18,29 @@ namespace sict
 	/// Receive an unmodifiable reference to one of the enumeration constants
 	/// Returns the address of string that represents that constant
 	template <typename T>
-	const char* convert(const T& letter)
+	const char* convert(const Letter& letter)
 	{
+		const char* grade = nullptr;
 		if (letter == Letter::Aplus)
-			return "A+";
+			grade = "A+";
 		else if (letter == Letter::A)
-			return "A";
+			grade = "A";
 		else if (letter == Letter::Bplus)
-			return "B+";
+			grade = "B+";
 		else if (letter == Letter::B)
-			return "B";
+			grade = "B";
 		else if (letter == Letter::Cplus)
-			return "C+";
+			grade = "C+";
 		else if (letter == Letter::C)
-			return "C";
+			grade = "C";
 		else if (letter == Letter::Dplus)
-			return "D+";
+			grade = "D+";
 		else if (letter == Letter::D)
-			return "D";
+			grade = "D";
 		else
-			return "F";
+			grade = "F";
+
+		return grade;
 	}
 	
 }
