@@ -21,6 +21,7 @@ namespace sict
 	const char* convert(const Letter& letter)
 	{
 		const char* grade = nullptr;
+
 		if (letter == Letter::Aplus)
 			grade = "A+";
 		else if (letter == Letter::A)

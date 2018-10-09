@@ -29,10 +29,10 @@ int main(int argc, char* argv[]) {
 
 	Grades grades(argv[1]);
 
-	std::string (*funcLetter)(double) = [](double grade)
+	auto letter = [](double grade)
 	{
-		// TODO: Find a way to get the grades from the file
 		std::string letterGrade;
+
 		if (grade >= 90 && grade <= 100)
 			letterGrade = "A+";
 		else if (grade >= 80 && grade <= 89)
