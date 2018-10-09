@@ -17,6 +17,7 @@ namespace sict
 	/// A template function that converts each enumeration constant into a C-style null-terminated string
 	/// Receive an unmodifiable reference to one of the enumeration constants
 	/// Returns the address of string that represents that constant
+	
 }
 
 #endif // !_SICT_LETTER_H
