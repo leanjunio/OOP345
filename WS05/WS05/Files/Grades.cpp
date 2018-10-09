@@ -13,46 +13,49 @@
 
 namespace sict
 {
-	void Grades::displayGrades(std::ostream & os, Letter letter) const
+	void Grades::displayGrades(std::ostream & os, Letter letter(double)) const
 	{
-
+		for (size_t i = 0; i < m_LineCount; i++)
+			os << "     " << m_StudentNumbers[i] << " " << m_Grades << " " << letter(m_Grades[i]) << std::endl;
 	}
 	Grades::Grades(const char* file)
-	{
-		std::ifstream grades_file;
-		std::string buffer;
-
-		grades_file.open(file);
-
-		if (!grades_file)
+	{	
+		if (file != nullptr && file[0] != '\0')
 		{
-			std::cerr << "Unable to open file" << std::endl;
-			exit(1);
+			int numLines = 0;
+
+			std::ifstream grades_file(file);
+			m_LineCount = countLines(grades_file);
+			readFile(grades_file);
 		}
+		else
+			std::cout << "Cannot read file" << std::endl;
+	}
+	int Grades::countLines(std::ifstream& fName)
+	{
+		std::string buf;
+		int i = 0;
 
-		int linesinFile = countLines(grades_file);
-		allocateMemory(linesinFile);
-		readIntoMemory(grades_file);
+		while (std::getline(fName, buf))
+			i++;
 
-		grades_file.close();
+		return i;
 	}
-	size_t Grades::countLines(std::ifstream& file)
+	void Grades::readFile(std::ifstream & fName)
 	{
-		int count = 0;;
-		std::string buffer;
-		while (std::getline(file, buffer))
-			count++;
-		return count;
-	}
-	void Grades::allocateMemory(size_t lines)
-	{
-		m_StudentNumbers = new int[lines];
-		m_Grades = new double[lines];
-	}
-	void Grades::readIntoMemory(std::ifstream& file)
-	{
-		std::string buffer;
-		while(std::getline(file, buffer))
-			std::cout << buffer << std::endl;
+		int sn = 0, i = 0; double grade = 0.0;
+		std::string buf;
+		fName.clear();
+		fName.seekg(0, std::ios::beg);
+		
+		m_StudentNumbers = new int[m_LineCount];
+		m_Grades = new double[m_LineCount];
+
+		while (fName >> sn >> grade)
+		{
+			m_StudentNumbers[i] = sn;
+			m_Grades[i] = grade;
+			i++;
+		}
 	}
 }
