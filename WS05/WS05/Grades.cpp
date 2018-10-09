@@ -24,7 +24,8 @@ namespace sict
 			int numLines = 0;
 
 			std::ifstream grades_file(file);
-			numLines = countLines(grades_file);
+			m_LineCount = countLines(grades_file);
+			readFile(grades_file);
 		}
 		else
 			std::cout << "Cannot read file" << std::endl;
@@ -32,14 +33,29 @@ namespace sict
 	int Grades::countLines(std::ifstream& fName)
 	{
 		std::string buf;
-		int sn = 0;
-		double grade = 0.0;
-
-		int i = 0, x = 0;
+		int i = 0;
 
 		while (std::getline(fName, buf))
 			i++;
 
 		return i;
+	}
+	void Grades::readFile(std::ifstream & fName)
+	{
+		int sn = 0, i = 0; double grade = 0.0;
+		std::string buf;
+		fName.clear();
+		fName.seekg(0, std::ios::beg);
+		
+		// Allocation
+		m_StudentNumbers = new int[m_LineCount];
+		m_Grades = new double[m_LineCount];
+
+		while (fName >> sn >> grade)
+		{
+			m_StudentNumbers[i] = sn;
+			m_Grades[i] = grade;
+			i++;
+		}
 	}
 }
