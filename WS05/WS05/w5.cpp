@@ -29,7 +29,8 @@ int main(int argc, char* argv[]) {
 
 	Grades grades(argv[1]);
 
-	auto letter = [](float grade)
+
+	std::string(*funcLetter)(float) = [](float grade)
 	{
 		// TODO: Find a way to get the grades from the file
 		std::string letterGrade;
@@ -55,7 +56,7 @@ int main(int argc, char* argv[]) {
 		return letterGrade;
 	};
 
-	//grades.displayGrades(std::cout, letter);
+	grades.displayGrades(std::cout, funcLetter);
 
 	return 0;
 }

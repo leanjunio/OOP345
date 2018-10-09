@@ -48,7 +48,6 @@ namespace sict
 		fName.clear();
 		fName.seekg(0, std::ios::beg);
 		
-		// Allocation
 		m_StudentNumbers = new int[m_LineCount];
 		m_Grades = new double[m_LineCount];
 
