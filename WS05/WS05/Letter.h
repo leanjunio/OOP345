@@ -17,6 +17,27 @@ namespace sict
 	/// A template function that converts each enumeration constant into a C-style null-terminated string
 	/// Receive an unmodifiable reference to one of the enumeration constants
 	/// Returns the address of string that represents that constant
+	const char* convert(const Letter& letter)
+	{
+		if (letter == Aplus)
+			return "A+";
+		else if (letter == A)
+			return "A";
+		else if (letter == Bplus)
+			return "B+";
+		else if (letter == B)
+			return "B";
+		else if (letter == Cplus)
+			return "C+";
+		else if (letter == C)
+			return "C";
+		else if (letter == Dplus)
+			return "D+";
+		else if (letter == D)
+			return "D";
+		else
+			return "F";
+	}
 	
 }
 
