@@ -27,36 +27,35 @@ int main(int argc, char* argv[]) {
 		return 2;
 	}
 
-	//TODO: Update the main functions as per the specifications here
 	Grades grades(argv[1]);
 
-	//auto letter = [](float grade)
-	//{
-	//	// TODO: Find a way to get the grades from the file
-	//	std::string letterGrade;
-	//	if (grade >= 90 && grade <= 100)
-	//		letterGrade = "A+";
-	//	else if (grade >= 80 && grade <= 89)
-	//		letterGrade = "A";
-	//	else if (grade >= 75 && grade <= 79)
-	//		letterGrade = "B+";
-	//	else if (grade >= 70 && grade <= 74)
-	//		letterGrade = "B";
-	//	else if (grade >= 65 && grade <= 69)
-	//		letterGrade = "C+";
-	//	else if (grade >= 60 && grade <= 64)
-	//		letterGrade = "C";
-	//	else if (grade >= 55 && grade <= 59)
-	//		letterGrade = "D+";
-	//	else if (grade >= 50 && grade <= 54)
-	//		letterGrade = "D";
-	//	else if (grade >= 0 && grade <= 49)
-	//		letterGrade = "F";
+	std::string (*funcLetter)(double) = [](double grade)
+	{
+		// TODO: Find a way to get the grades from the file
+		std::string letterGrade;
+		if (grade >= 90 && grade <= 100)
+			letterGrade = "A+";
+		else if (grade >= 80 && grade <= 89)
+			letterGrade = "A";
+		else if (grade >= 75 && grade <= 79)
+			letterGrade = "B+";
+		else if (grade >= 70 && grade <= 74)
+			letterGrade = "B";
+		else if (grade >= 65 && grade <= 69)
+			letterGrade = "C+";
+		else if (grade >= 60 && grade <= 64)
+			letterGrade = "C";
+		else if (grade >= 55 && grade <= 59)
+			letterGrade = "D+";
+		else if (grade >= 50 && grade <= 54)
+			letterGrade = "D";
+		else if (grade >= 0 && grade <= 49)
+			letterGrade = "F";
 
-	//	return letterGrade;
-	//};
+		return letterGrade;
+	};
 
-	//grades.displayGrades(std::cout, letter);
+	grades.displayGrades(std::cout, funcLetter(24.2));
 
 	return 0;
 }
