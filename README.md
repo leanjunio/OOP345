@@ -5,7 +5,7 @@ This repository contains Workshops, Projects, Notes, and other course work for F
 - [x] WS01 - Memory, Linkage and Storage Classes, From One Translation Unit to Another
 - [x] WS02 - Copy and Move Semantics
 - [x] WS03 - Class Templates
-- [ ] WS04 - Containers
+- [x] WS04 - Containers
 - [ ] WS05 - Lambda Expressions
 - [ ] WS06 - STL Containers
 - [ ] WS07 - STL Algorithms

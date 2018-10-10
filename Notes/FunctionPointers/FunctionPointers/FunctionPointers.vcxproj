@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{C8E1C2A6-A420-4B09-96D5-5A1AE28D676C}</ProjectGuid>
-    <RootNamespace>WS04</RootNamespace>
+    <ProjectGuid>{AA58955D-D810-4DC3-AF48-155D3E477095}</ProjectGuid>
+    <RootNamespace>FunctionPointers</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -76,6 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -115,19 +116,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Message.cpp" />
-    <ClCompile Include="Notifications.cpp" />
-    <ClCompile Include="w4.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Message.h" />
-    <ClInclude Include="Notifications.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="tweets.dat" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="reflect.txt" />
+    <ClCompile Include="Array_Function_Pointers.cpp" />
+    <ClCompile Include="Function_Object.cpp" />
+    <ClCompile Include="Function_Pointers.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
