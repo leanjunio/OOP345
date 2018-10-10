@@ -10,6 +10,7 @@
 #define _SICT_GRADES_H
 
 #include <iostream>
+#include <functional>
 #include <fstream>
 #include "Letter.h"
 
@@ -26,9 +27,14 @@ namespace sict
 		double* m_Grades;
 		int m_LineCount;
 	public:
+		Grades(const Grades&) = delete;
+		Grades(const Grades&&) = delete;
+		Grades& operator=(const Grades&) = delete;
+		Grades&& operator=(Grades&&) = delete;
+
 		/// Receives a reference to the output stream (os) as well as the address of the expression to be used (F) to determine the letter grade
 		/// Displays the student number, student grade, and letter equivalent (using the template function in Letter.h)
-		void displayGrades(std::ostream&, Letter letter(double)) const;
+		void displayGrades(std::ostream&, std::function<const char*(double)> letter) const;
 		Grades(const char* file);
 		int countLines(std::ifstream&);
 		void readFile(std::ifstream&);

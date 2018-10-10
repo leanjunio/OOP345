@@ -8,12 +8,13 @@
 
 #include <fstream>
 #include <string>
+#include <functional>
 #include <iostream>
 #include "Grades.h"
 
 namespace sict
 {
-	void Grades::displayGrades(std::ostream & os, Letter letter(double)) const
+	void Grades::displayGrades(std::ostream & os, std::function<const char*(double)> letter) const
 	{
 		for (size_t i = 0; i < m_LineCount; i++)
 			os << "     " << m_StudentNumbers[i] << " " << m_Grades << " " << letter(m_Grades[i]) << std::endl;

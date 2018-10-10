@@ -29,33 +29,31 @@ int main(int argc, char* argv[]) {
 
 	Grades grades(argv[1]);
 
-	auto letter = [](double grade)
+	auto letter = [](double grade) -> const char*
 	{
 		std::string letterGrade;
 
 		if (grade >= 90 && grade <= 100)
-			letterGrade = "A+";
+			return convert(Letter::Aplus);
 		else if (grade >= 80 && grade <= 89)
-			letterGrade = "A";
+			return convert(Letter::A);
 		else if (grade >= 75 && grade <= 79)
-			letterGrade = "B+";
+			return convert(Letter::Bplus);
 		else if (grade >= 70 && grade <= 74)
-			letterGrade = "B";
+			return convert(Letter::B);
 		else if (grade >= 65 && grade <= 69)
-			letterGrade = "C+";
+			return convert(Letter::Cplus);
 		else if (grade >= 60 && grade <= 64)
-			letterGrade = "C";
+			return convert(Letter::C);
 		else if (grade >= 55 && grade <= 59)
-			letterGrade = "D+";
+			return convert(Letter::Dplus);
 		else if (grade >= 50 && grade <= 54)
-			letterGrade = "D";
+			return convert(Letter::D);
 		else if (grade >= 0 && grade <= 49)
-			letterGrade = "F";
-
-		return letterGrade;
+			return convert(Letter::F);
 	};
 
-	grades.displayGrades(std::cout, );
+	grades.displayGrades(std::cout, letter);
 
 	return 0;
 }
