@@ -34,7 +34,7 @@ namespace sict
 
 		/// Receives a reference to the output stream (os) as well as the address of the expression to be used (F) to determine the letter grade
 		/// Displays the student number, student grade, and letter equivalent (using the template function in Letter.h)
-		void displayGrades(std::ostream&, std::function<const char*(double)> letter) const;
+		void displayGrades(std::ostream&, const char* (*letter)) const;
 		Grades(const char* file);
 		int countLines(std::ifstream&);
 		void readFile(std::ifstream&);
