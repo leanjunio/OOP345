@@ -58,7 +58,7 @@ int main(int argc, char* argv[]) {
 	}
 	catch (const char* err)
 	{
-		std::cout << "Error: " << err << std::endl;
+		throw err;
 		return 1;
 	}
 }
