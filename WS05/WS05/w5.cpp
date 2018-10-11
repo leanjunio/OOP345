@@ -50,6 +50,8 @@ int main(int argc, char* argv[])
 			return convert(Letter::D);
 		else if (grade >= 0 && grade <= 49.9)
 			return convert(Letter::F);
+		else
+			throw "Not a grade";
 	};
 
 	try 
