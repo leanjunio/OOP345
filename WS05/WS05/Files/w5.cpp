@@ -27,35 +27,41 @@ int main(int argc, char* argv[]) {
 		return 2;
 	}
 
-	Grades grades(argv[1]);
-
-	std::string (*funcLetter)(double) = [](double grade)
+	auto letter = [](double grade)
 	{
-		// TODO: Find a way to get the grades from the file
-		std::string letterGrade;
 		if (grade >= 90 && grade <= 100)
-			letterGrade = "A+";
-		else if (grade >= 80 && grade <= 89)
-			letterGrade = "A";
-		else if (grade >= 75 && grade <= 79)
-			letterGrade = "B+";
-		else if (grade >= 70 && grade <= 74)
-			letterGrade = "B";
-		else if (grade >= 65 && grade <= 69)
-			letterGrade = "C+";
-		else if (grade >= 60 && grade <= 64)
-			letterGrade = "C";
-		else if (grade >= 55 && grade <= 59)
-			letterGrade = "D+";
-		else if (grade >= 50 && grade <= 54)
-			letterGrade = "D";
-		else if (grade >= 0 && grade <= 49)
-			letterGrade = "F";
-
-		return letterGrade;
+			return convert(Letter::Aplus);
+		else if (grade >= 80 && grade <= 89.9)
+			return convert(Letter::A);
+		else if (grade >= 75 && grade <= 79.9)
+			return convert(Letter::Bplus);
+		else if (grade >= 70 && grade <= 74.9)
+			return convert(Letter::B);
+		else if (grade >= 65 && grade <= 69.9)
+			return convert(Letter::Cplus);
+		else if (grade >= 60 && grade <= 64.9)
+			return convert(Letter::C);
+		else if (grade >= 55 && grade <= 59.9)
+			return convert(Letter::Dplus);
+		else if (grade >= 50 && grade <= 54.9)
+			return convert(Letter::D);
+		else if (grade >= 0 && grade <= 49.9)
+			return convert(Letter::F);
 	};
+	
 
-	grades.displayGrades(std::cout, funcLetter(24.2));
+
+	try 
+	{
+		Grades grades(argv[1]);
+		std::string(*ptr)(double) = letter;
+		grades.displayGrades(std::cout, ptr);
+	}
+	catch (const char* err)
+	{
+		std::cout << "Error: " << err << std::endl;
+		return 1;
+	}
 
 	return 0;
 }
