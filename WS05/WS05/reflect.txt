@@ -1,0 +1,2 @@
+I learned how to use lambda functions and convert it to function pointers
+I learned how to throw exceptions when errors persist
