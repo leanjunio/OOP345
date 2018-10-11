@@ -27,7 +27,7 @@ int main(int argc, char* argv[]) {
 		return 2;
 	}
 
-	auto letter = [](double grade)
+	auto letter = [](float grade)
 	{
 		if (grade >= 90 && grade <= 100)
 			return convert(Letter::Aplus);
@@ -48,20 +48,17 @@ int main(int argc, char* argv[]) {
 		else if (grade >= 0 && grade <= 49.9)
 			return convert(Letter::F);
 	};
-	
-
 
 	try 
 	{
 		Grades grades(argv[1]);
-		std::string(*ptr)(double) = letter;
+		std::string(*ptr)(float) = letter;
 		grades.displayGrades(std::cout, ptr);
+		return 0;
 	}
 	catch (const char* err)
 	{
 		std::cout << "Error: " << err << std::endl;
 		return 1;
 	}
-
-	return 0;
 }
