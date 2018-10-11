@@ -15,10 +15,10 @@
 
 namespace sict
 {
-	void Grades::displayGrades(std::ostream & os, std::string (*letter)(double)) const
+	void Grades::displayGrades(std::ostream & os, std::string (*letter)(float)) const
 	{
 		for (size_t i = 0; i < m_LineCount; i++)
-			os << m_StudentNumbers[i] << " " << letter(m_Grades[i]) << "  " << m_Grades[i] << std::left << std::endl;
+			os << m_StudentNumbers[i] << " " << std::fixed << std::setprecision(2) << m_Grades[i] << " " << letter(m_Grades[i]) << std::endl;
 	}
 	Grades::Grades(const char* file)
 	{	
