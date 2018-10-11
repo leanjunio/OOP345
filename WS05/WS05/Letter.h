@@ -9,6 +9,8 @@
 #ifndef _SICT_LETTER_H
 #define _SICT_LETTER_H
 
+#include <string>
+
 namespace sict
 {
 	// Enumeration constant that identifies the letter grades in a course
@@ -18,9 +20,9 @@ namespace sict
 	// Receive an unmodifiable reference to one of the enumeration constants
 	// Returns the address of string that represents that constant
 	template <typename Letter>
-	const char* convert(const Letter& letter)
+	std::string convert(const Letter& letter)
 	{
-		const char* grade = nullptr;
+		std::string grade = "";
 
 		if (letter == Letter::Aplus)
 			grade = "A+";
