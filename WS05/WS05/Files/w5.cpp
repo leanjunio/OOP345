@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 #include "Grades.h"
-#include "Letter.h" 
+#include "Letter.h"
 using namespace sict;
 
 int main(int argc, char* argv[]) 
