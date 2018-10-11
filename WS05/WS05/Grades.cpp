@@ -1,7 +1,7 @@
 // Name: Lean Junio
 // Seneca Student ID: 019-109-123
 // Seneca email: ljjunio@myseneca.ca
-// Date of completion: 
+// Date of completion: 10/11/2018
 //
 // I confirm that the content of this file is created by me,
 // with the exception of the parts provided to me by my professor.
@@ -18,7 +18,7 @@ namespace sict
 	void Grades::displayGrades(std::ostream & os, std::string (*letter)(float)) const
 	{
 		for (size_t i = 0; i < static_cast<size_t>(m_LineCount); i++)
-			os << m_StudentNumbers[i] << " " << std::fixed << std::setprecision(2) << m_Grades[i] << " " << letter(m_Grades[i]) << std::endl;
+			os << "  " << m_StudentNumbers[i] << " " << std::fixed << std::setprecision(2) << m_Grades[i] << " " << letter(m_Grades[i]) << std::endl;
 	}
 	Grades::Grades(const char* file)
 	{	
@@ -29,7 +29,7 @@ namespace sict
 			readFile(grades_file);
 		}
 		else
-			std::cout << "Cannot read file" << std::endl;
+			throw "Cannot read file";
 	}
 	int Grades::countLines(std::ifstream& fName)
 	{
