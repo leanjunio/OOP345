@@ -9,19 +9,22 @@
 #include "Letter.h"
 using namespace sict;
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[]) 
+{
 
 	std::cout << "Command Line: ";
 	for (int i = 0; i < argc; i++)
 		std::cout << argv[i] << ' ';
 	std::cout << std::endl;
 
-	if (argc == 1) {
+	if (argc == 1) 
+	{
 		std::cerr << "\n*** Insufficient number of arguments ***\n";
 		std::cerr << "Usage: " << argv[0] << " fileName \n";
 		return 1;
 	}
-	else if (argc != 2) {
+	else if (argc != 2) 
+	{
 		std::cerr << "\n*** Too many arguments ***\n";
 		std::cerr << "Usage: " << argv[0] << " fileName \n";
 		return 2;
@@ -47,6 +50,8 @@ int main(int argc, char* argv[]) {
 			return convert(Letter::D);
 		else if (grade >= 0 && grade <= 49.9)
 			return convert(Letter::F);
+		else
+			throw "Not a grade";
 	};
 
 	try 
@@ -54,11 +59,12 @@ int main(int argc, char* argv[]) {
 		Grades grades(argv[1]);
 		std::string(*ptr)(float) = letter;
 		grades.displayGrades(std::cout, ptr);
-		return 0;
 	}
 	catch (const char* err)
 	{
 		throw err;
 		return 1;
 	}
+
+	return 0;
 }
