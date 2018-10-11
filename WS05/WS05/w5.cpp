@@ -29,23 +29,23 @@ int main(int argc, char* argv[]) {
 
 	auto letter = [](double grade)
 	{
-		if (grade >= 90.0 && grade <= 100)
+		if (grade >= 90 && grade <= 100)
 			return convert(Letter::Aplus);
-		else if (grade >= 80.0 && grade <= 89.0)
+		else if (grade >= 80 && grade <= 89.9)
 			return convert(Letter::A);
-		else if (grade >= 75.0 && grade <= 79.0)
+		else if (grade >= 75 && grade <= 79.9)
 			return convert(Letter::Bplus);
-		else if (grade >= 70.0 && grade <= 74.0)
+		else if (grade >= 70 && grade <= 74.9)
 			return convert(Letter::B);
-		else if (grade >= 65.0 && grade <= 69.0)
+		else if (grade >= 65 && grade <= 69.9)
 			return convert(Letter::Cplus);
-		else if (grade >= 60.0 && grade <= 64.0)
+		else if (grade >= 60 && grade <= 64.9)
 			return convert(Letter::C);
-		else if (grade >= 55.0 && grade <= 59.0)
+		else if (grade >= 55 && grade <= 59.9)
 			return convert(Letter::Dplus);
-		else if (grade >= 50.0 && grade <= 54.0)
+		else if (grade >= 50 && grade <= 54.9)
 			return convert(Letter::D);
-		else if (grade >= 0 && grade <= 49)
+		else if (grade >= 0 && grade <= 49.9)
 			return convert(Letter::F);
 	};
 	
