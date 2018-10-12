@@ -15,29 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="w5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Function_Pointers.cpp">
+    <ClCompile Include="Grades.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Array_Function_Pointers.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Function_Object.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-<<<<<<< HEAD
-=======
-    <ClCompile Include="Lambda_Expressions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Capture_By_Value.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Capture_By_Reference.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
->>>>>>> w5_windows
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Letter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Grades.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="w5_grades.dat">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

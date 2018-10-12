@@ -1,0 +1,10 @@
+// Name: Lean Junio
+// Seneca Student ID: 019-109-123
+// Seneca email: ljjunio@myseneca.ca
+// Date of completion: 10/11/2018
+//
+// I confirm that the content of this file is created by me,
+// with the exception of the parts provided to me by my professor.
+
+I learned how to use lambda functions and convert it to function pointers
+I learned how to throw exceptions when errors persist

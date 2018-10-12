@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{AA58955D-D810-4DC3-AF48-155D3E477095}</ProjectGuid>
-    <RootNamespace>FunctionPointers</RootNamespace>
+    <ProjectGuid>{4688CEEC-E3F5-42A1-A0DC-A22BB8926A17}</ProjectGuid>
+    <RootNamespace>WS05</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -76,7 +76,6 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <PreprocessToFile>false</PreprocessToFile>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -116,10 +115,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Array_Function_Pointers.cpp" />
-    <ClCompile Include="Function_Object.cpp" />
-    <ClCompile Include="Function_Pointers.cpp" />
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Grades.cpp" />
+    <ClCompile Include="w5.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Grades.h" />
+    <ClInclude Include="Letter.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="w5_grades.dat" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
