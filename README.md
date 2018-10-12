@@ -6,7 +6,7 @@ This repository contains Workshops, Projects, Notes, and other course work for F
 - [x] WS02 - Copy and Move Semantics
 - [x] WS03 - Class Templates
 - [x] WS04 - Containers
-- [ ] WS05 - Lambda Expressions
+- [x] WS05 - Lambda Expressions
 - [ ] WS06 - STL Containers
 - [ ] WS07 - STL Algorithms
 - [ ] WS08 - Smart Pointers
