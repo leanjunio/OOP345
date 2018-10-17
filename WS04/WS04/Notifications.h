@@ -20,7 +20,8 @@ namespace w4
 	class Notifications
 	{
 		// An 'array' of messages from the file
-		std::vector<Message> m_Messages;
+		Message* m_pMessages;
+		int m_Count;
 	public:
 		Notifications();
 		Notifications(const Notifications&);
@@ -31,6 +32,7 @@ namespace w4
 
 		void operator+=(const Message& msg);
 		void display(std::ostream& os) const;
+		int getCount() const;
 	};
 }
 

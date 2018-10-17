@@ -21,6 +21,7 @@ namespace w4
 		String m_User;
 		String m_Tweet;
 		String m_Reply;
+		static int m_Count;
 	public:
 		Message();
 		Message(String user, String tweet, String reply);
@@ -28,6 +29,7 @@ namespace w4
 		~Message();
 		bool empty() const;
 		void display(std::ostream& os) const;
+		int getCount() const;
 	};
 }
 

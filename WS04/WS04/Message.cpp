@@ -14,6 +14,8 @@
 
 namespace w4
 {
+	int Message::m_Count = 0;
+
 	Message::Message()
 		// Default constructor for safe-empty check
 		: Message("", "", "")
@@ -26,6 +28,7 @@ namespace w4
 		, m_Tweet{tweet}
 		, m_Reply{reply}
 	{
+		m_Count++;
 	}
 
 	Message::Message(std::ifstream & in, char c)
@@ -70,7 +73,6 @@ namespace w4
 		if (ifTweetExists)
 			*this = Message(user, tweet, reply);
 
-		// display(std::cout);
 	}
 
 	Message::~Message()
@@ -90,5 +92,9 @@ namespace w4
 			os << " Reply : " << m_Reply << "\n";
 		
 		os << " Tweet : " << m_Tweet << "\n\n";
+	}
+	int Message::getCount() const
+	{
+		return m_Count;
 	}
 }
