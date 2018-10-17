@@ -5,6 +5,7 @@
 
 #include <iostream>
 #include <string>
+#include <typeinfo>
 #include "Grades.h"
 #include "Letter.h"
 using namespace sict;
@@ -53,19 +54,20 @@ int main(int argc, char* argv[])
 		else
 			throw "Not a grade";
 	};
+	
+	std::cout << typeid(letter).name() << std::endl;
 
 	try 
 	{
 		Grades grades(argv[1]);
-		std::string(*ptr)(float) = letter;
-		grades.displayGrades(std::cout, ptr);
+		//std::string(*ptr)(float) = letter;
+		grades.displayGrades(std::cout, letter);
 	}
 	catch (const char* err)
 	{
 		throw err;
 		return 1;
 	}
-
 
 	return 0;
 }

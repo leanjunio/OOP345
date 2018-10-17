@@ -15,7 +15,8 @@
 
 namespace sict
 {
-	void Grades::displayGrades(std::ostream & os, std::string (*letter)(float)) const 
+	template <typename T>
+	void Grades::displayGrades(std::ostream & os, T letter) const 
 	{
 		for (size_t i = 0; i < static_cast<size_t>(m_LineCount); i++)
 			os << std::setw(10) << std::right << m_StudentNumbers[i] << " " 
