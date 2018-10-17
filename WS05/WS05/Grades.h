@@ -37,6 +37,7 @@ namespace sict
 		/// Displays the student number, student grade, and letter equivalent (using the template function in Letter.h)
 		void displayGrades(std::ostream&, std::string (*letter)(float)) const;
 		Grades(const char* file);
+	private:
 		int countLines(std::ifstream&);
 		void readFile(std::ifstream&);
 	};
