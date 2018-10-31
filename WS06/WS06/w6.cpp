@@ -28,7 +28,7 @@ int main(int argc, char** argv) {
 	std::cout << std::fixed << std::setprecision(2);
 
 	// TODO: Define a variable of type vector named "products"
-
+	std::vector<w6::iProduct> products;
 
 	std::cout << "====================================\n";
 	std::cout << "Reading data from the file\n";

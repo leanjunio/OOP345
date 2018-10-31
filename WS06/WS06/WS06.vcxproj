@@ -115,11 +115,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="w6.cpp" />
+    <ClCompile Include="Product.cpp" />
+    <ClCompile Include="TaxableProduct.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="iProduct.h" />
+    <ClInclude Include="Product.h" />
     <ClInclude Include="ProdUtil.h" />
+    <ClInclude Include="TaxableProduct.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="sales.dat" />
