@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 #include <string>
 #include <vector>
 #include "iProduct.h"
@@ -28,16 +29,25 @@ int main(int argc, char** argv) {
 	std::cout << std::fixed << std::setprecision(2);
 
 	// TODO: Define a variable of type vector named "products"
-	std::vector<w6::iProduct> products;
+	std::vector<w6::iProduct*> products; //A zero - size vector of pointers to iProduct objects
 
 	std::cout << "====================================\n";
 	std::cout << "Reading data from the file\n";
 	std::cout << "====================================\n";
 	{
+		std::ifstream file;
+		file.open(argv[1], std::ios_base::in);
+
+		if (file.is_open())
+		{
+			
+		}
+		int i = 0;
 		// TODO: Read from the file one record at a time and create a product.
 		//   - Print a message before starting processing a product.
 		//   - Add the product to the vector "products", created above.
 		//   - Handle any thrown exceptions and print the message.
+		std::cout << "Processing record " << i++ << ":";
 
 	}
 	std::cout << "====================================\n";
