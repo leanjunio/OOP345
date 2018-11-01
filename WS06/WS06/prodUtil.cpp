@@ -19,14 +19,15 @@ namespace w6
 	iProduct* readProduct(std::ifstream& file)
 	{
 		iProduct* ptr = nullptr;
-		double ProductCost;
+		double ProductCost = {};
 		char tax = {};
 		std::string buffer, ProductNumber;
 
 		// NOTE: if file read has an error, the value of ptr should not change from nullptr
 		if (file.good())
 		{
-			while (std::getline(file, buffer, '\n'))
+			// Working one line at a time...
+			if (std::getline(file, buffer, '\n'))
 			{
 				std::stringstream iss(buffer);
 
@@ -41,7 +42,6 @@ namespace w6
 				{
 					iss >> ProductNumber >> ProductCost >> tax;
 
-					std::cout << "tax: " << tax << std::endl;
 					bool valid_tax = tax == 'H' || tax == 'P';
 					
 					if (!valid_tax)
