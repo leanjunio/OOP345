@@ -38,6 +38,10 @@ int main(int argc, char** argv) {
 		int i = 1;
 		w6::iProduct* ptr_temp = nullptr;	// will contain a temporary iProduct object while processing
 
+		// TODO: Read from the file one record at a time and create a product.
+		//   - Print a message before starting processing a product.
+		//   - Add the product to the vector "products", created above.
+		//   - Handle any thrown exceptions and print the message.
 		do
 		{
 			std::cout << "Processing record " << i << ": ";
@@ -45,30 +49,22 @@ int main(int argc, char** argv) {
 			try
 			{
 				// Reads the file (only the first line) and returns either an address or nullptr
-				// TODO: Create proper implementation of exception handler so that 'done' and 'Unrecognizable Tax Code' appears conditionally
-
 				ptr_temp = w6::readProduct(productList);
-				i++;
-				if (ptr_temp == nullptr)
-					throw "Unrecognizable Tax Code!";
-				else
+				
+				if (ptr_temp)
 				{
-					std::cout << "done!" << std::endl;
 					products.push_back(ptr_temp);
+					std::cout << "done!" << std::endl;
 				}
+				else
+					std::cout << "no such record! Reached the end of the file" << std::endl;
 			}
-			catch (const char* ex)
+			catch (std::string err)
 			{
-				std::cout << ex << std::endl;
+				std::cout << err << std::endl;
 			}
-			
+			i++;
 		} while (ptr_temp != nullptr);
-
-		// TODO: Read from the file one record at a time and create a product.
-		//   - Print a message before starting processing a product.
-		//   - Add the product to the vector "products", created above.
-		//   - Handle any thrown exceptions and print the message.
-
 	}
 	/*std::cout << "====================================\n";
 
@@ -89,5 +85,5 @@ int main(int argc, char** argv) {
 	std::cout << std::setw(10) << total << std::endl;
 	std::cout << "====================================\n";*/
 
-	return 0;
+		return 0;
 }

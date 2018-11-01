@@ -31,23 +31,26 @@ namespace w6
 			{
 				std::stringstream iss(buffer);
 
+				// If the length is 11, there's no letter for tax
 				if (buffer.length() == 11)
 				{
 					iss >> ProductNumber >> ProductCost;
 					ptr = new Product(ProductNumber, ProductCost);
 				}
 
-				// Saves tax and check if it is valid
+				// If the length is 13, letter for tax exists
 				if (buffer.length() == 13)
 				{
 					iss >> ProductNumber >> ProductCost >> tax;
-
 					bool valid_tax = tax == 'H' || tax == 'P';
-					
-					if (!valid_tax)
+					if (valid_tax)
+						ptr = new TaxableProduct(ProductNumber, ProductCost, tax);
+					else
+					{
+						std::string err = "Unrecognizable Tax Code!";
 						tax = 0;
-
-					ptr = new TaxableProduct(ProductNumber, ProductCost, tax);
+						throw err;
+					}
 				}
 			}
 		}
