@@ -40,12 +40,28 @@ int main(int argc, char** argv) {
 
 		do
 		{
-			std::cout << "Processing record " << i << ": Unrecognizable Tax Code!" << std::endl;
+			std::cout << "Processing record " << i << ": ";
 
-			// Reads the file (only the first line) and returns either an address or nullptr
-			// BUG: readProduct only returns nullptr
-			ptr_temp = w6::readProduct(productList);
-			i++;
+			try
+			{
+				// Reads the file (only the first line) and returns either an address or nullptr
+				// TODO: Create proper implementation of exception handler so that 'done' and 'Unrecognizable Tax Code' appears conditionally
+
+				ptr_temp = w6::readProduct(productList);
+				i++;
+				if (ptr_temp == nullptr)
+					throw "Unrecognizable Tax Code!";
+				else
+				{
+					std::cout << "done!" << std::endl;
+					products.push_back(ptr_temp);
+				}
+			}
+			catch (const char* ex)
+			{
+				std::cout << ex << std::endl;
+			}
+			
 		} while (ptr_temp != nullptr);
 
 		// TODO: Read from the file one record at a time and create a product.
