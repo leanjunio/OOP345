@@ -35,22 +35,28 @@ int main(int argc, char** argv) {
 	std::cout << "Reading data from the file\n";
 	std::cout << "====================================\n";
 	{
-		std::ifstream file;
-		file.open(argv[1], std::ios_base::in);
 
-		if (file.is_open())
+
+		w6::iProduct* ptr_temp = nullptr;	// will contain a temporary iProduct object while processing
+		
+		ptr_temp = w6::readProduct(productList);	// try to process the next line in the file
+
+		/*while (ptr_temp == nullptr)
 		{
 			
-		}
-		int i = 0;
+
+
+			
+		}*/
+
+
 		// TODO: Read from the file one record at a time and create a product.
 		//   - Print a message before starting processing a product.
 		//   - Add the product to the vector "products", created above.
 		//   - Handle any thrown exceptions and print the message.
-		std::cout << "Processing record " << i++ << ":";
 
 	}
-	std::cout << "====================================\n";
+	/*std::cout << "====================================\n";
 
 	std::cout << std::endl;
 	std::cout << "====================================\n";
@@ -67,7 +73,7 @@ int main(int argc, char** argv) {
 	std::cout << "------------------------------------\n";
 	std::cout << std::setw(22) << "Total: ";
 	std::cout << std::setw(10) << total << std::endl;
-	std::cout << "====================================\n";
+	std::cout << "====================================\n";*/
 
 	return 0;
 }

@@ -1,4 +1,6 @@
 #ifndef _TAXABLE_PRODUCT_H
+
+#include <string>
 #include "Product.h"
 
 class TaxableProduct : public Product
@@ -6,7 +8,7 @@ class TaxableProduct : public Product
 {
 	char m_TaxCode;
 public:
-	TaxableProduct();
+	TaxableProduct(std::string ProductNumber, double ProductCost, char TaxCode);
 	~TaxableProduct();
 };
 

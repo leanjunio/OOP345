@@ -1,14 +1,15 @@
+#include <string>
 #include "Product.h"
 
 Product::Product()
-	: m_ProductNumber(0),
-	  m_ProductCost(0.0)
+	: m_ProductNumber{},
+	m_ProductCost{}
 {
 }
 
-Product::Product(int ProductNumber, double ProductCost)
-	: m_ProductNumber(ProductNumber),
-	  m_ProductCost(ProductCost)
+Product::Product(std::string & ProductNumber, double ProductCost)
+	: m_ProductNumber{ProductNumber},
+	m_ProductCost{ProductCost}
 {
 }
 
