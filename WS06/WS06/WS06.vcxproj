@@ -115,6 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="prodUtil.cpp" />
     <ClCompile Include="w6.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="TaxableProduct.cpp" />
