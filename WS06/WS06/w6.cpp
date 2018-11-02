@@ -28,7 +28,6 @@ int main(int argc, char** argv) {
 	}
 	std::cout << std::fixed << std::setprecision(2);
 
-	// TODO: Define a variable of type vector named "products"
 	std::vector<w6::iProduct*> products; //A zero - size vector of pointers to iProduct objects
 
 	std::cout << "====================================\n";
@@ -38,7 +37,6 @@ int main(int argc, char** argv) {
 		int i = 1;
 		w6::iProduct* ptr_temp = nullptr;	// will contain a temporary iProduct object while processing
 
-		// TODO: Read from the file one record at a time and create a product.
 		//   - Print a message before starting processing a product.
 		//   - Add the product to the vector "products", created above.
 		//   - Handle any thrown exceptions and print the message.
@@ -66,7 +64,7 @@ int main(int argc, char** argv) {
 			i++;
 		} while (ptr_temp != nullptr);
 	}
-	/*std::cout << "====================================\n";
+	std::cout << "====================================\n";
 
 	std::cout << std::endl;
 	std::cout << "====================================\n";
@@ -83,7 +81,7 @@ int main(int argc, char** argv) {
 	std::cout << "------------------------------------\n";
 	std::cout << std::setw(22) << "Total: ";
 	std::cout << std::setw(10) << total << std::endl;
-	std::cout << "====================================\n";*/
+	std::cout << "====================================\n";
 
-		return 0;
+			return 0;
 }
