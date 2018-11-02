@@ -55,7 +55,7 @@ int main(int argc, char** argv) {
 					std::cout << "done!" << std::endl;
 				}
 				else
-					std::cout << "no such record! Reached the end of the file" << std::endl;
+					std::cout << "no such record! Reached the end of the file!" << std::endl;
 			}
 			catch (std::string err)
 			{
