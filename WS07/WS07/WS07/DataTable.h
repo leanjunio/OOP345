@@ -88,7 +88,7 @@ namespace w7
 		void display(std::ostream& os) const
 		{
 			for (const auto& p : m_DataSet)
-				os << std::fixed << std::setw(m_width) << p.first << std::setprecision(m_precision) << " " << p.second << std::endl;
+				os << std::fixed << std::setw(m_width) << std::right << std::setprecision(m_precision) << p.first << " " << p.second << std::endl;
 		}
 
 		// returns the number of points in the dataset (the number of pairs)
