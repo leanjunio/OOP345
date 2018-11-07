@@ -30,6 +30,8 @@ namespace w7
 
 		int m_width;
 		int m_precision;
+
+		static int const position;
 	public:
 
 		// Receives a reference to the file, field width, number of decimals to display
@@ -85,7 +87,7 @@ namespace w7
 		//
 		void display(std::ostream& os) const
 		{
-			os << m_X << " " m_Y << std::endl;
+			os << "stuff";
 		}
 
 		// returns the number of points in the dataset (the number of pairs)
@@ -97,9 +99,8 @@ namespace w7
 
 		// calls the DataTable::display(...)
 		//
-		std::ostream& operator<<(std::ostream& os, const DataTable& data)
+		friend std::ostream& operator<<(std::ostream& os, const DataTable& data)
 		{
-			std::cout << setw(m_width) << "x" << setw(m_width) << "y" << std::endl;
 			data.display(os);
 			return os;
 		}

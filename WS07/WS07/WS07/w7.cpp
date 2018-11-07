@@ -31,7 +31,7 @@ void processFile(const char* pFileName)
 	{
 		w7::DataTable<float> data(dataFile, FW, ND);
 
-		/*if (data.getSize() < 10)
+		if (data.getSize() < 10)
 		{
 			cout << endl;
 			cout << "Data Values" << endl
@@ -39,7 +39,7 @@ void processFile(const char* pFileName)
 			cout << data;
 		}
 
-		float m, c;
+		/*float m, c;
 		data.regression(m, c);
 		cout << endl << "Statistics"
 			 << endl << "----------";
