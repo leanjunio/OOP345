@@ -54,7 +54,16 @@ namespace w7
 		{
 
 		}
+		// returns the total value of the dependent coordinates
+		//
+		T total() const
+		{
+			T total = {};
+			for (const auto& p : m_DataSet)
+				total += std::get<1>(p);
 
+			return total;
+		}
 		// returns the mean value of the dependent coordinate
 		//
 		T mean() const
@@ -70,7 +79,12 @@ namespace w7
 		//
 		T sigma() const
 		{
+			T total = {}, sd = {};
+			for (const auto& p : m_DataSet)
+				total += pow(std::get<1>(p) - mean(), 2);
 
+			sd = sqrt(total / (getSize() - 1));
+			return sd;
 		}
 			
 		// returns the median value of the dependent coordinate

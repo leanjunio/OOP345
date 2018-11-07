@@ -5,6 +5,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <cmath>
 #include "DataTable.h"
 #include "DataTable.h" // this is intentional
 
@@ -44,12 +45,12 @@ void processFile(const char* pFileName)
 		cout << endl << "Statistics"
 			 << endl << "----------";
 		cout << fixed << setprecision(ND);
-		cout << endl << "  y mean    = " << setw(FW) << data.mean() << std::endl;
-			/* << endl << "  y sigma   = " << setw(FW) << data.sigma()
-			 << endl << "  y median  = " << setw(FW) << data.median()
+		cout << endl << "  y mean    = " << setw(FW) << data.mean()
+			 << endl << "  y sigma   = " << setw(FW) << data.sigma()
+			 /*<< endl << "  y median  = " << setw(FW) << data.median()
 			 << endl << "  slope     = " << setw(FW) << m
-			 << endl << "  intercept = " << setw(FW) << c
-			 << endl;*/
+			 << endl << "  intercept = " << setw(FW) << c*/
+			 << endl;
 	}
 	catch (std::string& msg)
 	{
