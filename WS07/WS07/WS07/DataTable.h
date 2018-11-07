@@ -27,11 +27,8 @@ namespace w7
 	class DataTable
 	{
 		std::vector<std::pair<T, T>> m_DataSet;
-
 		int m_width;
 		int m_precision;
-
-		static int const position;
 	public:
 
 		// Receives a reference to the file, field width, number of decimals to display
@@ -44,7 +41,6 @@ namespace w7
 			if (file.is_open())
 			{
 				float x, y;
-
 				while (file >> x >> y)
 					m_DataSet.push_back(std::make_pair(x, y));
 			}
@@ -56,7 +52,7 @@ namespace w7
 		}
 		// returns the total value of the dependent coordinates
 		//
-		T total() const
+		T totalY() const
 		{
 			T total = {};
 			for (const auto& p : m_DataSet)
@@ -79,19 +75,25 @@ namespace w7
 		//
 		T sigma() const
 		{
-			T total = {}, sd = {};
+			T total = {};
 			for (const auto& p : m_DataSet)
 				total += pow(std::get<1>(p) - mean(), 2);
 
-			sd = sqrt(total / (getSize() - 1));
-			return sd;
+			return sqrt(total / (getSize() - 1));
 		}
 			
 		// returns the median value of the dependent coordinate
 		//
 		T median() const
 		{
+			std::vector<T> Y = {};
 
+			for (const auto& p : m_DataSet)
+				Y.push_back(p.second);
+
+			sort(Y.begin(), Y.end());
+
+			return Y[Y.size()/2];
 		}
 
 		// sets the parameters to the slope and intercept for the data set

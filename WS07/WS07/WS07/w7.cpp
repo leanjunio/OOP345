@@ -40,16 +40,16 @@ void processFile(const char* pFileName)
 			cout << data;
 		}
 
-		/*float m, c;
-		data.regression(m, c);*/
+		float m, c;
+		data.regression(m, c);
 		cout << endl << "Statistics"
 			 << endl << "----------";
 		cout << fixed << setprecision(ND);
 		cout << endl << "  y mean    = " << setw(FW) << data.mean()
 			 << endl << "  y sigma   = " << setw(FW) << data.sigma()
-			 /*<< endl << "  y median  = " << setw(FW) << data.median()
+			 << endl << "  y median  = " << setw(FW) << data.median()
 			 << endl << "  slope     = " << setw(FW) << m
-			 << endl << "  intercept = " << setw(FW) << c*/
+			 << endl << "  intercept = " << setw(FW) << c
 			 << endl;
 	}
 	catch (std::string& msg)
@@ -78,7 +78,7 @@ int main(int argc, char** argv)
     }
    
 	processFile(argv[1]);
-	// processFile(argv[2]);
+	processFile(argv[2]);
 
 	return 0;
 }
