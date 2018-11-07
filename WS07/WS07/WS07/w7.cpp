@@ -40,12 +40,12 @@ void processFile(const char* pFileName)
 		}
 
 		/*float m, c;
-		data.regression(m, c);
+		data.regression(m, c);*/
 		cout << endl << "Statistics"
 			 << endl << "----------";
 		cout << fixed << setprecision(ND);
-		cout << endl << "  y mean    = " << setw(FW) << data.mean()
-			 << endl << "  y sigma   = " << setw(FW) << data.sigma()
+		cout << endl << "  y mean    = " << setw(FW) << data.mean() << std::endl;
+			/* << endl << "  y sigma   = " << setw(FW) << data.sigma()
 			 << endl << "  y median  = " << setw(FW) << data.median()
 			 << endl << "  slope     = " << setw(FW) << m
 			 << endl << "  intercept = " << setw(FW) << c

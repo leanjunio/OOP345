@@ -59,7 +59,11 @@ namespace w7
 		//
 		T mean() const
 		{
+			T total = {};
+			for (const auto& p : m_DataSet)
+				total += std::get<1>(p);
 
+			return total/this->getSize();
 		}
 
 		// returns the standard deviation of the dependent coordinates
