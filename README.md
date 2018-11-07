@@ -28,5 +28,6 @@ This repository contains Workshops, Projects, Notes, and other course work for F
   - http://www.cplusplus.com/reference/vector/vector/vector/
 - Brace Initialization:
   - https://youtu.be/SmriQ5zXeAk?t=4m19s
-  
+- IOMANIP
+  - https://www.ieenews.com/setprecision-c-use-setprecision-c/ 
 
