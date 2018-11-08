@@ -7,6 +7,7 @@
 #include <utility>
 #include <iomanip>
 #include <vector>
+#include <numeric>
 #include <algorithm>
 
 namespace w7
@@ -50,16 +51,17 @@ namespace w7
 		{
 
 		}
+
 		// returns the total value of the dependent coordinates
 		//
-		T totalY() const
+		/*T totalY() const
 		{
 			T total = {};
 			for (const auto& p : m_DataSet)
 				total += std::get<1>(p);
 
 			return total;
-		}
+		}*/
 		// returns the mean value of the dependent coordinate
 		//
 		T mean() const
@@ -68,7 +70,7 @@ namespace w7
 			for (const auto& p : m_DataSet)
 				total += std::get<1>(p);
 
-			return total/this->getSize();
+			return total/getSize();
 		}
 
 		// returns the standard deviation of the dependent coordinates
@@ -100,6 +102,11 @@ namespace w7
 		//
 		void regression(T& slope, T& y_intercept) const
 		{
+			// Calculate Scope and y_intercept and set it to the passed parameters
+			T sumX = std::accumulate(m_DataSet.begin(), m_DataSet.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.first; });
+			T sumY = std::accumulate(m_DataSet.begin(), m_DataSet.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.second; });
+
+			T s_xx = std::inner_product(m_DataSet.begin(), m_DataSet.end(), m_DataSet.begin(), 0.0);
 
 		}
 
