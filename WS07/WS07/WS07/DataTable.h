@@ -12,18 +12,6 @@
 
 namespace w7
 {
-	/**
-	 *
-	 * A class template for performing statistical analysis on data stored in text files
-	 *
-	 * Upon instantiation, a DataTable object receives a reference to the filestream that holds:
-	 * - Data values
-	 * - field width for displaying data
-	 * - number of decimals to display
-	 *
-	 * The object retrieves the data values from the file and stores them in its instance variables
-	 */
-
 	template <class T>
 	class DataTable
 	{
@@ -47,6 +35,8 @@ namespace w7
 
 		}	
 
+		// Returns the mean of the y coordinate
+		//
 		T mean() const
 		{
 			T total = {};
@@ -89,13 +79,12 @@ namespace w7
 			y_intercept = getYIntercept();
 		}
 
-		// displays the data pairs as shown below
+		// displays the data pairs as shown
 		//
 		void display(std::ostream& os) const
 		{
 			os << std::setw(m_width) << "x" << std::setw(m_width) << "y" << std::endl;
 			
-			// os << std::fixed << std::setprecision(m_precision);
 			for (const auto& p : m_DataSet)
 				os << std::fixed << std::setprecision(m_precision) << std::setw(m_width) << p.first << std::setw(m_width) << p.second << std::endl;
 		}
@@ -139,15 +128,20 @@ namespace w7
 			return seconds;
 		}
 
+		// Gets the sums from both the x and ys and returns them in a pair
+		//
 		std::pair<T, T> getSums() const
 		{
 			T sumX = std::accumulate(m_DataSet.begin(), m_DataSet.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.first; });
 			T sumY = std::accumulate(m_DataSet.begin(), m_DataSet.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.second; });
 
 			std::pair<T, T> sums = std::make_pair(sumX, sumY);
+
 			return sums;
 		}
 
+		// gets the slope of the line in the x-y plane
+		//
 		T getSlope() const
 		{
 			std::vector<T> firsts = getFirsts();
@@ -161,6 +155,8 @@ namespace w7
 			return a;
 		}
 
+		// Returns the y value of the line where the y axis is crossed
+		//
 		T getYIntercept() const
 		{
 			T slope = getSlope();
@@ -169,6 +165,8 @@ namespace w7
 			return (sums.second - slope * sums.first) / getSize();
 		}
 
+		// Get the inner products of the x and ys
+		//
 		std::pair<T, T> getInnerProducts() const
 		{
 			std::vector<T> firsts = getFirsts();
