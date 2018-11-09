@@ -80,5 +80,5 @@ int main(int argc, char** argv)
 	processFile(argv[1]);
 	processFile(argv[2]);
 
-	return 0;
+		return 0;
 }

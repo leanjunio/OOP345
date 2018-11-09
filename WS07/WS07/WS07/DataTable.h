@@ -46,10 +46,6 @@ namespace w7
 			}
 
 		}	
-		~DataTable()
-		{
-
-		}
 
 		T mean() const
 		{
@@ -97,8 +93,11 @@ namespace w7
 		//
 		void display(std::ostream& os) const
 		{
+			os << std::setw(m_width) << "x" << std::setw(m_width) << "y" << std::endl;
+			
+			// os << std::fixed << std::setprecision(m_precision);
 			for (const auto& p : m_DataSet)
-				os << std::fixed << std::setw(m_width) << std::right << std::setprecision(m_precision) << p.first << " " << p.second << std::endl;
+				os << std::fixed << std::setprecision(m_precision) << std::setw(m_width) << p.first << std::setw(m_width) << p.second << std::endl;
 		}
 
 		// returns the number of points in the dataset (the number of pairs)
