@@ -140,8 +140,8 @@ namespace w7
 		//
 		std::pair<T, T> getSums() const
 		{
-			T sumX = std::accumulate(m_DataSet.begin(), m_DataSet.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.first; });
-			T sumY = std::accumulate(m_DataSet.begin(), m_DataSet.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.second; });
+			T sumX = std::accumulate(m_DataSet.begin(), m_DataSet.end(), static_cast<T>(0), [](T& a, T& b) { return a + b.first; });
+			T sumY = std::accumulate(m_DataSet.begin(), m_DataSet.end(), static_cast<T>(0), [](T& a, T& b) { return a + b.second; });
 
 			std::pair<T, T> sums = std::make_pair(sumX, sumY);
 
