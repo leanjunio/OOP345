@@ -7,7 +7,7 @@ class Student
 	int GetCoursesTaken() const;
 public:
 	Student();
-	Student(int StudentNumber, int CoursesTaken, const std::string& FirstName, const std::string& LastName, const Grades& Grades);
+	Student(int StudentNumber, int CoursesTaken, const std::string& FirstName, const std::string& LastName);
 	~Student();
 private:
 	int m_StudentNumber;

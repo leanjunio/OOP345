@@ -15,11 +15,11 @@ Student::Student()
 {
 }
 
-Student::Student(int StudentNumber, int CoursesTaken, const std::string& FirstName, const std::string& LastName, const Grades& Grades)
+Student::Student(int StudentNumber, int CoursesTaken, const std::string& FirstName, const std::string& LastName)
 	: m_StudentNumber(StudentNumber)
 	, m_CoursesTaken(CoursesTaken)
 	, m_Name{FirstName, LastName}
-	, m_Grades{Grades}
+	, m_Grades{m_CoursesTaken}
 {
 }
 
