@@ -40,7 +40,6 @@ namespace w7
 				while (file >> x >> y)
 					m_DataSet.push_back(std::make_pair(x, y));
 			}
-
 		}	
 
 		// Returns the mean of the y coordinate
@@ -124,7 +123,7 @@ namespace w7
 			return firsts;
 		}
 
-		// Get the vector form of the first element of m_DataSet vectors
+		// Get the vector form of the second element of m_DataSet vectors
 		//
 		std::vector<T> getSeconds() const
 		{
@@ -140,8 +139,11 @@ namespace w7
 		//
 		std::pair<T, T> getSums() const
 		{
-			T sumX = std::accumulate(m_DataSet.begin(), m_DataSet.end(), static_cast<T>(0), [](T& a, T& b) { return a + b.first; });
-			T sumY = std::accumulate(m_DataSet.begin(), m_DataSet.end(), static_cast<T>(0), [](T& a, T& b) { return a + b.second; });
+			std::vector<T> firsts = getFirsts();
+			std::vector<T> seconds = getSeconds();
+
+			T sumX = std::accumulate(firsts.begin(), firsts.end(), 0.0);
+			T sumY = std::accumulate(seconds.begin(), seconds.end(), 0.0);
 
 			std::pair<T, T> sums = std::make_pair(sumX, sumY);
 
