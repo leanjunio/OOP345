@@ -10,45 +10,65 @@
 extern const int FWC;
 extern const int FWD;
 extern const int FWP;
+/**
+ *
+ * This File defines 4 structures:
+ * - ValidationException
+ * - Description
+ * - Price
+ * - Product
+ * 
+ */
+namespace w8
+{
+	// Exception Handler for Validation
+	struct ValidationException : public std::exception
+	{
+		std::string message;
+		ValidationException(std::string msg) : message(msg) {}
+		~ValidationException() throw() {}
+		const char *what() const throw() { return message.c_str(); }
+	};
 
-namespace w8 {
-
-    struct Description {
-        unsigned code;
-        std::string desc;
-        bool load(std::ifstream& f)
+	struct Description
+	{
+		unsigned code;
+		std::string desc;
+		bool load(std::ifstream &f)
 		{
-            f >> code >> desc;
-            return f.good();
-        }
+			f >> code >> desc;
+			return f.good();
+		}
 
-		void display(std::ostream& os) const
+		void display(std::ostream &os) const
 		{
-            os << std::setw(FWC) << code
-			   << std::setw(FWD) << desc
-			   << std::endl;
-        }
-    };
+			os << std::setw(FWC) << code
+			<< std::setw(FWD) << desc
+			<< std::endl;
+		}
+	};
 
-    struct Price {
-        unsigned code;
-        double price;
-        bool load(std::ifstream& f)
+	struct Price
+	{
+		unsigned code;
+		double price;
+		bool load(std::ifstream &f)
 		{
-            f >> code >> price;
-            return f.good();
-        }
+			f >> code >> price;
+			return f.good();
+		}
 
-		void display(std::ostream& os) const
+		void display(std::ostream &os) const
 		{
-            os << std::setw(FWC) << code << std::setw(FWP)
-            << price << std::endl;
-        }
-    };
+			os << std::setw(FWC) << code << std::setw(FWP)
+			<< price << std::endl;
+		}
+	};
 
-    struct Product {
-        std::string desc;
-        double price;
+	struct Product
+	{
+		std::string desc;
+		double price;
 		int m_id;
 		static size_t idGenerator;
 		// this variable is used to print trace messages from
@@ -60,7 +80,7 @@ namespace w8 {
 			if (Product::Trace)
 				std::cout << "    DC [" << m_id << "]" << std::endl;
 		}
-        Product(const std::string& str, double p)
+		Product(const std::string &str, double p)
 		{
 			this->desc = str;
 			this->price = p;
@@ -68,15 +88,15 @@ namespace w8 {
 			if (Product::Trace)
 				std::cout << "     C [" << m_id << "]" << std::endl;
 		}
-		Product(const Product& other)
+		Product(const Product &other)
 		{
 			this->desc = other.desc;
 			this->price = other.price;
 			m_id = ++Product::idGenerator;
 			if (Product::Trace)
 				std::cout << "    CC [" << m_id
-			          << "] from [" << other.m_id << "]"
-			          << std::endl;
+						<< "] from [" << other.m_id << "]"
+						<< std::endl;
 		}
 		~Product()
 		{
@@ -84,18 +104,18 @@ namespace w8 {
 				std::cout << "    ~D [" << m_id << "]" << std::endl;
 		}
 
-
-
-		// TODO: add the validate() function here
-
-
-
-        void display(std::ostream& os) const
+		inline void validate()
 		{
-            os << std::setw(FWD) << desc
-			   << std::setw(FWP) << price
-			   << std::endl;
-        }
-    };
-}
+			if (price < 0)
+				throw ValidationException("*** Negative prices are invalid ***");
+		}
+
+		void display(std::ostream &os) const
+		{
+			os << std::setw(FWD) << desc
+			<< std::setw(FWP) << price
+			<< std::endl;
+		}
+	};
+} // namespace w8
 #endif
