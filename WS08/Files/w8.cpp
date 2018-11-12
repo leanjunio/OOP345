@@ -66,9 +66,9 @@ int main(int argc, char** argv)
 		{
 			List<Product> priceList = mergeRaw(desc, priceBad);
 		}
-		catch (const string& msg)
+		catch (const ValidationException& msg)
 		{
-			cout << "ERROR: " << msg << std::endl;
+			cout << "ERROR: " << msg.what() << std::endl;
 			cout << "NOTE: An exception occured while creating the list of products!" << endl
 				<< "      You should notice that not all objects are deleted." << endl;
 		}
@@ -83,9 +83,9 @@ int main(int argc, char** argv)
 		{
 			List<Product> priceList = mergeSmart(desc, priceBad);
 		}
-		catch (const string& msg)
+		catch (const ValidationException& msg)
 		{
-			cout << "ERROR: " << msg << std::endl;
+			cout << "ERROR: " << msg.what() << std::endl;
 			cout << "NOTE: An exception occured while creating the list of products!" << endl
 				 << "      You should notice that ALL objects are deleted." << endl;
 		}

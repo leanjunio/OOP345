@@ -106,7 +106,7 @@ namespace w8
 
 		inline void validate()
 		{
-			if (price < 0)
+			if (this->price < 0)
 				throw ValidationException("*** Negative prices are invalid ***");
 		}
 

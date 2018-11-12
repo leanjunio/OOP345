@@ -15,7 +15,21 @@ namespace w8
 	{
 		List<Product> priceList;
 		
+		for(size_t i = 0; i < desc.size(); i++)
+		{
+			for(size_t n = 0; n < price.size(); n++)
+			{
+				if (desc[i].code == price[n].code)
+				{
+					Product* ptr = new Product(desc[i].desc, price[n].price);	
+					ptr->validate();
+					priceList += ptr;
 
+					delete ptr;
+					ptr = nullptr;
+				}
+			}
+		}
 
 		return priceList;
 	}
