@@ -1,3 +1,11 @@
+// Name: Lean Junio
+// Seneca Student ID: 019-109-123
+// Seneca email: ljjunio@myseneca.ca
+// Date of completion: 11/12/2018
+//
+// I confirm that the content of this file is created by me,
+// with the exception of the parts provided to me by my professor.
+
 #include <memory>
 #include "List.h"
 #include "Element.h"
@@ -37,7 +45,7 @@ namespace w8
 	List<Product> mergeSmart(const List<Description>& desc, const List<Price>& price)
 	{
 		List<Product> priceList;
-		
+
 		for(size_t i = 0; i < desc.size(); i++)
 		{
 			for(size_t n = 0; n < price.size(); n++)
