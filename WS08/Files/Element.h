@@ -114,8 +114,9 @@ namespace w8
 
 		inline void validate()
 		{
+			std::string msg = "*** Negative prices are invalid ***";
 			if (this->price < 0)
-				throw ValidationException("*** Negative prices are invalid ***");
+				throw msg;
 		}
 
 		void display(std::ostream &os) const

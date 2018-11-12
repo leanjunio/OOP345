@@ -5,7 +5,6 @@
 //
 // I confirm that the content of this file is created by me,
 // with the exception of the parts provided to me by my professor.
-
 // Workshop 8 - Smart Pointers
 // w8.cpp
 
@@ -74,9 +73,9 @@ int main(int argc, char** argv)
 		{
 			List<Product> priceList = mergeRaw(desc, priceBad);
 		}
-		catch (const ValidationException& msg)
+		catch (const string& msg)
 		{
-			cout << "ERROR: " << msg.what() << std::endl;
+			cout << "ERROR: " << msg << std::endl;
 			cout << "NOTE: An exception occured while creating the list of products!" << endl
 				<< "      You should notice that not all objects are deleted." << endl;
 		}
@@ -91,9 +90,9 @@ int main(int argc, char** argv)
 		{
 			List<Product> priceList = mergeSmart(desc, priceBad);
 		}
-		catch (const ValidationException& msg)
+		catch (const string& msg)
 		{
-			cout << "ERROR: " << msg.what() << std::endl;
+			cout << "ERROR: " << msg << std::endl;
 			cout << "NOTE: An exception occured while creating the list of products!" << endl
 				 << "      You should notice that ALL objects are deleted." << endl;
 		}
