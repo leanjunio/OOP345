@@ -41,7 +41,7 @@ namespace w8
 
 		// TODO: Overload the += operator with a smart pointer
 		//       as a second operand (second operand when used, not upon definition).
-		void operator+=(const std::unique_ptr<T> ptr)
+		void operator+=(const std::unique_ptr<T>& ptr)
 		{
 			list.push_back(*ptr);	// Push the pointer's contents into the list
 		}
