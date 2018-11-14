@@ -1,3 +1,6 @@
+#ifndef _UTILITIES_H
+#define _UTILITIES_H
+
 // Utilities.h
 
 #include <iostream>
@@ -14,3 +17,5 @@ public:
     static void setDelimiter(const char);
     const char getDelimiter() const;
 };
+
+#endif

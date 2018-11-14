@@ -1,3 +1,6 @@
+#ifndef _ITEM_H
+#define _ITEM_H
+
 // Item.h
 
 #include <string>
@@ -18,4 +21,9 @@ public:
     void display(std::ostream& os, bool full) const;
   
 };
+
+#endif // _ITEM_H
+
+
+
 
