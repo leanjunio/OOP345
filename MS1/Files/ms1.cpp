@@ -19,7 +19,7 @@ int main(int argc, char** argv)
 	cout << endl << endl;
 
 	//**************//
-	vector<Item> theInventory;
+	vector<Item> theInventory;							// Create a vector of type 'Item' with id: theInventory
 	Utilities::setDelimiter(',');
 	loadInventory(argv[1], theInventory);
 	Utilities::setDelimiter('|');
