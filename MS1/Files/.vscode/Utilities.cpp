@@ -24,7 +24,7 @@ const std::string Utilities::extractToken(const std::string& str, size_t& next_p
 
 // sets the delimiter for this class to the character received
 // 
-void Utilities::setDelimiter(const char delimiter) {  }
+void Utilities::setDelimiter(const char delimiter) { m_delimeter = delimiter; }
 
 // returns the delimiter character of the current object
 // 
