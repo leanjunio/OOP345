@@ -28,6 +28,9 @@
         "type_traits": "cpp",
         "tuple": "cpp",
         "typeinfo": "cpp",
-        "utility": "cpp"
+        "utility": "cpp",
+        "cmath": "cpp",
+        "optional": "cpp",
+        "string_view": "cpp"
     }
 }
