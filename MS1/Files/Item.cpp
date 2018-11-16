@@ -1,5 +1,6 @@
 // Item.cpp
 
+#include "Utilities.h"
 #include "Item.h"
 
 // upon instantiation, an Item object receives a reference to an unmodifiable std::string
@@ -16,6 +17,14 @@
 // 
 Item::Item(const std::string& singleRecord)
 {
+    Utilities localUtility;
+
+    // Set defaults for the next_pos and more
+    bool more = true;
+    size_t next_pos = 0u;
+
+    m_name = localUtility.extractToken(singleRecord, next_pos, more);
+
 }
 
 // returns the name of the current Item object

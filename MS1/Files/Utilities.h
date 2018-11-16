@@ -9,7 +9,7 @@
 class Utilities
 {
     int m_widthField;
-    static char m_delimeter;
+    static char m_delimiter;
 public:
     void setFieldWidth(size_t fieldWidth = 1);
     size_t getFieldWidth() const;

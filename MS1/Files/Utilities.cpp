@@ -1,7 +1,9 @@
 #include <string>
 #include "Utilities.h"
 
-void Utilities::setFieldWidth(size_t fieldWidth = 1)
+char Utilities::m_delimiter;
+
+void Utilities::setFieldWidth(size_t fieldWidth)
 {
     m_widthField = fieldWidth;
 }
@@ -13,15 +15,25 @@ size_t Utilities::getFieldWidth() const
 
 const std::string Utilities::extractToken(const std::string& str, size_t& next_pos, bool& more)
 {
-    
+    // Extract tokens from string until delimiter
+    // more represents if there are more tokens
+    std::string query;
+
+    if (more)
+    {
+        size_t m_delimiterPOS = str.find(getDelimiter());
+        query = str.substr(next_pos, m_delimiterPOS);
+    }
+
+    return query;
 }
 
 void Utilities::setDelimiter(const char delimiter)
 {
-    m_delimeter = delimiter;
+    Utilities::m_delimiter = delimiter;
 }
 
 const char Utilities::getDelimiter() const
 {
-    return m_delimeter;
+    return m_delimiter;
 }
