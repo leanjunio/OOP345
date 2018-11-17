@@ -62,7 +62,7 @@ void Item::updateQuantity() {  if ((m_quantity - 1) != 0) m_quantity--; }
 void Item::display(std::ostream& os, bool full) const
 {
     os << std::setw(m_widthField) << std::left << m_name 
-       << " [" << std::setw(6) << std::right << std::setfill('0') << m_serialNumber << std::setfill(' ')<< "] ";
+       << " [" << std::setw(6) << std::right << std::setfill('0') << m_serialNumber << std::setfill(' ')<< "]";
     if (full)
         os << " Quantity: " << std::setw(m_widthField) << std::left << m_quantity << " Description: " << m_description;
     os << std::endl;
