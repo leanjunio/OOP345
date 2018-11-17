@@ -15,17 +15,25 @@ size_t Utilities::getFieldWidth() const
 
 const std::string Utilities::extractToken(const std::string& str, size_t& next_pos, bool& more)
 {
-    // Extract tokens from string until delimiter
-    // more represents if there are more tokens
     std::string query;
 
     if (more)
     {
         size_t delimiterPOS = str.find(getDelimiter(), next_pos + 1u);
         
-        query = str.substr(next_pos, delimiterPOS - next_pos);
-        more = true;
-        next_pos = delimiterPOS + 1u;
+        if (delimiterPOS != std::string::npos)
+        {
+            query = str.substr(next_pos, delimiterPOS - next_pos);
+            more = true;
+            if (delimiterPOS == next_pos)
+                throw std::string("ERROR: Contiguous delimiters found");
+            next_pos = delimiterPOS + 1u;
+        }
+        else
+        {
+            query = str.substr(next_pos, str.length());
+            more = false;
+        }
     }
 
     return query;
