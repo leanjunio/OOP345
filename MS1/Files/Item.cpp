@@ -24,7 +24,9 @@ Item::Item(const std::string& singleRecord)
     size_t next_pos = 0u;
 
     m_name = localUtility.extractToken(singleRecord, next_pos, more);
-
+    m_serialNumber = std::stoi(localUtility.extractToken(singleRecord, next_pos, more));
+    m_quantity = std::stoi(localUtility.extractToken(singleRecord, next_pos, more));
+    m_description = localUtility.extractToken(singleRecord, next_pos, more);
 }
 
 // returns the name of the current Item object

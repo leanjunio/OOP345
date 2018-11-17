@@ -21,8 +21,11 @@ const std::string Utilities::extractToken(const std::string& str, size_t& next_p
 
     if (more)
     {
-        size_t m_delimiterPOS = str.find(getDelimiter());
-        query = str.substr(next_pos, m_delimiterPOS);
+        size_t delimiterPOS = str.find(getDelimiter(), next_pos + 1u);
+        
+        query = str.substr(next_pos, delimiterPOS - next_pos);
+        more = true;
+        next_pos = delimiterPOS + 1u;
     }
 
     return query;
