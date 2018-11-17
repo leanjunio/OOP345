@@ -36,6 +36,9 @@ const std::string Utilities::extractToken(const std::string& str, size_t& next_p
         }
     }
 
+    if (m_widthField < query.size())
+        setFieldWidth(query.size());
+
     return query;
 }
 

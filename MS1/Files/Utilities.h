@@ -8,10 +8,10 @@
 
 class Utilities
 {
-    int m_widthField;
+    int m_widthField = 1;
     static char m_delimiter;
 public:
-    void setFieldWidth(size_t fieldWidth = 1);
+    void setFieldWidth(size_t fieldWidth);
     size_t getFieldWidth() const;
     const std::string extractToken(const std::string& str, size_t& next_pos, bool& more);
     static void setDelimiter(const char);

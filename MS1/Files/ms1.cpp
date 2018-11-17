@@ -25,32 +25,31 @@ int main(int argc, char** argv)
 	Utilities::setDelimiter('|');
 	loadInventory(argv[2], theInventory);
 
-	// cout << "=======================" << endl;
-	// cout << "= Inventory (summary) =" << endl;
-	// cout << "=======================" << endl;
-	// for (Item& theItem : theInventory)
-	// 	theItem.display(cout, false);
-	// cout << endl;
+	cout << "=======================" << endl;
+	cout << "= Inventory (summary) =" << endl;
+	cout << "=======================" << endl;
+	for (Item& theItem : theInventory)
+		theItem.display(cout, false);
+	cout << endl;
 
-	// cout << "=======================" << endl;
-	// cout << "=  Inventory (full)   =" << endl;
-	// cout << "=======================" << endl;
-	// for (Item& theItem : theInventory)
-	// 	theItem.display(cout, true);
-	// cout << endl;
+	cout << "=======================" << endl;
+	cout << "=  Inventory (full)   =" << endl;
+	cout << "=======================" << endl;
+	for (Item& theItem : theInventory)
+		theItem.display(cout, true);
+	cout << endl;
 
-	// //Select an object and verify all the functionality it working
-	// cout << "=======================" << endl;
-	// cout << "=  Manual Validation  =" << endl;
-	// cout << "=======================" << endl;
-	// cout << "getName(): " << theInventory[0].getName() << endl;
-	// cout << "getSerialNumber(): " << theInventory[0].getSerialNumber() << endl;
-	// cout << "getSerialNumber(): " << theInventory[0].getSerialNumber() << endl;
-	// cout << "getQuantity(): " << theInventory[0].getQuantity() << endl;
-	// theInventory[0].updateQuantity();
-	// cout << "getQuantity(): " << theInventory[0].getQuantity() << endl;
-	// cout << endl;
-
+	//Select an object and verify all the functionality it working
+	cout << "=======================" << endl;
+	cout << "=  Manual Validation  =" << endl;
+	cout << "=======================" << endl;
+	cout << "getName(): " << theInventory[0].getName() << endl;
+	cout << "getSerialNumber(): " << theInventory[0].getSerialNumber() << endl;
+	cout << "getSerialNumber(): " << theInventory[0].getSerialNumber() << endl;
+	cout << "getQuantity(): " << theInventory[0].getQuantity() << endl;
+	theInventory[0].updateQuantity();
+	cout << "getQuantity(): " << theInventory[0].getQuantity() << endl;
+	cout << endl;
 
 	return 0;
 }

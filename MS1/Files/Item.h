@@ -9,7 +9,7 @@ class Item
 {
     std::string m_name;
     std::string m_description;
-    int m_serialNumber;
+    std::string m_serialNumber;
     int m_quantity;
     static int m_widthField;
 public:
