@@ -36,10 +36,7 @@ Item::Item(const std::string& singleRecord)
 
     m_name = localUtility.extractToken(singleRecord, next_pos, more);
     m_serialNumber = localUtility.extractToken(singleRecord, next_pos, more);
-    
-    // if (m_serialNumber.length() < 6)
-    //     m_serialNumber.insert(0, "0");
-    
+
     m_quantity = std::stoi(localUtility.extractToken(singleRecord, next_pos, more));
     m_description = localUtility.extractToken(singleRecord, next_pos, more);
 
@@ -65,9 +62,9 @@ void Item::updateQuantity() {  if ((m_quantity - 1) != 0) m_quantity--; }
 void Item::display(std::ostream& os, bool full) const
 {
     os << std::setw(m_widthField) << std::left << m_name 
-       << "[" << std::setw(6) << std::right << std::setfill('0') << m_serialNumber << std::setfill(' ')<< "] ";
+       << " [" << std::setw(6) << std::right << std::setfill('0') << m_serialNumber << std::setfill(' ')<< "] ";
     if (full)
-        os << "Quantity: " << std::setw(m_widthField) << std::left << m_quantity << " Description: " << m_description;
+        os << " Quantity: " << std::setw(m_widthField) << std::left << m_quantity << " Description: " << m_description;
     os << std::endl;
 }
 
