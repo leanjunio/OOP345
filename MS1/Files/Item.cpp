@@ -49,7 +49,15 @@ const std::string& Item::getName() const { return m_name; }
 
 // returns the next serial number to be used on the assembly line and increments m_serialNumber
 // 
-const unsigned int Item::getSerialNumber() { return std::stoi(m_serialNumber); }
+const unsigned int Item::getSerialNumber() 
+{ 
+    // return the current serialNumber
+    // increment it
+    int i_sn = std::stoi(m_serialNumber);
+    
+    m_serialNumber = std::to_string(i_sn + 1);
+    return i_sn; 
+}
 
 // returns the remaining quantity of the current Item object
 // 
