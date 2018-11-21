@@ -63,9 +63,10 @@ namespace w9 {
 
 	void SecureData::code(char key)
 	{
-		// TODO: rewrite this function to use at least two threads
-		//         to encrypt/decrypt the text.
-		converter(text, key, nbytes, Cryptor());
+		auto f = std::bind(converter, text, key, nbytes, Cryptor());
+		
+		std::thread t1(f);
+		std::thread t2(f);
 
 		encoded = !encoded;
 	}
@@ -77,24 +78,22 @@ namespace w9 {
 			throw std::string("\n***Data is not encoded***\n");
 		else
 		{
-			// TODO: open a binary file for writing
-
-
-
-			// TODO: write data into the binary file
-			//         and close the file
-
-
+			std::fstream f(file, std::ios::out | std::ios::binary | std::ios::trunc);
+			f.write(text, nbytes);
+			f.close();
 		}
 	}
 
 	void SecureData::restore(const char* file, char key) {
 		// TODO: open binary file for reading
-
+		std::fstream f(file, std::ios::in | std::ios::binary);
 
 
 		// TODO: - allocate memory here for the file content
-
+		if (f.good())
+		{
+			f >> std::noskipws;
+		}
 
 
 		// TODO: - read the content of the binary file
