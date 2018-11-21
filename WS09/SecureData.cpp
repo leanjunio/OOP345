@@ -10,14 +10,16 @@
 
 using namespace std;
 
-namespace w9 {
+namespace w9
+{
 
-	void converter(char* t, char key, int n, const Cryptor& c) {
+	void converter(char *t, char key, int n, const Cryptor &c)
+	{
 		for (int i = 0; i < n; i++)
 			t[i] = c(t[i], key);
 	}
 
-	SecureData::SecureData(const char* file, char key, ostream* pOfs)
+	SecureData::SecureData(const char *file, char key, ostream *pOfs)
 	{
 		ofs = pOfs;
 
@@ -25,7 +27,7 @@ namespace w9 {
 		fstream input(file, std::ios::in);
 		if (!input)
 			throw string("\n***Failed to open file ") +
-			string(file) + string(" ***\n");
+				string(file) + string(" ***\n");
 
 		// copy from file into memory
 		input.seekg(0, std::ios::end);
@@ -39,7 +41,8 @@ namespace w9 {
 		while (input.good())
 			input >> text[i++];
 		text[nbytes - 1] = '\0';
-		*ofs << "\n" << nbytes - 1 << " bytes copied from file "
+		*ofs << "\n"
+			<< nbytes - 1 << " bytes copied from file "
 			<< file << " into memory (null byte added)\n";
 		encoded = false;
 
@@ -48,11 +51,13 @@ namespace w9 {
 		*ofs << "Data encrypted in memory\n";
 	}
 
-	SecureData::~SecureData() {
+	SecureData::~SecureData()
+	{
 		delete[] text;
 	}
 
-	void SecureData::display(std::ostream& os) const {
+	void SecureData::display(std::ostream &os) const
+	{
 		if (text && !encoded)
 			os << text << std::endl;
 		else if (encoded)
@@ -64,14 +69,18 @@ namespace w9 {
 	void SecureData::code(char key)
 	{
 		auto f = std::bind(converter, text, key, nbytes, Cryptor());
-		
+
 		std::thread t1(f);
 		std::thread t2(f);
+
+		t1.join();
+		t2.join();
 
 		encoded = !encoded;
 	}
 
-	void SecureData::backup(const char* file) {
+	void SecureData::backup(const char *file)
+	{
 		if (!text)
 			throw std::string("\n***No data stored***\n");
 		else if (!encoded)
@@ -84,35 +93,49 @@ namespace w9 {
 		}
 	}
 
-	void SecureData::restore(const char* file, char key) {
-		// TODO: open binary file for reading
+	void SecureData::restore(const char *file, char key)
+	{
+		delete[] text;
+		nbytes = 0;
+
 		std::fstream f(file, std::ios::in | std::ios::binary);
 
-
-		// TODO: - allocate memory here for the file content
 		if (f.good())
 		{
 			f >> std::noskipws;
+
+			while (!f.eof())
+			{
+				char temp;
+				f >> temp;
+				nbytes++;
+			}
+			
+			nbytes--;
+			f.clear();
+			f.seekg(0, std::ios::beg);
+
+			text = new char[nbytes + 1];
+
+			f.read(text, nbytes);
+			text[nbytes] = '\0';
+
+			*ofs << "\n"
+				<< nbytes << " bytes copied from binary file "
+				<< file << " into memory.\n";
+
+			encoded = true;
+
+			code(key);
+
+			*ofs << "Data decrypted in memory\n\n";
+			f.close();
 		}
-
-
-		// TODO: - read the content of the binary file
-
-
-
-		*ofs << "\n" << nbytes << " bytes copied from binary file "
-			<< file << " into memory.\n";
-
-		encoded = true;
-
-		// decode using key
-		code(key);
-
-		*ofs << "Data decrypted in memory\n\n";
 	}
 
-	std::ostream& operator<<(std::ostream& os, const SecureData& sd) {
+	std::ostream &operator<<(std::ostream &os, const SecureData &sd)
+	{
 		sd.display(os);
 		return os;
 	}
-}
+} // namespace w9
