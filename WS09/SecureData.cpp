@@ -1,3 +1,11 @@
+// Name: Lean Junio
+// Seneca Student ID: 019-109-123
+// Seneca email: ljjunio@myseneca.ca
+// Date of completion: 11/21/2018
+//
+// I confirm that the content of this file is created by me,
+// with the exception of the parts provided to me by my professor.
+
 // Workshop 9 - Multi-Threading
 // SecureData.cpp
 
@@ -110,7 +118,7 @@ namespace w9
 				f >> temp;
 				nbytes++;
 			}
-			
+
 			nbytes--;
 			f.clear();
 			f.seekg(0, std::ios::beg);
