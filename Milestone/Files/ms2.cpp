@@ -77,58 +77,58 @@ int main(int argc, char** argv)
 		theOrders[theOrders.size() - 1].display(cout);
 		cout << endl;
 
-		try
-		{
-			// copy constructor
-			cout << "CustomerOrders::CustomerOrders(&): "; // Test #2
-			CustomerOrder anOrder(theOrders[0]);
-		}
-		catch (...)
-		{
-			cout << "----> ERROR: Cannot make copies.";
-			cout << endl << endl;
-		}
+		// try
+		// {
+		// 	// copy constructor
+		// 	cout << "CustomerOrders::CustomerOrders(&): "; // Test #2
+		// 	CustomerOrder anOrder(theOrders[0]);
+		// }
+		// catch (...)
+		// {
+		// 	cout << "----> ERROR: Cannot make copies.";
+		// 	cout << endl << endl;
+		// }
 
-		// move constructor
-		cout << "CustomerOrders::CustomerOrders(&&): "; // Test #3
-		CustomerOrder tmp(std::move(theOrders[theOrders.size() - 1]));
-		theOrders.pop_back();
-		tmp.display(cout);
-		cout << endl;
+		// // move constructor
+		// cout << "CustomerOrders::CustomerOrders(&&): "; // Test #3
+		// CustomerOrder tmp(std::move(theOrders[theOrders.size() - 1]));
+		// theOrders.pop_back();
+		// tmp.display(cout);
+		// cout << endl;
 
-		cout << "CustomerOrders::CustomerOrders(string): "; // Test #4
-		string strRecord = "Chloe/Flight PC/CPU/GPU/Power Supply";
-		Utilities::setDelimiter('/');
-		CustomerOrder tmp2(strRecord);
-		tmp2.display(cout);
-		cout << endl;
+		// cout << "CustomerOrders::CustomerOrders(string): "; // Test #4
+		// string strRecord = "Chloe/Flight PC/CPU/GPU/Power Supply";
+		// Utilities::setDelimiter('/');
+		// CustomerOrder tmp2(strRecord);
+		// tmp2.display(cout);
+		// cout << endl;
 
-		cout << "CustomerOrders::operator=(&&): "; // Test #5
-		tmp2 = std::move(theOrders[theOrders.size() - 1]);
-		theOrders.pop_back();
-		tmp2.display(cout);
-		cout << endl;
+		// cout << "CustomerOrders::operator=(&&): "; // Test #5
+		// tmp2 = std::move(theOrders[theOrders.size() - 1]);
+		// theOrders.pop_back();
+		// tmp2.display(cout);
+		// cout << endl;
 
-		cout << "CustomerOrders::fillItem()" << endl; // Test #6
-		cout << "getOrderFillState(): "
-		     << (tmp2.getOrderFillState() ? "FILLED" : "MISSING")
-		     << endl;
+		// cout << "CustomerOrders::fillItem()" << endl; // Test #6
+		// cout << "getOrderFillState(): "
+		//      << (tmp2.getOrderFillState() ? "FILLED" : "MISSING")
+		//      << endl;
 
-		tmp2.fillItem(theInventory[0], cout);
-		cout << "getItemFillState(\"CPU\"): "
-			 << (tmp2.getItemFillState("CPU") ? "FILLED" : "MISSING")
-		     << endl;
+		// tmp2.fillItem(theInventory[0], cout);
+		// cout << "getItemFillState(\"CPU\"): "
+		// 	 << (tmp2.getItemFillState("CPU") ? "FILLED" : "MISSING")
+		//      << endl;
 
-		cout << "getOrderFillState(): "
-		     << (tmp2.getOrderFillState() ? "FILLED" : "MISSING")
-		     << endl;
+		// cout << "getOrderFillState(): "
+		//      << (tmp2.getOrderFillState() ? "FILLED" : "MISSING")
+		//      << endl;
 
-		for (size_t i = 0; i < theInventory.size(); i++)
-			tmp2.fillItem(theInventory[i], cout);
+		// for (size_t i = 0; i < theInventory.size(); i++)
+		// 	tmp2.fillItem(theInventory[i], cout);
 
-		cout << "getOrderFillState(): "
-		     << (tmp2.getOrderFillState() ? "FILLED" : "MISSING")
-		     << endl;
+		// cout << "getOrderFillState(): "
+		//      << (tmp2.getOrderFillState() ? "FILLED" : "MISSING")
+		//      << endl;
 	}
 	return 0;
 }
