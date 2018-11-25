@@ -1,5 +1,6 @@
 // CustomerOrder.cpp
 
+#include <iomanip>
 #include <iostream>
 #include "Utilities.h"
 #include "CustomerOrder.h"
@@ -61,7 +62,12 @@ CustomerOrder& CustomerOrder::operator=(CustomerOrder&& other)
         m_name = other.m_name;
         m_product = other.m_product;
         m_cntItem = other.m_cntItem;
+        m_lstItem = other.m_lstItem;
+
+        other.m_lstItem = nullptr;
     }
+
+    return *this;
 }
 
 CustomerOrder::~CustomerOrder()
@@ -69,8 +75,28 @@ CustomerOrder::~CustomerOrder()
     delete [] m_lstItem;
 }
 
+bool CustomerOrder::getItemFillState(std::string item) const
+{
+    // return m_fillState
+    for (int i = 0; i < m_cntItem; i++)
+        if (m_lstItem[i]->m_itemName == item)
+            return m_lstItem[i]->m_fillState;
+    
+    return true;
+}
+
+bool CustomerOrder::getOrderFillState() const
+{
+
+}
+
 void CustomerOrder::display(std::ostream& os) const
 {
     os << m_name << " - " << m_product << std::endl;
+
+    for(size_t i = 0; i < m_cntItem; i++)
+    {
+        os << "[" << std::setw(6) << std::right << std::setfill('0') << m_lstItem[i]->m_serialNumber << std::setfill(' ') << "] " << m_lstItem[i]->m_itemName << " - " << std::endl;
+    }
 }
 
