@@ -22,8 +22,12 @@ CustomerOrder::CustomerOrder(const std::string &record)
     size_t next_pos = 0u, beg = 0u;
 
     m_name = localUtility.extractToken(record, next_pos, more);
+    m_product = localUtility.extractToken(record, next_pos, more);
+
     beg = next_pos;
+    
     m_cntItem = 0u;
+    
     // Count how many products exists
     while (more)
     {
@@ -46,10 +50,20 @@ CustomerOrder::CustomerOrder(const CustomerOrder& other)
 }
 
 CustomerOrder::CustomerOrder(CustomerOrder&& other) noexcept
-    : m_lstItem(nullptr)
 {
     *this = std::move(other);
 }
+
+CustomerOrder& CustomerOrder::operator=(CustomerOrder&& other)
+{
+    if (this != &other)
+    {
+        m_name = other.m_name;
+        m_product = other.m_product;
+        m_cntItem = other.m_cntItem;
+    }
+}
+
 CustomerOrder::~CustomerOrder()
 {
     delete [] m_lstItem;
