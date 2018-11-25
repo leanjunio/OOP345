@@ -36,9 +36,13 @@ CustomerOrder::CustomerOrder(const std::string &record)
     more = true;
 
     // Take the addresses of the extracted tokens and add them into m_lstItem
-    // TODO: The last element takes the /r as well...FIX
     for (int i = 0; i < m_cntItem; i++)
         m_lstItem[i] = new ItemInfo(localUtility.extractToken(record, beg, more));
+}
+
+CustomerOrder::CustomerOrder(const CustomerOrder& other)
+{
+    throw std::string("Invalid Operation: CustomerOrder objects cannot be copied.");
 }
 
 CustomerOrder::~CustomerOrder()
@@ -50,3 +54,4 @@ void CustomerOrder::display(std::ostream& os) const
 {
     os << m_name << " - " << m_product << std::endl;
 }
+

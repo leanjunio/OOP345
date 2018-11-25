@@ -37,8 +37,8 @@ class CustomerOrder
   public:
     CustomerOrder();
     CustomerOrder(const std::string&);
-    // CustomerOrder(const CustomerOrder&);
-    // CustomerOrder& operator=(const CustomerOrder&) = delete;
+    CustomerOrder(const CustomerOrder&);
+    CustomerOrder& operator=(const CustomerOrder&) = delete;
     // CustomerOrder(CustomerOrder&&) noexcept;
     // CustomerOrder& operator=(CustomerOrder&&);
     ~CustomerOrder();
