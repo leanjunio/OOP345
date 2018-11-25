@@ -39,8 +39,8 @@ class CustomerOrder
     CustomerOrder(const std::string&);
     CustomerOrder(const CustomerOrder&);
     CustomerOrder& operator=(const CustomerOrder&) = delete;
-    // CustomerOrder(CustomerOrder&&) noexcept;
-    // CustomerOrder& operator=(CustomerOrder&&);
+    CustomerOrder(CustomerOrder&&) noexcept;
+    CustomerOrder& operator=(CustomerOrder&&);
     ~CustomerOrder();
     bool getItemFillState(std::string) const;
     bool getOrderFillState() const;

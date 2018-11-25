@@ -7,8 +7,8 @@
 size_t CustomerOrder::m_widthField = 0;
 
 CustomerOrder::CustomerOrder()
-    : m_name("N/A"),
-      m_product("N/A"),
+    : m_name(""),
+      m_product(""),
       m_cntItem(0),
       m_lstItem(nullptr)
 {
@@ -45,6 +45,11 @@ CustomerOrder::CustomerOrder(const CustomerOrder& other)
     throw std::string("Invalid Operation: CustomerOrder objects cannot be copied.");
 }
 
+CustomerOrder::CustomerOrder(CustomerOrder&& other) noexcept
+    : m_lstItem(nullptr)
+{
+    *this = std::move(other);
+}
 CustomerOrder::~CustomerOrder()
 {
     delete [] m_lstItem;
