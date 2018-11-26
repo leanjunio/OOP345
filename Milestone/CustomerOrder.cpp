@@ -89,7 +89,6 @@ CustomerOrder::~CustomerOrder()
 
 bool CustomerOrder::getItemFillState(std::string item) const
 {
-    
     for (int i = 0; i < m_cntItem; i++)
         if (m_lstItem[i]->m_itemName == item)
             return m_lstItem[i]->m_fillState;
@@ -100,7 +99,10 @@ bool CustomerOrder::getItemFillState(std::string item) const
 bool CustomerOrder::getOrderFillState() const
 {
     for (int i = 0; i < m_cntItem; i++)
-        return (m_lstItem[i]->m_fillState) ? true : false;
+        if (!m_lstItem[i]->m_fillState)
+            return false;
+
+    return true;
 }
 
 void CustomerOrder::fillItem(Item& item, std::ostream& os)
