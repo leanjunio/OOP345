@@ -26,7 +26,6 @@ CustomerOrder::CustomerOrder(const std::string &record)
     m_product = localUtility.extractToken(record, next_pos, more);
 
     beg = next_pos;
-    
     m_cntItem = 0u;
     
     // Count how many products exists
@@ -41,8 +40,15 @@ CustomerOrder::CustomerOrder(const std::string &record)
     more = true;
 
     // Take the addresses of the extracted tokens and add them into m_lstItem
+    localUtility.setFieldWidth(0);
     for (int i = 0; i < m_cntItem; i++)
+    {
         m_lstItem[i] = new ItemInfo(localUtility.extractToken(record, beg, more));
+
+        if (localUtility.getFieldWidth() > m_widthField)
+            m_widthField = localUtility.getFieldWidth();
+
+    }
 }
 
 CustomerOrder::CustomerOrder(const CustomerOrder& other)
@@ -77,7 +83,7 @@ CustomerOrder::~CustomerOrder()
 
 bool CustomerOrder::getItemFillState(std::string item) const
 {
-    // return m_fillState
+    
     for (int i = 0; i < m_cntItem; i++)
         if (m_lstItem[i]->m_itemName == item)
             return m_lstItem[i]->m_fillState;
@@ -87,7 +93,8 @@ bool CustomerOrder::getItemFillState(std::string item) const
 
 bool CustomerOrder::getOrderFillState() const
 {
-
+    for (int i = 0; i < m_cntItem; i++)
+        return (m_lstItem[i]->m_fillState) ? true : false;
 }
 
 void CustomerOrder::display(std::ostream& os) const
@@ -96,7 +103,9 @@ void CustomerOrder::display(std::ostream& os) const
 
     for(size_t i = 0; i < m_cntItem; i++)
     {
-        os << "[" << std::setw(6) << std::right << std::setfill('0') << m_lstItem[i]->m_serialNumber << std::setfill(' ') << "] " << m_lstItem[i]->m_itemName << " - " << std::endl;
+        os << "[" << std::setw(6) << std::right << std::setfill('0') << m_lstItem[i]->m_serialNumber << std::setfill(' ') << "] " 
+           << std::setw(m_widthField) << std::left << m_lstItem[i]->m_itemName << std::setfill(' ')
+           << " - " << (m_lstItem[i]->m_fillState ? "FILLED" : "MISSING") << std::endl;
     }
 }
 
