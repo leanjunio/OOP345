@@ -1,3 +1,11 @@
+// Name: Lean Junio
+// Seneca Student ID: 019-109-123
+// Seneca email: ljjunio@myseneca.ca
+// Date of completion: November 17, 2018
+//
+// I confirm that I am the only author of this file
+// and the content was created entirely by me.
+
 // CustomerOrder.cpp
 
 #include <iomanip>
