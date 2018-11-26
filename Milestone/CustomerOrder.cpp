@@ -88,6 +88,7 @@ CustomerOrder::~CustomerOrder()
 }
 
 bool CustomerOrder::getItemFillState(std::string item) const
+    // Takes the fill state of the item specified, skip if the item is not found and return true
 {
     for (int i = 0; i < m_cntItem; i++)
         if (m_lstItem[i]->m_itemName == item)
@@ -97,6 +98,7 @@ bool CustomerOrder::getItemFillState(std::string item) const
 }
 
 bool CustomerOrder::getOrderFillState() const
+    // If any of the items have not yet been filled, return false
 {
     for (int i = 0; i < m_cntItem; i++)
         if (!m_lstItem[i]->m_fillState)
