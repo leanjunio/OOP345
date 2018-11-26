@@ -52,7 +52,7 @@ CustomerOrder::CustomerOrder(const std::string &record)
 
     // Take the addresses of the extracted tokens and add them into m_lstItem
     localUtility.setFieldWidth(0);
-    for (int i = 0; i < <static_cast>(int)m_cntItem; i++)
+    for (int i = 0; i < static_cast<int>(m_cntItem); i++)
         m_lstItem[i] = new ItemInfo(localUtility.extractToken(record, beg, more));
 
 }
@@ -90,7 +90,7 @@ CustomerOrder::~CustomerOrder()
 bool CustomerOrder::getItemFillState(std::string item) const
     // Takes the fill state of the item specified, skip if the item is not found and return true
 {
-    for (int i = 0; i < <static_cast>(int)m_cntItem; i++)
+    for (int i = 0; i < static_cast<int>(m_cntItem); i++)
         if (m_lstItem[i]->m_itemName == item)
             return m_lstItem[i]->m_fillState;
     
@@ -100,7 +100,7 @@ bool CustomerOrder::getItemFillState(std::string item) const
 bool CustomerOrder::getOrderFillState() const
     // If any of the items have not yet been filled, return false
 {
-    for (int i = 0; i < <static_cast>(int)m_cntItem; i++)
+    for (int i = 0; i < static_cast<int>(m_cntItem); i++)
         if (!m_lstItem[i]->m_fillState)
             return false;
 
@@ -109,7 +109,7 @@ bool CustomerOrder::getOrderFillState() const
 
 void CustomerOrder::fillItem(Item& item, std::ostream& os)
 {
-    for (int i = 0; i < <static_cast>(int)m_cntItem; i++)
+    for (int i = 0; i < static_cast<int>(m_cntItem); i++)
     {
         if (m_lstItem[i]->m_itemName == item.getName()) 
         {
@@ -132,7 +132,7 @@ void CustomerOrder::display(std::ostream& os) const
 {
     os << m_name << " - " << m_product << std::endl;
 
-    for(size_t i = 0; i < <static_cast>(int)m_cntItem; i++)
+    for(int i = 0; i < static_cast<int>(m_cntItem); i++)
     {
         os << "[" << std::setw(6) << std::setfill('0') << m_lstItem[i]->m_serialNumber << std::setfill(' ') << "] " 
            << std::setw(m_widthField) << std::left << m_lstItem[i]->m_itemName
