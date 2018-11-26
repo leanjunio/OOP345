@@ -36,6 +36,9 @@ const std::string Utilities::extractToken(const std::string& str, size_t& next_p
             if (delimiterPOS == next_pos)
                 throw std::string("ERROR: Contiguous delimiters found");
             next_pos = delimiterPOS + 1u;
+            
+            if (m_widthField < static_cast<int>(query.size()))
+                setFieldWidth(query.size());
         }
         else
         {
@@ -43,8 +46,6 @@ const std::string Utilities::extractToken(const std::string& str, size_t& next_p
             more = false;
         }
 
-        if (m_widthField < static_cast<int>(query.size()))
-            setFieldWidth(query.size());
     }
 
     if (query.back() == '\r')
