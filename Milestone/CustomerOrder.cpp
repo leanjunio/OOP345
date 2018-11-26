@@ -27,7 +27,7 @@ CustomerOrder::CustomerOrder(const std::string &record)
 
     if (localUtility.getFieldWidth() > m_widthField)
         m_widthField = localUtility.getFieldWidth();
-        
+
     beg = next_pos;
     m_cntItem = 0u;
     
@@ -93,6 +93,27 @@ bool CustomerOrder::getOrderFillState() const
 {
     for (int i = 0; i < m_cntItem; i++)
         return (m_lstItem[i]->m_fillState) ? true : false;
+}
+
+void CustomerOrder::fillItem(Item& item, std::ostream& os)
+{
+    for (int i = 0; i < m_cntItem; i++)
+    {
+        if (m_lstItem[i]->m_itemName == item.getName()) 
+        {
+            if (item.getQuantity() > 0) 
+            {
+                m_lstItem[i]->m_serialNumber = item.getSerialNumber();
+                item.updateQuantity();
+                m_lstItem[i]->m_fillState = true;
+                os << "Filled " << m_name << ", " << m_product << "[" << m_lstItem[i]->m_itemName << "]";
+            } 
+            else
+                os << "Unable to fill " << m_name << ", " << m_product << "[" << m_lstItem[i]->m_itemName << "]";
+            
+            os << std::endl;
+        }
+    }
 }
 
 void CustomerOrder::display(std::ostream& os) const

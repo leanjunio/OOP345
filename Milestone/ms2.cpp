@@ -114,21 +114,21 @@ int main(int argc, char** argv)
 		     << (tmp2.getOrderFillState() ? "FILLED" : "MISSING")
 		     << endl;
 
-		// tmp2.fillItem(theInventory[0], cout);
-		// cout << "getItemFillState(\"CPU\"): "
-		// 	 << (tmp2.getItemFillState("CPU") ? "FILLED" : "MISSING")
-		//      << endl;
+		tmp2.fillItem(theInventory[0], cout);
+		cout << "getItemFillState(\"CPU\"): "
+			 << (tmp2.getItemFillState("CPU") ? "FILLED" : "MISSING")
+		     << endl;
 
-		// cout << "getOrderFillState(): "
-		//      << (tmp2.getOrderFillState() ? "FILLED" : "MISSING")
-		//      << endl;
+		cout << "getOrderFillState(): "
+		     << (tmp2.getOrderFillState() ? "FILLED" : "MISSING")
+		     << endl;
 
-		// for (size_t i = 0; i < theInventory.size(); i++)
-		// 	tmp2.fillItem(theInventory[i], cout);
+		for (size_t i = 0; i < theInventory.size(); i++)
+			tmp2.fillItem(theInventory[i], cout);
 
-		// cout << "getOrderFillState(): "
-		//      << (tmp2.getOrderFillState() ? "FILLED" : "MISSING")
-		//      << endl;
+		cout << "getOrderFillState(): "
+		     << (tmp2.getOrderFillState() ? "FILLED" : "MISSING")
+		     << endl;
 	}
 	return 0;
 }
