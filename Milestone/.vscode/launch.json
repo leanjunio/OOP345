@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/a.out",
-            "args": ["Inventory1.dat", "Inventory2.dat", "CustomerOrders.dat"],
+            "args": ["Inventory1.dat", "Inventory2.dat", "CustomerOrders.dat", "AssemblyLine.dat"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
