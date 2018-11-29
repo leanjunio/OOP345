@@ -14,7 +14,11 @@
 
 class Task : public Item
 {
+    // m_orders – is a double ended queue with new CustomerOrders coming in one side and exiting out the other once filled.
     std::deque<CustomerOrder> m_orders;
+
+    a pointer to the next task on the assembly line
+    m_pNextTask;
     
 };
 #endif // ! _TASK_H
