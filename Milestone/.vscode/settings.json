@@ -32,7 +32,9 @@
         "cmath": "cpp",
         "optional": "cpp",
         "string_view": "cpp",
-        "iomanip": "cpp"
+        "iomanip": "cpp",
+        "ctime": "cpp",
+        "deque": "cpp"
     },
     "C_Cpp.intelliSenseEngineFallback": "Disabled"
 }

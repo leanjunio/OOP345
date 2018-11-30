@@ -107,6 +107,7 @@ bool CustomerOrder::getOrderFillState() const
     return true;
 }
 
+// Fill item in the current order that corresponds to the Item passed into the function
 void CustomerOrder::fillItem(Item& item, std::ostream& os)
 {
     for (int i = 0; i < static_cast<int>(m_cntItem); i++)
