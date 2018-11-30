@@ -8,7 +8,7 @@
             "type": "shell",
             "command": "g++",
             "args": [
-                "-Wall", "-g", "*.cpp"
+                "-g", "*.cpp", "-std=c++17"
             ],
             "group": {
                 "kind": "build",
