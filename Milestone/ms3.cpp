@@ -72,24 +72,24 @@ int main(int argc, char** argv)
 		order.display(std::cout);
 	cout << endl;
 
-	// LineManager lm(argv[4], theTasks, theOrders);
-	// cout << "=======================" << endl;
-	// cout << "=   Validate Tasks    =" << endl;
-	// cout << "=======================" << endl;
-	// lm.validateTasks();
-	// cout << endl;
+	LineManager lm(argv[4], theTasks, theOrders);	// BUG: NOT CALLING THE CONSTRUCTOR
+	cout << "=======================" << endl;
+	cout << "=   Validate Tasks    =" << endl;
+	cout << "=======================" << endl;
+	lm.validateTasks();
+	cout << endl;
 
-	// cout << "=======================" << endl;
-	// cout << "=   Filling Orders    =" << endl;
-	// cout << "=======================" << endl;
-	// while (!lm.run(cout));		//loop running the assembly line until complete
-	// cout << endl;
+	cout << "=======================" << endl;
+	cout << "=   Filling Orders    =" << endl;
+	cout << "=======================" << endl;
+	while (!lm.run(cout));		//loop running the assembly line until complete
+	cout << endl;
 
-	// cout << "=======================" << endl;
-	// cout << "=   Completed Orders  =" << endl;
-	// cout << "=======================" << endl;
-	// lm.displayCompleted(cout);
-	// cout << endl;
+	cout << "=======================" << endl;
+	cout << "=   Completed Orders  =" << endl;
+	cout << "=======================" << endl;
+	lm.displayCompleted(cout);
+	cout << endl;
 
 	cout << "=======================" << endl;
 	cout << "=  Inventory (full)   =" << endl;

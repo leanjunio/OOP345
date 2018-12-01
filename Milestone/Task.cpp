@@ -16,22 +16,38 @@ Task::Task(const std::string& record)
 void Task::runProcess(std::ostream& os)
 {
     if (!m_orders.empty())
-        if (m_orders.back().getItemFillState(Item::getName()) == false) // if the CustomerOrder at the back is not yet filled...
-            m_orders.back().fillItem(*this, os);                        // fill the item with current task
+    {
+        if (!m_orders.front().getOrderFillState())
+        {
+            while (!m_orders.front().getItemFillState(getName()))
+            {
+                if (!this->getQuantity())
+                    throw std::string("ERROR: [") + getName() + " of stock UNAVAILABLE]";
+                m_orders.front().fillItem(*this, os);
+            }
+        }
+    }
 }
 
 // Moves the last CustomerOrder in the queue to the next task on the assembly line if the orders fill state for the current Item is true
 // 
 bool Task::moveTask()
 {
-    if (m_orders.empty())
-        return false;
-
-    if (m_orders.back().getItemFillState(Item::getName()) == true)  // If the fill state for current is True...
+    if (!m_orders.empty())
     {
-        *m_pNextTask += std::move(m_orders.back());      // Move the last CustomerOrder from the current m_orders object to the nextTask
-        m_orders.pop_back();                                    // remove the moved CustomerOrder from the current m_orders
+        if (m_pNextTask)
+        {
+            if (m_orders.front().getItemFillState(getName()))
+            {
+                *m_pNextTask += std::move(m_orders.front());
+                m_orders.pop_front();
+            }
+        }
+
+        return true;
     }
+    else
+        return false;
 }   
 
 // Store the provided task's reference into the m_pNextTask pointer
@@ -46,28 +62,29 @@ void Task::setNextTask(Task& task)
 // 
 bool Task::getCompleted(CustomerOrder& co)
 {
-    if (m_orders.empty())
-        return false;
-    else
+    if (!m_orders.empty() && m_orders.front().getOrderFillState()) 
     {
-        co = std::move(m_orders.back());
+        co = std::move(m_orders.front());
+        m_orders.pop_front();
         return true;
-    }
+    } 
+    else 
+        return false;
 }
 
 // Writes the name of the Item the current Task is responsible for into the parameter
 // 
 void Task::validate(std::ostream& os)
 {
-    os << Item::getName() << " --> ";
-    if (m_pNextTask != nullptr) 
-        os << m_pNextTask->getName();
+    os << getName() << " --> ";
+    os << (m_pNextTask ? m_pNextTask->getName() : "END OF LINE");
     os << std::endl;
 }
+
 // Moves the parameter onto the front of the CustomerOrder queue
 // 
 Task& Task::operator+=(CustomerOrder&& co)
 {
-    m_orders.push_front(co);
+    m_orders.push_front(std::move(co));
     return *this;
 }

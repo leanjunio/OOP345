@@ -1,91 +1,126 @@
+// Name: Kenneth Yue
+// Seneca Student ID: 127932176
+// Seneca email: kyue3@myseneca.ca
+// Date of completion: November 28, 2018
+//
+// I confirm that I am the only author of this file
+// and the content was created entirely by me.
+
+#include <vector>
+#include <iostream>
 #include <fstream>
-#include <algorithm>
-#include "Utilities.h"
+#include "Task.h"
 #include "LineManager.h"
+#include "Utilities.h"
 
-// str - contains the filename specified by the user to be used for linking the assembly line objects (ex. AssemblyLine.dat)
-// al_addresses - A reference containing the addresses of all the Task objects created for the assembly line
-// co_tobefilled - A reference containing all the CustomerOrders to be filled
-// 
-// This constructor must read the records from the file
-// Setup all the m_pNextTask references in the Task objects, Linking each Task object together to form the assembly line
-// Move all the CustomerOrder objects onto the front of the ToBeFilled queue
-// Copy all the Task objects into the AssemblyLine container
-// 
-LineManager::LineManager(const std::string& str, std::vector<Task*> al_addresses, std::vector<CustomerOrder>& co_tobefilled)
+LineManager::LineManager(const std::string& fileName, std::vector<Task*>& al_tasks, std::vector<CustomerOrder>& co_tobefilled) 
 {
-    std::ifstream file(str, std::ifstream::in);
+    std::ifstream file(fileName);
+    
+    Utilities localUtility;
+    size_t next_pos = 0;
+    bool more = true;
 
-    if (file.is_open())
+    std::string record;
+    std::string task;
+    std::string next;
+
+    bool checkIfFirst = true;
+
+    while(!file.eof()) 
     {
-        std::string buf;
-        int line = 0;
+        std::getline(file, record);
 
-        // Data
-        std::string currentLine;
-        std::string nextItem;
-        std::string currentItem;
+        // Get the current task an the next task
+        task = localUtility.extractToken(record, next_pos, more);
+        if (more)
+            next = localUtility.extractToken(record, next_pos, more);
 
-        m_cntCustomerOrder = co_tobefilled.size();  // get the CustomerOrder count
-        for (size_t i = 0; i < m_cntCustomerOrder; ++i)
-            ToBeFilled.push_back(std::move(co_tobefilled[i]));
+        for (size_t i = 0; i < al_tasks.size(); ++i) {
+            if (al_tasks[i]->getName() == task) {
 
-        while(std::getline(file, buf))
-            line++;
+                // If checkFirst is the first task...get the position and toggle checkIfFirst
+                if (checkIfFirst) 
+                {
+                    pos_first = i;
+                    checkIfFirst = !checkIfFirst;
+                }
+                
+                // If there's a second task
+                if (!next.empty()) 
+                {
+                    for (size_t j = 0; j < al_tasks.size(); ++j) 
+                    {
+                        if (al_tasks[j]->getName() == next) 
+                        {
+                            al_tasks[i]->setNextTask(*al_tasks[j]);
+                            break;
+                        }
+                    }
+                } 
+                else
+                    pos_last = i;
 
-        Utilities localUtility;
-        bool more = true;
-        size_t pos = 0;
-
-        for (size_t i = 0; i < line; ++i)
-        {
-            std::getline(file, currentLine, '\n');
-            currentItem = localUtility.extractToken(currentLine, pos, more);
-
-            if (more)
-            {
-                nextItem = localUtility.extractToken(currentLine, pos, more);
-                for (auto& current: AssemblyLine)
-                    if (current->getName() == currentItem)
-                        currentItem = "";
-                for (auto& firstTask: al_addresses)
-                    if (firstTask->getName() == currentItem)
-                        AssemblyLine.push_back(firstTask);
-                for (auto& secondTask: al_addresses)
-                    if (nextItem == secondTask->getName())
-                        AssemblyLine.push_back(secondTask);
-
-                AssemblyLine[i]->setNextTask(*AssemblyLine[i + 1]);
+                break;
             }
+        }
+        
+        next_pos = 0;
+        more = true;
+        task.clear();
+        next.clear();
+    }
+
+    for (size_t i = 0; i < co_tobefilled.size(); ++i) 
+        ToBeFilled.push_back(std::move(co_tobefilled[i]));
+    co_tobefilled.erase(co_tobefilled.begin(),co_tobefilled.end());
+
+    AssemblyLine = al_tasks;
+}
+
+bool LineManager::run(std::ostream& os) 
+{
+    bool done = true;
+    
+    if (!ToBeFilled.empty()) {
+        *AssemblyLine[pos_first] += std::move(ToBeFilled.front());
+        ToBeFilled.pop_front();
+    }
+
+    for (size_t i = 0; i < AssemblyLine.size(); ++i) {
+        try 
+        {
+            AssemblyLine[i]->runProcess(os);
+        }
+        catch (std::string err) 
+        {
+            std::cout << std::endl << err << std::endl;
+            throw std::string("Not enough inventory available");
         }
     }
 
-    for (auto& i: AssemblyLine)
-        std::cout << i->getName() << std::endl;
+    CustomerOrder buffer;
+    if (AssemblyLine[pos_last]->getCompleted(buffer))
+        Completed.push_back(std::move(buffer));
+
+    for (size_t i = 0; i < AssemblyLine.size(); ++i) {
+        if (AssemblyLine[i]->moveTask()) 
+            done = false; 
+    }
+
+    return done;
 }
 
-// Performs one cycle of operations on the assembly line
-// If there are any CustomerOrder objects in the ToBeFilled queue, move the last CustomerOrder object onto the starting point of the assembly line
-// Loop through all tasks on the asembly line and run one cycle of the task's process
-// Loop through all the tasks on the assembly line and move the CustomerOrder object down the line
-// Completed orders should be move to the Completed queue
-// Return true if all customer orders have been filled, otherwise return false
-// 
-bool LineManager::run(std::ostream& os)
+void LineManager::displayCompleted(std::ostream& os) const 
 {
-
+    if (!Completed.empty())
+        for (size_t i = 0; i < Completed.size(); ++i) 
+            Completed[i].display(os);
 }
 
-// Displays all the orders that were completed
-// 
-void LineManager::displayCompleted(std::ostream&) const
+void LineManager::validateTasks() const 
 {
-
-}
-
-// Validates each task on the assembly line
-// 
-void LineManager::validateTasks() const
-{
-
+    if (!AssemblyLine.empty())
+        for (size_t i = 0; i < AssemblyLine.size(); ++i)
+            AssemblyLine[i]->validate(std::cout);
 }

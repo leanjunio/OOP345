@@ -87,14 +87,20 @@ CustomerOrder::~CustomerOrder()
     delete [] m_lstItem;
 }
 
+// Takes the fill state of the item specified, skip if the item is not found and return true
 bool CustomerOrder::getItemFillState(std::string item) const
-    // Takes the fill state of the item specified, skip if the item is not found and return true
 {
+    bool filled = true;
+
     for (int i = 0; i < static_cast<int>(m_cntItem); i++)
         if (m_lstItem[i]->m_itemName == item)
-            return m_lstItem[i]->m_fillState;
+            if (!m_lstItem[i]->m_fillState)
+            {
+                filled = false;
+                break;
+            }
     
-    return true;
+    return filled;
 }
 
 bool CustomerOrder::getOrderFillState() const
