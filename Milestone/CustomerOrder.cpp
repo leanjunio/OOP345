@@ -141,9 +141,9 @@ void CustomerOrder::display(std::ostream& os) const
 
     for(int i = 0; i < static_cast<int>(m_cntItem); i++)
     {
-        os << "[" << std::setw(6) << std::setfill('0') << m_lstItem[i]->m_serialNumber << std::setfill(' ') << "] " 
-           << std::setw(m_widthField) << std::left << m_lstItem[i]->m_itemName
-           << " - " << (m_lstItem[i]->m_fillState ? "FILLED" : "MISSING") << std::endl;
+        os << "[" << std::setw(6) << std::right << std::setfill('0') << m_lstItem[i]->m_serialNumber << std::setfill(' ') << "] " 
+        << std::setw(m_widthField) << std::left << m_lstItem[i]->m_itemName
+        << " - " << (m_lstItem[i]->m_fillState ? "FILLED" : "MISSING") << std::endl;
     }
 }
 

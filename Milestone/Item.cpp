@@ -35,7 +35,7 @@ Item::Item(const std::string& singleRecord)
     size_t next_pos = 0u;
 
     m_name = localUtility.extractToken(singleRecord, next_pos, more);
-    m_serialNumber = std::stoi(localUtility.extractToken(singleRecord, next_pos, more));
+    m_serialNumber = localUtility.extractToken(singleRecord, next_pos, more);
 
     m_quantity = std::stoi(localUtility.extractToken(singleRecord, next_pos, more));
     m_description = localUtility.extractToken(singleRecord, next_pos, more);
@@ -51,7 +51,10 @@ const std::string& Item::getName() const { return m_name; }
 // 
 const unsigned int Item::getSerialNumber() 
 { 
-    return m_serialNumber++;
+    int i_sn = std::stoi(m_serialNumber);
+    
+    m_serialNumber = std::to_string(i_sn + 1);
+    return i_sn; 
 }
 
 // returns the remaining quantity of the current Item object

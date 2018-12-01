@@ -4,7 +4,7 @@
 // Date of completion: 12/1/2018
 //
 // I confirm that I am the only author of this file
-// Name: Len Junio
+// Name: Lean Junio
 // Seneca Student ID: 019-109-123
 // Seneca email: ljjunio@myseneca.ca
 // Date of completion: 12/1/2018
