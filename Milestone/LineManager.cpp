@@ -1,7 +1,13 @@
-// Name: Kenneth Yue
-// Seneca Student ID: 127932176
-// Seneca email: kyue3@myseneca.ca
-// Date of completion: November 28, 2018
+// Name: Len Junio
+// Seneca Student ID: 019-109-123
+// Seneca email: ljjunio@myseneca.ca
+// Date of completion: 12/1/2018
+//
+// I confirm that I am the only author of this file
+// Name: Len Junio
+// Seneca Student ID: 019-109-123
+// Seneca email: ljjunio@myseneca.ca
+// Date of completion: 12/1/2018
 //
 // I confirm that I am the only author of this file
 // and the content was created entirely by me.
@@ -13,7 +19,7 @@
 #include "LineManager.h"
 #include "Utilities.h"
 
-LineManager::LineManager(const std::string& fileName, std::vector<Task*>& al_tasks, std::vector<CustomerOrder>& co_tobefilled) 
+LineManager::LineManager(const std::string& fileName, std::vector<Task*>& tasks, std::vector<CustomerOrder>& co_tobefilled) 
 {
     std::ifstream file(fileName);
     
@@ -36,31 +42,29 @@ LineManager::LineManager(const std::string& fileName, std::vector<Task*>& al_tas
         if (more)
             next = localUtility.extractToken(record, next_pos, more);
 
-        for (size_t i = 0; i < al_tasks.size(); ++i) {
-            if (al_tasks[i]->getName() == task) {
-
-                // If checkFirst is the first task...get the position and toggle checkIfFirst
+        for (size_t i = 0; i < tasks.size(); ++i) 
+        {
+            if (tasks[i]->getName() == task) 
+            {
                 if (checkIfFirst) 
                 {
                     pos_first = i;
                     checkIfFirst = !checkIfFirst;
                 }
                 
-                // If there's a second task
                 if (!next.empty()) 
                 {
-                    for (size_t j = 0; j < al_tasks.size(); ++j) 
+                    for (size_t j = 0; j < tasks.size(); ++j) 
                     {
-                        if (al_tasks[j]->getName() == next) 
+                        if (tasks[j]->getName() == next) 
                         {
-                            al_tasks[i]->setNextTask(*al_tasks[j]);
+                            tasks[i]->setNextTask(*tasks[j]);
                             break;
                         }
                     }
                 } 
                 else
                     pos_last = i;
-
                 break;
             }
         }
@@ -74,20 +78,21 @@ LineManager::LineManager(const std::string& fileName, std::vector<Task*>& al_tas
     for (size_t i = 0; i < co_tobefilled.size(); ++i) 
         ToBeFilled.push_back(std::move(co_tobefilled[i]));
     co_tobefilled.erase(co_tobefilled.begin(),co_tobefilled.end());
-
-    AssemblyLine = al_tasks;
+    AssemblyLine = tasks;
 }
 
 bool LineManager::run(std::ostream& os) 
 {
     bool done = true;
     
-    if (!ToBeFilled.empty()) {
+    if (!ToBeFilled.empty()) 
+    {
         *AssemblyLine[pos_first] += std::move(ToBeFilled.front());
         ToBeFilled.pop_front();
     }
 
-    for (size_t i = 0; i < AssemblyLine.size(); ++i) {
+    for (size_t i = 0; i < AssemblyLine.size(); ++i) 
+    {
         try 
         {
             AssemblyLine[i]->runProcess(os);
@@ -103,7 +108,8 @@ bool LineManager::run(std::ostream& os)
     if (AssemblyLine[pos_last]->getCompleted(buffer))
         Completed.push_back(std::move(buffer));
 
-    for (size_t i = 0; i < AssemblyLine.size(); ++i) {
+    for (size_t i = 0; i < AssemblyLine.size(); ++i) 
+    {
         if (AssemblyLine[i]->moveTask()) 
             done = false; 
     }

@@ -1,3 +1,11 @@
+// Name: Len Junio
+// Seneca Student ID: 019-109-123
+// Seneca email: ljjunio@myseneca.ca
+// Date of completion: 12/1/2018
+//
+// I confirm that I am the only author of this file
+// and the content was created entirely by me.
+
 #ifndef _LINEMANAGER_H
 #define _LINEMANAGER_H
 

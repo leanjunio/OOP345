@@ -1,3 +1,11 @@
+// Name: Len Junio
+// Seneca Student ID: 019-109-123
+// Seneca email: ljjunio@myseneca.ca
+// Date of completion: 12/1/2018
+//
+// I confirm that I am the only author of this file
+// and the content was created entirely by me.
+
 // Task.h
 // A Task object manages a single Item on the assembly line
 // Task inherits from class Item and contains the following additional information:
