@@ -93,6 +93,6 @@ void Task::validate(std::ostream& os)
 // 
 Task& Task::operator+=(CustomerOrder&& co)
 {
-    m_orders.push_front(std::move(co));
+    m_orders.push_back(std::move(co));
     return *this;
 }
