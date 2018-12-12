@@ -1,5 +1,6 @@
 # Move and Copy Semantics
 *Update 14.09.2018:* Updated the sample output for Move Assignment operator.
+
 *Update 17.09.2018:* Added the missing namespace for the template parameter in the main file.
 
 In this workshop, you are to compare move and copy operations on an object that contains a dynamically allocated array of string objects.
