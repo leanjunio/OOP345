@@ -21,6 +21,7 @@ This workshop reads a file containing student numbers and grades and converts th
 | 55-59	      | D+           |
 | 50-54	      | D            |
 | 0-49	      | F            |
+
 Decimal values round to nearest integer.
 
 ## Letter Enumeration
