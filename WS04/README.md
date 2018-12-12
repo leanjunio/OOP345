@@ -1,15 +1,13 @@
-## Fall 2018 - OOP345
-
-#### Containers
+# Containers
 In this workshop, you code a container class that holds notifications and a class that holds separate messages
 
-#### Learning Outcomes
+## Learning Outcomes
 Upon successful completion of this workshop, you will have demonstrated the abilities to
 - design and code a composition of objects
 - read records from a file into a string object
 - parse a string object into components based on simple rules
 
-#### Specifications
+## Specifications
 This workshop retrieves messages from a data file and collects them in a notification. Each record in the data file contains a single message and ends with the same delimiting character.
 
 The test data file `tweets.dat` contains the following and should be passed into your program on the command line:
