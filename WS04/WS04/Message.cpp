@@ -28,7 +28,6 @@ namespace w4
 		, m_Tweet{tweet}
 		, m_Reply{reply}
 	{
-		m_Count++;
 	}
 
 	Message::Message(std::ifstream & in, char c)
@@ -68,15 +67,14 @@ namespace w4
 
 		// check if at least tweet and user exists
 		// if so, create an object
+		// Increase the m_Count
 		bool ifTweetExists = !tweet.empty();
 
 		if (ifTweetExists)
+		{
 			*this = Message(user, tweet, reply);
-
-	}
-
-	Message::~Message()
-	{
+			m_Count++;
+		}
 	}
 
 	bool Message::empty() const
@@ -93,8 +91,15 @@ namespace w4
 		
 		os << " Tweet : " << m_Tweet << "\n\n";
 	}
+
+	// Returns how many messages have been created
+	//
 	int Message::getCount() const
 	{
 		return m_Count;
+	}
+	String Message::getReply() const
+	{
+		return this->m_Tweet;
 	}
 }

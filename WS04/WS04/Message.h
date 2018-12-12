@@ -26,10 +26,11 @@ namespace w4
 		Message();
 		Message(String user, String tweet, String reply);
 		Message(std::ifstream& in, char c);
-		~Message();
 		bool empty() const;
 		void display(std::ostream& os) const;
 		int getCount() const;
+
+		String getReply() const;
 	};
 }
 

@@ -15,7 +15,8 @@
 namespace w4
 {
 	Notifications::Notifications()
-		: m_pMessages(nullptr)
+		: m_pMessages(new Message[10]),
+		  m_Count(0)
 	{	
 	}
 
@@ -49,10 +50,14 @@ namespace w4
 	{
 		if (this != &other)
 		{
+			delete[] m_pMessages;
+			m_Count = other.m_Count;
+
+			m_pMessages = new Message[m_Count];
 			m_pMessages = other.m_pMessages;
 
-			delete[] other.m_pMessages;
 			other.m_pMessages = nullptr;
+			other.m_Count = 0;
 		}
 
 		return *this;
@@ -63,24 +68,22 @@ namespace w4
 		delete[] m_pMessages;
 		m_pMessages = nullptr;
 	}
-	void Notifications::operator+=(const Message & msg)
-		// Pushes the passed msg parameter into the vector m_Messages
-	{
-		Message* m_ppMessage = nullptr;
-		m_ppMessage = new Message[m_pMessages->getCount() + 1];
 
-		for ()
+	// Adds the passed msg to the set
+	//
+	void Notifications::operator+=(const Message & msg)
+	{
+		if (m_Count < MAX)
+		{
+			m_pMessages[m_Count] = msg;
+			m_Count++;
+		}
+		else
+			std::cout << "------- MESSAGES FULL ----------" << std::endl;
 	}
 	void Notifications::display(std::ostream & os) const
 	{	
-		for (Message m : m_pMessages)
-			m.display(os);
-	}
-	int Notifications::getCount() const
-	{
-		for (int i = 0; i < m_pMessages->getCount(); ++i)
-		{
-
-		}
+		for (int i = 0; i < m_Count; ++i)
+			m_pMessages[i].display(os);
 	}
 }

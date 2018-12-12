@@ -6,20 +6,19 @@
 // I confirm that the content of this file is created by me,
 // with the exception of the parts provided to me by my professor.
 
-
 // Notifications.h
-// Manages access to a set of up to 10 instances of the Message type
 #ifndef _W4_NOTIFICATIONS_H
 #define _W4_NOTIFICATIONS_H
 
-#include <vector>
 #include "Message.h"
 
 namespace w4
 {
+	// Container class that holds separate messages
+	//
 	class Notifications
 	{
-		// An 'array' of messages from the file
+		const int MAX = 10;
 		Message* m_pMessages;
 		int m_Count;
 	public:
@@ -32,7 +31,6 @@ namespace w4
 
 		void operator+=(const Message& msg);
 		void display(std::ostream& os) const;
-		int getCount() const;
 	};
 }
 
