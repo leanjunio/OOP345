@@ -31,43 +31,40 @@ int main(int argc, char* argv[])
 		return 2;
 	}
 
-	auto letter = [](float grade)
+	try
 	{
-		if (grade >= 90 && grade <= 100)
-			return convert(Letter::Aplus);
-		else if (grade >= 80 && grade <= 89.9)
-			return convert(Letter::A);
-		else if (grade >= 75 && grade <= 79.9)
-			return convert(Letter::Bplus);
-		else if (grade >= 70 && grade <= 74.9)
-			return convert(Letter::B);
-		else if (grade >= 65 && grade <= 69.9)
-			return convert(Letter::Cplus);
-		else if (grade >= 60 && grade <= 64.9)
-			return convert(Letter::C);
-		else if (grade >= 55 && grade <= 59.9)
-			return convert(Letter::Dplus);
-		else if (grade >= 50 && grade <= 54.9)
-			return convert(Letter::D);
-		else if (grade >= 0 && grade <= 49.9)
-			return convert(Letter::F);
-		else
-			throw "Not a grade";
-	};
-	
-	std::cout << typeid(letter).name() << std::endl;
+		sict::Grades grades(argv[1]);
 
-	try 
-	{
-		Grades grades(argv[1]);
-		//std::string(*ptr)(float) = letter;
+		auto letter = [](float grade)
+		{
+			if (grade >= 90 && grade <= 100)
+				return Letter::Aplus;
+			else if (grade >= 80 && grade <= 89.9)
+				return Letter::A;
+			else if (grade >= 75 && grade <= 79.9)
+				return Letter::Bplus;
+			else if (grade >= 70 && grade <= 74.9)
+				return Letter::B;
+			else if (grade >= 65 && grade <= 69.9)
+				return Letter::Cplus;
+			else if (grade >= 60 && grade <= 64.9)
+				return Letter::C;
+			else if (grade >= 55 && grade <= 59.9)
+				return Letter::Dplus;
+			else if (grade >= 50 && grade <= 54.9)
+				return Letter::D;
+			else if (grade >= 0 && grade <= 49.9)
+				return Letter::F;
+			else
+				throw "Not a grade";
+		};
+
 		grades.displayGrades(std::cout, letter);
 	}
-	catch (const char* err)
+	catch (const std::string& message)
 	{
-		throw err;
-		return 1;
+		std::cout << message << std::endl;
 	}
-
+	
 	return 0;
 }

@@ -9,41 +9,61 @@
 #include <fstream>
 #include <string>
 #include <iomanip>
+#include <iterator>
 #include <functional>
 #include <iostream>
 #include "Grades.h"
 
 namespace sict
 {
-	template <typename T>
-	void Grades::displayGrades(std::ostream & os, T letter) const 
-	{
-		for (size_t i = 0; i < static_cast<size_t>(m_LineCount); i++)
-			os << std::setw(10) << std::right << m_StudentNumbers[i] << " " 
-			   << std::setw(5) << std::right << std::fixed << std::setprecision(2) << m_Grades[i] << " "
-			   << std::setw(4) << std::left << letter(m_Grades[i]) << std::endl;
-	}
+	// A constructor that accepts a filename as a parameter
+	// Check if the filename is legitemate and throw an error if not
+	//
 	Grades::Grades(const char* file)
 	{	
-		if (file != nullptr && file[0] != '\0')
+		// Check if the file name is correct
+		if (file != nullptr || file[0] != '\0')
 		{
+			// BUG: grades_file ends up being null
+
+			std::cout << file << std::endl;
+
 			std::ifstream grades_file(file);
-			m_LineCount = countLines(grades_file);
-			readFile(grades_file);
+
+			if (grades_file.is_open())
+			{
+				m_LineCount = countLines(grades_file);
+				readFile(grades_file);
+			}
+			else
+				throw "File cannot be opened";
 		}
 		else
-			throw "Cannot read file";
+			throw "Filename is corrupted";
 	}
+
+	Grades::~Grades()
+	{
+		delete[] m_StudentNumbers;
+		delete[] m_Grades;
+	}
+
+	// Takes a filename
+	// Returns the number of lines from the file
+	//
 	int Grades::countLines(std::ifstream& fName)
 	{
-		std::string buf;
-		int i = 0;
+		// new lines will be skipped unless we stop it from happening:    
+		fName.unsetf(std::ios_base::skipws);
+		
+		// count the newlines with an algorithm specialized for counting:
+		unsigned line_count = std::count(std::istream_iterator<char>(fName),std::istream_iterator<char>(),'\n');
 
-		while (std::getline(fName, buf))
-			i++;
-
-		return i;
+		return line_count;
 	}
+	
+	// Takes a filename and reads its contents into the object
+	//
 	void Grades::readFile(std::ifstream & fName)
 	{
 		int sn = 0, i = 0; double grade = 0.0;

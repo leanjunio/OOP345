@@ -10,6 +10,7 @@
 #define _SICT_GRADES_H
 
 #include <iostream>
+#include <iomanip>
 #include <functional>
 #include <string>
 #include <fstream>
@@ -32,16 +33,23 @@ namespace sict
 		Grades(const Grades&&) = delete;
 		Grades& operator=(const Grades&) = delete;
 		Grades&& operator=(Grades&&) = delete;
-
+		Grades(const char* file);
+		~Grades();
 		/// Receives a reference to the output stream (os) as well as the address of the expression to be used (F) to determine the letter grade
 		/// Displays the student number, student grade, and letter equivalent (using the template function in Letter.h)
 		template <typename T>
 		void displayGrades(std::ostream&, T) const;
-		Grades(const char* file);
 	private:
 		int countLines(std::ifstream&);
 		void readFile(std::ifstream&);
 	};
+
+	template <typename T>
+	void Grades::displayGrades(std::ostream & os, T letter) const
+	{
+		for (size_t i = 0; i < m_LineCount; i++)
+			os << m_StudentNumbers[i] << " " << m_Grades << convert(letter(m_Grades[i])) << std::endl;
+	}
 }
 
 #endif // !_SICT_GRADES_H
