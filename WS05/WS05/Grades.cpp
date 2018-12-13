@@ -22,21 +22,34 @@ namespace sict
 	Grades::Grades(const char* file)
 	{	
 		// Check if the file name is correct
-		if (file != nullptr || file[0] != '\0')
+		if (file != nullptr && file[0] != '\0')
 		{
-			// BUG: grades_file ends up being null
+			std::ifstream gradesFile(file, std::ios::binary);
 
-			std::cout << file << std::endl;
-
-			std::ifstream grades_file(file);
-
-			if (grades_file.is_open())
+			if (gradesFile.is_open())
 			{
-				m_LineCount = countLines(grades_file);
-				readFile(grades_file);
+				// new lines will be skipped unless we stop it from happening:    
+				gradesFile.unsetf(std::ios_base::skipws);
+
+				// count the newlines with an algorithm specialized for counting:
+				unsigned line_count = std::count(std::istream_iterator<char>(gradesFile), std::istream_iterator<char>(), '\n');
+				gradesFile.clear();
+				gradesFile.seekg(0, std::ios::beg);
+
+				int sn = 0, i = 0; double grade = 0.0;
+				std::string buf;
+
+				m_StudentNumbers = new int[line_count];
+				m_Grades = new double[line_count];
+
+				// At this point: gradesFile is NULL
+				while (gradesFile >> sn >> grade)
+				{
+					m_StudentNumbers[i] = sn;
+					m_Grades[i] = grade;
+					i++;
+				}
 			}
-			else
-				throw "File cannot be opened";
 		}
 		else
 			throw "Filename is corrupted";
@@ -48,22 +61,6 @@ namespace sict
 		delete[] m_Grades;
 	}
 
-	// Takes a filename
-	// Returns the number of lines from the file
-	//
-	int Grades::countLines(std::ifstream& fName)
-	{
-		// new lines will be skipped unless we stop it from happening:    
-		fName.unsetf(std::ios_base::skipws);
-		
-		// count the newlines with an algorithm specialized for counting:
-		unsigned line_count = std::count(std::istream_iterator<char>(fName),std::istream_iterator<char>(),'\n');
-
-		return line_count;
-	}
-	
-	// Takes a filename and reads its contents into the object
-	//
 	void Grades::readFile(std::ifstream & fName)
 	{
 		int sn = 0, i = 0; double grade = 0.0;
