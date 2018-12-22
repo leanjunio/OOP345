@@ -16,4 +16,4 @@ Statistical analysis uses standard measures to make predictions based on a small
 
 ### Sample Mean
 The formula for _sample mean_ is:
-![Sample Mean Image](https://github.com/leanjunio/OOP345/blob/master_improvements/WS07/assets/sample_mean.png) 
+![Sample Mean Image](./assets/sample_mean.png) 
