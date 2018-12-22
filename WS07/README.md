@@ -26,7 +26,7 @@ The symbol `Σ` denotes ‘sum of’, `i` refers to an element in the set, and `
 The formula for _sample standard deviation_ (ssd) is:
 
 
-![Simple Standard Deviation](./assets/simple_standard_deviation.png)
+![Simple Standard Deviation](./assets/sample_standard_deviation.png)
 
 ### Regression Line
 A regression line relates a set of independent (`x`) values to a corresponding set of dependent (`y`) values. The number of values in each set is the same — each value in the independent set has one corresponding value in the dependent set.
