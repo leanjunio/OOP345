@@ -17,4 +17,5 @@ Statistical analysis uses standard measures to make predictions based on a small
 ### Sample Mean
 The formula for _sample mean_ is:
 
+
 ![Sample Mean Image](./assets/sample_mean.png) 
