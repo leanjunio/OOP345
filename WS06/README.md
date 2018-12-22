@@ -48,12 +48,12 @@ The `iProduct` hierarchy holds information about the different products purchase
 
 - `double getPrice() const` — a query that returns the price chargeable to the customer.
 - `void display(std::ostream& os) const` — a query that receives a reference to the output stream and inserts the product information in the form of a single line into the output stream.
-..* The product code and price should be printed on fields of width 16 characters.
+  - The product code and price should be printed on fields of width 16 characters.
 The overloaded insertion operator (`<<`) receives a reference to the output stream and displays the product information in the form of a single line on the output stream.
 The `readProduct(...)` function receives a reference to the input file stream, reads the next record from the stream, allocates memory for the corresponding `iProduct` object, copies the record information into that object and returns its address to the caller.
-..* If the tax code is not valid (i.e., `H` or `P`) an exception of type `std::string` should be thrown, with the message `Unrecognizable Tax Code!`.
-..* If the record read from the file is empty (empty line), this funtion returns `nullptr` as a signal that the end of file has been reached.
-..* **this function should not print anything on the screen!**
+  - If the tax code is not valid (i.e., `H` or `P`) an exception of type `std::string` should be thrown, with the message `Unrecognizable Tax Code!`.
+  - If the record read from the file is empty (empty line), this funtion returns `nullptr` as a signal that the end of file has been reached.
+  - **this function should not print anything on the screen!**
 
 ## Implementations
 Complete the definition of the polymorphic `iProduct` object by implementing two distinct classes:
