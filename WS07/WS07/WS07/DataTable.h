@@ -23,6 +23,7 @@ namespace w7
 	template <class T>
 	class DataTable
 	{
+		// Vector of pairs
 		std::vector<std::pair<T, T>> m_DataSet;
 		int m_width;
 		int m_precision;
@@ -47,11 +48,8 @@ namespace w7
 		//
 		T mean() const
 		{
-			T total = {};
-			for (const auto& p : m_DataSet)
-				total += std::get<1>(p);
-
-			return total/getSize();
+			std::pair<T, T> total = getSums();
+			return T(std::get<1>(total)/getSize());
 		}
 
 		// returns the standard deviation of the dependent coordinates
