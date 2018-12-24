@@ -8,9 +8,9 @@ This repository contains Workshops, Projects, Notes, and other course work for F
 - [x] WS04 - Containers
 - [x] WS05 - Lambda Expressions
 - [x] WS06 - STL Containers
-- [ ] WS07 - STL Algorithms
-- [ ] WS08 - Smart Pointers
-- [ ] WS09 - Multi-Threading
+- [x] WS07 - STL Algorithms
+- [x] WS08 - Smart Pointers
+- [x] WS09 - Multi-Threading
 
 ### Notes used
 - Main OOP345 Notes: https://scs.senecac.on.ca/~oop345/pages/content/index.html
