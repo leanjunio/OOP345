@@ -8,6 +8,7 @@
 
 #include <fstream>
 #include <string>
+#include <algorithm>
 #include <iomanip>
 #include <iterator>
 #include <functional>
@@ -19,63 +20,53 @@ namespace sict
 	// A constructor that accepts a filename as a parameter
 	// Check if the filename is legitemate and throw an error if not
 	//
-	Grades::Grades(const char* file)
+	Grades::Grades(const char* grades)
 	{	
-		// Check if the file name is correct
-		if (file != nullptr && file[0] != '\0')
-		{
-			std::ifstream gradesFile(file, std::ios::binary);
+		// Initialize resources
+		m_Grades = nullptr;
+		m_StudentNumbers = nullptr;
 
-			if (gradesFile.is_open())
-			{
-				// new lines will be skipped unless we stop it from happening:    
-				gradesFile.unsetf(std::ios_base::skipws);
+		std::ifstream file {grades};
 
-				// count the newlines with an algorithm specialized for counting:
-				unsigned line_count = std::count(std::istream_iterator<char>(gradesFile), std::istream_iterator<char>(), '\n');
-				gradesFile.clear();
-				gradesFile.seekg(0, std::ios::beg);
+		if (!file)
+			throw "File cannot be read";
 
-				int sn = 0, i = 0; double grade = 0.0;
-				std::string buf;
-
-				m_StudentNumbers = new int[line_count];
-				m_Grades = new double[line_count];
-
-				// At this point: gradesFile is NULL
-				while (gradesFile >> sn >> grade)
-				{
-					m_StudentNumbers[i] = sn;
-					m_Grades[i] = grade;
-					i++;
-				}
-			}
-		}
-		else
-			throw "Filename is corrupted";
+		m_LineCount = std::count(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>(), '\n');
+		readLines(file);
 	}
 
+	// Deallocates the resources used earlier in the program's runtime
+	//
 	Grades::~Grades()
 	{
 		delete[] m_StudentNumbers;
 		delete[] m_Grades;
 	}
 
-	void Grades::readFile(std::ifstream & fName)
+	// Reads the file for records and stores them in the class
+	// Allocates memory for Grades and StudentNumbers depending on the size of the file's \n characters
+	//
+	void Grades::readLines(std::ifstream& file)
 	{
-		int sn = 0, i = 0; double grade = 0.0;
-		std::string buf;
-		fName.clear();
-		fName.seekg(0, std::ios::beg);
-		
-		m_StudentNumbers = new int[m_LineCount];
+		// Dynamically allocate grades and studentNumbers
 		m_Grades = new double[m_LineCount];
+		m_StudentNumbers = new int[m_LineCount];
 
-		while (fName >> sn >> grade)
+		if (file.is_open())
 		{
-			m_StudentNumbers[i] = sn;
-			m_Grades[i] = grade;
-			i++;
+			file.clear();
+			file.seekg(0, std::ios::beg);
+
+			int sn = 0, i = 0; double grade = 0.0;
+
+			while (i < m_LineCount && file >> sn >> grade)
+			{
+				m_StudentNumbers[i] = sn;
+				m_Grades[i] = grade;
+				++i;
+			}
+
+			file.close();
 		}
 	}
 }
