@@ -83,5 +83,5 @@ int main(int argc, char** argv) {
 	std::cout << std::setw(10) << total << std::endl;
 	std::cout << "====================================\n";
 
-			return 0;
+	return 0;
 }

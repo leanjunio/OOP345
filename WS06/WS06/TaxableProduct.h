@@ -11,15 +11,17 @@
 #ifndef _TAXABLE_PRODUCT_H
 
 #include <string>
+#include <array>
 #include "Product.h"
 
+// Derives from Product and holds additional information about the product's taxable status
+//
 class TaxableProduct : public Product
 {
+	std::array<float, 2> taxRate = { 1.13, 1.08 };
 	char m_TaxCode;
 public:
-	TaxableProduct();
 	TaxableProduct(std::string ProductNumber, double ProductCost, char TaxCode);
-	~TaxableProduct();
 
 	double getPrice() const;
 	void display(std::ostream&) const;
