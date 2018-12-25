@@ -14,6 +14,7 @@
 #include <fstream>
 #include <utility>
 #include <iomanip>
+#include <cmath>
 #include <vector>
 #include <numeric>
 #include <algorithm>
@@ -57,8 +58,12 @@ namespace w7
 		T sigma() const
 		{
 			T total = {};
-			for (const auto& p : m_DataSet)
-				total += pow(std::get<1>(p) - mean(), 2);
+			std::vector<T> seconds = getSeconds();
+
+			std::for_each(seconds.begin(), seconds.end(), [&](T& el) 
+			{ 
+				total += std::pow(el - mean(), 2);
+			});
 
 			return sqrt(total / (getSize() - 1));
 		}
@@ -68,9 +73,12 @@ namespace w7
 		T median() const
 		{
 			std::vector<T> Y = {};
+			std::vector<T> seconds = getSeconds();
 
-			for (const auto& p : m_DataSet)
-				Y.push_back(p.second);
+			std::for_each(seconds.begin(), seconds.end(), [&](T& el)
+			{
+				Y.push_back(el);
+			});
 
 			sort(Y.begin(), Y.end());
 
