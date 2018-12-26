@@ -58,7 +58,7 @@ namespace w7
 		T sigma() const
 		{
 			T total = {};
-			std::vector<T> seconds = getSeconds();
+			std::vector<T> seconds = getSeconds();	// Gets the second element in a vector of pairs
 
 			std::for_each(seconds.begin(), seconds.end(), [&](T& el) 
 			{ 
