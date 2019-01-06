@@ -1,5 +1,5 @@
 # OOP345
-This repository contains Workshops, Projects, Notes, and other course work for Fall 2018 OOP345 emphasizing topics such as Copy and Move semantics, STL containers, smart pointers, and much more
+This repository contains Workshops, Projects, Notes, and other course work for OOP345 emphasizing topics such as Copy and Move semantics, STL containers, smart pointers, and much more
 
 ### Finished Workshops
 - [x] WS01 - Memory, Linkage and Storage Classes, From One Translation Unit to Another
