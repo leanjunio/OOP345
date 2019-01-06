@@ -1,0 +1,9 @@
+// Name: Lean Junio
+// Seneca Student ID: 019-109-123
+// Seneca email: ljjunio@myseneca.ca
+// Date of completion: September 18, 2018
+//
+// I confirm that the content of this file is created by me,
+// with the exception of the parts provided to me by my professor.
+
+In this workshop, I learned how to utilize vectors alongside class templates by utilizing braced initialization

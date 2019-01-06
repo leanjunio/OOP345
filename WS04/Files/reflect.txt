@@ -1,4 +1,0 @@
-I learned how to better parse strings
-I learned How to use the using keyword
-Learned How to read from file into strings
-Learned How to use vectors in order to store elements instead of using arrays

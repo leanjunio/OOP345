@@ -1,0 +1,13 @@
+// Name: Lean Junio
+// Seneca Student ID: 019-109-123
+// Seneca email: ljjunio@myseneca.ca
+// Date of completion: 6/4/2018 
+//
+// I confirm that the content of this file is created by me,
+// with the exception of the parts provided to me by my professor.
+
+I learned how to use the extern keyword in order to allow a variable to exist in another translation unit but be looked up in another as well make that variable last a lifetime of the program
+
+I learned how to use argv and argc in order to use data from the command line
+
+
