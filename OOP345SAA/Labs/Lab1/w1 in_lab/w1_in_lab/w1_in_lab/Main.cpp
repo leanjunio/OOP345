@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	for (size_t i = 1; i < argc; i++)
+	for (size_t i = 1; i < static_cast<size_t>(argc); i++)
 		sict::process(argv[i]);
 
 	return 0;
