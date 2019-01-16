@@ -115,7 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="w1.cpp" />
     <ClCompile Include="process.cpp" />
     <ClCompile Include="String.cpp" />
   </ItemGroup>

@@ -3,9 +3,10 @@
 
 int main(int argc, char **argv)
 {
-	std::cout << "Command Line : " << argv[0];
+	std::cout << "Command Line : ";
 	for (int i = 0; i < argc; i++)
 		std::cout << argv[i] << ' ';
+	std::cout << std::endl;
 
 	// If no parameters are passed, return 1
 	if (argc < 2)
