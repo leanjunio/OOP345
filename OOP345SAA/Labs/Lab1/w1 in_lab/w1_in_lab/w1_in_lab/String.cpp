@@ -6,7 +6,7 @@
 
 namespace sict
 {
-	int INITIAL = 2;
+	int INITIAL = 3;
 
 	String::String(const char * string)
 		// create an object from the passed 'string' parameter
@@ -20,7 +20,7 @@ namespace sict
 			// copy the first 3 characters of the string
 			// add null at the end
 			std::strncpy(m_string, string, 3);
-			m_string[4] = '\0';
+			m_string[3] = '\0';
 		}
 	}
 
@@ -31,7 +31,7 @@ namespace sict
 
 	std::ostream& operator<<(std::ostream & os, String& s)
 	{
-		os << INITIAL++;
+		os << INITIAL++ << ": ";
 		s.display(os);
 		return os;
 	}

@@ -8,7 +8,7 @@
 #include "String.h"
 
 namespace sict {
-	
+
 	extern int INITIAL;
 
 	void process(const char* str) {
