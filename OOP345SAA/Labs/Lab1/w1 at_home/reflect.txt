@@ -1,0 +1,30 @@
+1. The difference between internal and external linkage using examples from your code 
+
+I used the keywords static and extern in order to facilitate the two different types of linkages:
+
+STATIC:
+
+String.h::8
+	static size_t m_length;
+String.cpp::11
+	size_t String::m_length = 0;
+
+This operation allows the value of m_length, to last the duration of the program while only being accessible from the String translation unit.
+
+EXTERN:
+
+String.cpp::7
+	extern int INITIAL;
+w1.cpp
+	int INITIAL = 3;
+
+This operation allowed me to define an identifier within another translation unit (w1.cpp) while declaring it in another (String.cpp). It essentially allows me to tell the compiler to specifically look within another translation unit for the value of the declared identifier.
+
+2. The execution effect of the code in the process() function that creates the String object which is inserted into standard output (which member function(s) does this code call) 
+
+This piece of code (process.cpp::12) calls an overloaded operator '<<' defined in String.cpp whose job is to insert the member data 'm_string' into the ostream output.
+
+3. The changes that you made in upgrading your String class. 
+
+- Added dynamic memory allocation to support the number of characters needed by the passed string into the String class constructor
+- Updated the member 'm_string' to instead contain a pointer for dynamic memory allocation
