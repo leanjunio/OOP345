@@ -4,10 +4,10 @@
 #include <cstring>
 #include "String.h"
 
+extern int INITIAL;
+
 namespace sict
 {
-	int INITIAL = 3;
-
 	String::String(const char * string)
 		// create an object from the passed 'string' parameter
 	{
