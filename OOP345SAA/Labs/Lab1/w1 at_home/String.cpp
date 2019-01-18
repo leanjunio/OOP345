@@ -4,23 +4,26 @@
 #include <cstring>
 #include "String.h"
 
-extern int INITIAL;
-
 namespace sict
 {
+	int INITIAL = 3;
+
 	String::String(const char * string)
 		// create an object from the passed 'string' parameter
 	{
 		// check for null address
 		// set 'm_string' to hold an empty string if nulled
 		if (string == nullptr)
-			m_string[0] = '\0';
+			m_string = nullptr;
 		else
 		{
-			// copy the first 3 characters of the string
-			// add null at the end
-			std::strncpy(m_string, string, 3);
-			m_string[3] = '\0';
+			// copy the value of 'string' into 'm_string'
+			m_string = new char[std::strlen(string)];
+			for (size_t i = 0; i < std::strlen(string); i++)
+			{
+				m_string[i] = string[i];
+				m_string[std::strlen(string)] = '\0';
+			}
 		}
 	}
 

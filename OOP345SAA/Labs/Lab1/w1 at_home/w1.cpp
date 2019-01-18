@@ -1,8 +1,6 @@
 #include <iostream>
 #include "process.h"
 
- int INITIAL = 3;
-
 int main(int argc, char **argv)
 {
 	std::cout << "Command Line : ";
