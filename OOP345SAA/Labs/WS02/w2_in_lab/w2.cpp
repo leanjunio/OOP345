@@ -23,37 +23,38 @@ int main (int argc, char* argv[]) {
         return 2;
     }
 
-	Timekeeper t;
+	//Timekeeper t;
     {
         std::cout << std::fixed << std::setprecision(3);
-		t.start();
+		// t.start();
         Text a;
-		t.stop();
-		t.recordEvent("0-arg Constructor");
+		// t.stop();
+		// t.recordEvent("0-arg Constructor");
+		std::cout << std::endl;
         std::cout << "0-arg Constructor - a.size = " << a.size() << std::endl;
 
-		t.start();
+		//t.start();
 		Text b(argv[1]);
-		t.stop();
-		t.recordEvent("1-arg Constructor");
+		//t.stop();
+		//t.recordEvent("1-arg Constructor");
 		std::cout << "1-arg Constructor - b.size = " << b.size() << std::endl;
 
-		t.start();
+		// t.start();
 		Text c = b;
-		t.stop();
-		t.recordEvent("Copy Constructor ");
+		// t.stop();
+		// t.recordEvent("Copy Constructor ");
         std::cout << "Copy Constructor  - c.size = " << c.size() << std::endl;
 
-		t.start();
+		// t.start();
 		a = b;
-		t.stop();
-		t.recordEvent("Copy Assignment  ");
+		// t.stop();
+		// t.recordEvent("Copy Assignment  ");
         std::cout << "Copy Assignment   - a.size = " << a.size() << std::endl;
 
-        t.start();
+        // t.start();
     }
-    t.stop();
-	t.recordEvent("Destructor       ");
+    // t.stop();
+	// t.recordEvent("Destructor       ");
 
-	t.report(std::cout);
+	// t.report(std::cout);
 }

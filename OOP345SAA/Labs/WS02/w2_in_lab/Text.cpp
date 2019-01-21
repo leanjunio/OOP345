@@ -40,15 +40,19 @@ namespace sict
 
 	Text & Text::operator=(const Text &other)
 	{
-		// shallow copy
-		counter = other.counter;
+		if (this != &other)
+		{
+			// shallow copy
+			counter = other.counter;
 
-		delete[] p_strings;
+			//delete[] p_strings;
 
-		p_strings = new std::string[counter];
+			p_strings = new std::string[counter];
 
-		for (size_t i = 0; i < (size_t)counter; i++)
-			p_strings[i] = other.p_strings[i];
+			for (size_t i = 0; i < (size_t)counter; i++)
+				p_strings[i] = other.p_strings[i];
+		}
+		return *this;
 	}
 
 	Text::~Text()

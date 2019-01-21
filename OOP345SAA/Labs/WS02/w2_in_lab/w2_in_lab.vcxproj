@@ -147,6 +147,9 @@
     <ClInclude Include="Text.h" />
     <ClInclude Include="TimeKeeper.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="gutenberg_shakespeare" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
