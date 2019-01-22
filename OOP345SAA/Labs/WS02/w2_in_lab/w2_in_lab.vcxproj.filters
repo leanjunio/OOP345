@@ -18,10 +18,10 @@
     <ClCompile Include="Text.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Timekeeper.cpp">
+    <ClCompile Include="w2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="w2.cpp">
+    <ClCompile Include="Timekeeper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
