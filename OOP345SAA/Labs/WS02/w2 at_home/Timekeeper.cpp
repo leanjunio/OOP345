@@ -24,15 +24,12 @@ namespace sict
 		auto start = mt_start;
 		auto end = mt_end;
 
-		records[counter].m_message = description;
-		// records[counter].mt_duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start);
-		records[counter].mt_duration = end - start;
-		// std::cout << "NS: " << records[counter].mt_duration.count() << std::endl;
-
-		// convert the duration into seconds
-		// records[counter].mt_duration = std::chrono::duration_cast<std::chrono::seconds>(records[counter].mt_duration);
-		
-		counter++;
+		if (counter < MAX_RECORDS)
+		{
+			records[counter].m_message = description;
+			records[counter].mt_duration = end - start;
+			counter++;
+		}
 	}
 	std::ostream & Timekeeper::report(std::ostream &os)
 	{
