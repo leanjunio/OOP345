@@ -15,7 +15,9 @@ namespace sict
 		Text();
 		Text(const char*);
 		Text(const Text&);
+		Text(Text&&);
 		Text& operator=(const Text&);
+		Text& operator=(Text&&);
 		~Text();
 		size_t size() const;
 	};

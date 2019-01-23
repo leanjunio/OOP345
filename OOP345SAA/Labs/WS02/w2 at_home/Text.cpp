@@ -1,4 +1,5 @@
 #include <fstream>
+#include <utility>
 #include "Text.h"
 
 namespace sict
@@ -38,6 +39,11 @@ namespace sict
 		*this = other;
 	}
 
+	Text::Text(Text &&src)
+	{
+		*this = std::move(src);
+	}
+
 	Text & Text::operator=(const Text &other)
 	{
 		if (this != &other)
@@ -53,6 +59,11 @@ namespace sict
 				p_strings[i] = other.p_strings[i];
 		}
 		return *this;
+	}
+
+	Text & Text::operator=(Text &&)
+	{
+		// TODO: insert return statement here
 	}
 
 	Text::~Text()
