@@ -8,8 +8,7 @@ namespace sict
 	class Text
 	{
 		static int counter;
-		
-		// members
+
 		std::string* p_strings;
 	public:
 		Text();
