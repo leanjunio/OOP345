@@ -35,11 +35,8 @@ namespace sict
 	{
 		os << "\nExecution Times: " << std::endl;
 
-		// os << "RECORDS STORED: " << counter << std::endl;
-
 		for (size_t i = 0; i < counter; ++i)
 			os << records[i].m_message << std::setw(6) << std::chrono::duration_cast<std::chrono::milliseconds>(records[i].mt_duration).count() << " " << records[i].m_units << std::endl;
-			// os << records[i].m_message << std::setw(10) << records[i].mt_duration.count() * std::chrono::milliseconds::period::num / std::chrono::milliseconds::period::den << " " << records[i].m_units << std::endl;
 		return os;
 	}
 	Timekeeper::~Timekeeper()
