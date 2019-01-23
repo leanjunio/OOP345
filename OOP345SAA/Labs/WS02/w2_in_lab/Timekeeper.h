@@ -6,6 +6,8 @@
 
 namespace sict
 {
+	const int MAX_RECORDS = 10;
+
 	class Timekeeper
 	{
 		static size_t counter;
@@ -18,7 +20,7 @@ namespace sict
 			const char* m_message;
 			const char* m_units = "milliseconds";
 			std::chrono::steady_clock::duration mt_duration;
-		} records[10];
+		} records[MAX_RECORDS];
 
 	public:	
 		Timekeeper();
