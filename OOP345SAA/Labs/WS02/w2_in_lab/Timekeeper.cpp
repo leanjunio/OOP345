@@ -34,7 +34,7 @@ namespace sict
 	}
 	std::ostream & Timekeeper::report(std::ostream &os)
 	{
-		os << "\nExecution Times: " << std::endl;
+		os << "\nExecution Times:" << std::endl;
 
 		for (size_t i = 0; i < counter; ++i)
 			os << records[i].m_message << std::setw(6) << std::chrono::duration_cast<std::chrono::milliseconds>(records[i].mt_duration).count() << " " << records[i].m_units << std::endl;
