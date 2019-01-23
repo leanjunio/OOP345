@@ -10,17 +10,16 @@ namespace sict
 	{
 		static size_t counter;
 
-		struct Record
+		std::chrono::steady_clock::time_point mt_start;
+		std::chrono::steady_clock::time_point mt_end;
+
+		struct
 		{
 			const char* m_message;
-			const char* m_units = "seconds";
-			std::chrono::steady_clock::time_point mt_start;
-			std::chrono::steady_clock::time_point mt_end;
+			const char* m_units = "milliseconds";
 			std::chrono::steady_clock::duration mt_duration;
-		};
+		} records[10];
 
-		Record records[10];
-		
 	public:	
 		Timekeeper();
 		void start();
