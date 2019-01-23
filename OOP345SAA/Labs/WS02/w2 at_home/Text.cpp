@@ -53,6 +53,8 @@ namespace sict
 			// shallow copy
 			counter = other.counter;
 
+			delete[] p_strings;
+
 			p_strings = new std::string[counter];
 
 			// deep copy
