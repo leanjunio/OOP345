@@ -18,7 +18,7 @@ namespace sict
 		struct
 		{
 			const char* m_message;
-			const char* m_units = "milliseconds";
+			const char* m_units = "seconds";
 			std::chrono::steady_clock::duration mt_duration;
 		} records[MAX_RECORDS];
 
