@@ -25,10 +25,12 @@ namespace sict
 		auto start = mt_start;
 		auto end = mt_end;
 
-		records[counter].m_message = description;
-		records[counter].mt_duration = end - start;
-		
-		counter++;
+		if (counter < MAX_RECORDS)
+		{
+			records[counter].m_message = description;
+			records[counter].mt_duration = end - start;
+			counter++;
+		}
 	}
 	std::ostream & Timekeeper::report(std::ostream &os)
 	{
