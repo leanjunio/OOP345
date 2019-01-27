@@ -1,0 +1,12 @@
+1. The reason for the difference between the copy and move operations
+
+Since Copy operations only copy the data of one object to another, leaving the original data member still existing. Move allows the original data to be moved instead of just copied to discourage floating data within memory.
+
+2. The dynamic allocation of addresses to objects instead of objects themselves
+
+Dynamic allocation of objects cannot happen because objects have to be statically allocated upon instantiation. However, addresses can be dynamically allocated because you can add more memory to them later on.
+
+3. The changes you made in upgrading your w2 and Text modules.
+
+Since w2 was provieded, it did not need any updating.
+The Text module only needed to be added the move constructor and the move operator.
