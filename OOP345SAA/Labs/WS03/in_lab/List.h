@@ -13,15 +13,15 @@ namespace sict
 	template <class T, int N>
 	class List
 	{
-		T m_List;
-		size_t m_NumElementsInArray;
+		T m_list;
+		size_t m_numElementsInArray;
 	public:
 		
 		// a query that returns the number 
 		// of elements stored in the array
 		size_t size() const
 		{
-			return m_NumElementsInArray;
+			return m_numElementsInArray;
 		}
 
 		// an overloaded operator that receives 
@@ -29,7 +29,7 @@ namespace sict
 		// the unmodifiable object stored at that index of the array
 		const T& operator[](size_t i) const
 		{
-			return m_List[i];
+			return m_list[i];
 		}
 
 		// an overloaded operator that receives a reference 
@@ -42,8 +42,8 @@ namespace sict
 		void operator+=(const T& t)
 		{
 			// check if there's space, if so, add the 't' into the list
-			if (m_NumElementsInArray < N)
-				m_List[m_NumElementsInArray - 1] = t;
+			if (m_numElementsInArray < N)
+				m_list[m_numElementsInArray - 1] = t;
 		}
 	};
 }
