@@ -42,10 +42,10 @@ namespace sict
 
 	// a non - friend helper function that inserts into the 
 	// os object the LVPair object referenced in the 2nd function parameter
-	/*std::ostream& operator<<(std::ostream& os, const LVPair& pair)
+	std::ostream& operator<<(std::ostream& os, const LVPair& pair)
 	{
-
-	}*/
+		return pair.display(os);
+	}
 }
 
 
