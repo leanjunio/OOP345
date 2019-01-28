@@ -30,6 +30,7 @@ int main(int argc, char* argv[]) {
 	// each LVPair consists of a label of type std::string and a value of type std::string
 	// the maximum number of elements in the list is 50
 	//
+	List<LVPair<std::string, std::string>, 50> references;
 	std::ifstream index(argv[1]);
 	if (!index) {
 		std::cerr << "*** failed to open index file ***\n";
@@ -63,6 +64,7 @@ int main(int argc, char* argv[]) {
 	// each LVPair consists of a label of type std::string and a value of type int
 	// the maximum number of elements in the list is 50
 	//
+	List<LVPair<std::string, int>, 50> ticketSales;
 	std::ifstream sales(argv[2]);
 	if (!sales) {
 		std::cerr << "*** failed to open sales file ***\n";
