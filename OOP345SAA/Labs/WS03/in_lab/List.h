@@ -13,8 +13,8 @@ namespace sict
 	template <class T, int N>
 	class List
 	{
-		T m_list;
-		size_t m_numElementsInArray;
+		T m_list[N];
+		size_t m_numElementsInArray = 0;
 	public:
 		
 		// a query that returns the number 
@@ -43,7 +43,10 @@ namespace sict
 		{
 			// check if there's space, if so, add the 't' into the list
 			if (m_numElementsInArray < N)
-				m_list[m_numElementsInArray - 1] = t;
+			{
+				m_list[m_numElementsInArray] = t;
+				m_numElementsInArray++;
+			}
 		}
 	};
 }

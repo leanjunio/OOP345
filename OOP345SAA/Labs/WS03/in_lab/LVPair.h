@@ -38,14 +38,18 @@ namespace sict
 		{
 			os << m_label << " : " << m_value << std::endl;
 		}
+
 	};
 
 	// a non - friend helper function that inserts into the 
 	// os object the LVPair object referenced in the 2nd function parameter
-	std::ostream& operator<<(std::ostream& os, const LVPair& pair)
+	template <typename L, typename V>
+	std::ostream& operator<<(std::ostream& os, const LVPair<L, V>& pair)
 	{
-		return pair.display(os);
+		pair.display(os);
+		return os;
 	}
+
 }
 
 
