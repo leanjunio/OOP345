@@ -32,8 +32,7 @@ namespace sict
 			return m_list[i];
 		}
 
-		// an overloaded operator that receives a reference 
-		// to an unmodifiable object t of type T
+		// an overloaded operator that receives a reference to an unmodifiable object t of type T
 		// If space to store the additional element is available, 
 		// this operator appends a copy of the referenced object t 
 		// to the set of elements currently stored in the array 
@@ -54,13 +53,21 @@ namespace sict
 	template<typename L, typename V>
 	class LVList : List
 	{
-		// returns the sum of the values of all elements in the current LVList object 
-		// in a locally created value (V) object
-		// returns the sum of the values of all elements 
-		// in the current LVList object in a locally created value(V) object
+		// a query that receives a reference to an unmodifiable label (L) object
+		// returns the sum of the values of all elements in the current LVList object in a locally created value (V) object 
+		// initializes the accumulator (V) object to the initial value for objects of the label-value pair (T)
+		// accumulates the values by calling the append query on each element in the list stored in the base class
 		V accumulate(const L& label) const
 		{
-			V temp;
+
+			// Initialize the accumulator to the initial value for objects of the label-value pair TODO: Ask prof to explain...
+			V sumOfElementsInCurrentLVList = ((List<T, N>&)*this)->m_list[0];
+
+			// append each element stored in the base class
+			for (const auto &i : )
+				sumOfElementsInCurrentLVList += ((List<T, N>&)*this)->m_list[i];
+
+			return sumOfElementsInCurrentLVList;
 		}
 	};
 }
