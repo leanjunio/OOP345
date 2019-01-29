@@ -28,7 +28,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Sales.txt" />
-    <Text Include="References.txt" />
+    <Text Include="References.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Sales.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>
