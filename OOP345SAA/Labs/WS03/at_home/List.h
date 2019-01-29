@@ -49,6 +49,20 @@ namespace sict
 			}
 		}
 	};
+
+	// a class template named LVList to manage a list of summable elements
+	template<typename L, typename V>
+	class LVList : List
+	{
+		// returns the sum of the values of all elements in the current LVList object 
+		// in a locally created value (V) object
+		// returns the sum of the values of all elements 
+		// in the current LVList object in a locally created value(V) object
+		V accumulate(const L& label) const
+		{
+			V temp;
+		}
+	};
 }
 
 #endif // !_SICT_LIST_H
