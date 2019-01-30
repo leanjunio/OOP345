@@ -2,13 +2,12 @@
 #define _SICT_LVPAIR_H
 
 #include <iostream>
+#include <iomanip>
 
 namespace sict
 {
 	/*
-	
-	defines a class template for a label-value pair (for example, a product label stored in an std::string object and a quantity stored in an int object)
-	
+		defines a class template for a label-value pair (for example, a product label stored in an std::string object and a quantity stored in an int object)
 	*/
 	template <typename L, typename V>
 	class LVPair
@@ -34,7 +33,7 @@ namespace sict
 		// a query that inserts into os the label and value 
 		// stored in the current object separated by 
 		// a space - colon - space string(“ : ”) 
-		void display(std::ostream& os) const
+		virtual void display(std::ostream& os) const
 		{
 			os << m_label << " : " << m_value << std::endl;
 		}
@@ -52,23 +51,15 @@ namespace sict
 
 	// manage the addition and pretty displaying of individual labeled values
 	template <typename L, typename V>
-	class SummableLVPair : LVPair
+	class SummableLVPair : public LVPair
 	{
-		// holds the initial value for starting a summation (this depends on the type of the value in the label-value pair
+		// holds the initial value for starting a summation (this depends on the type of the value in the label-value pair)
 		V m_initialValueForSummation = 0;
 
 		// holds the minimum field width for pretty columnar output of label-value pairs
 		// this is the minimum number of characters needed to display any of the labels in a set of labels
 		size_t m_minFieldWidth;
 	public:
-
-		// Template specialization for LVPair<std::string, int>
-		template<>
-		SummableLVPair<std::string, int>()
-			:
-		{
-		}
-
 
 		// A templated declaration that initializes the field width class variable to 0
 		// leaves the object in a safe empty state
@@ -78,12 +69,22 @@ namespace sict
 		{
 		}
 
+		// Template specialization for LVPair<std::string, int>
+		template<>
+		SummableLVPair<std::string, int>()
+		{
+		}
+
+
+
 		// calls the base class 2-argument constructor and passes the values received to the base class
 		// increases the stored field width if it is less than the return of characters required to display the label for all LVPair objects
 		// This class assumes that the type of the first parameter has a member function named size(), which returns that value
 		SummableLVPair(const L& label, const V& v)
 			: LVPair(label, v)
 		{
+			if (m_minFieldWidth < label.size())
+				m_minFieldWidth = label.size() + 1;
 		}
 
 		// returns the initial value for summations of LVPair objects
@@ -109,9 +110,6 @@ namespace sict
 		{
 		}
 	};
-
 }
 
-
 #endif // !_SICT_LVPAIR_H
-
