@@ -8,6 +8,10 @@ namespace sict
 	/*
 	
 	defines a class template for a label-value pair (for example, a product label stored in an std::string object and a quantity stored in an int object)
+	The template parameters identify the types of the label and value objects that constitute an LVPair object:
+
+	a) L - the type of the label
+	b) V - the type of the value
 	
 	*/
 	template <typename L, typename V>
@@ -16,6 +20,7 @@ namespace sict
 		L m_label;
 		V m_value;
 	public:
+
 		// leaves the object in a safe empty state
 		LVPair()
 			: m_label{}

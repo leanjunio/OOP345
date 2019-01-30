@@ -17,8 +17,7 @@ namespace sict
 		size_t m_numElementsInArray = 0;
 	public:
 		
-		// a query that returns the number 
-		// of elements stored in the array
+		// a query that returns the number of elements stored in the array
 		size_t size() const
 		{
 			return m_numElementsInArray;

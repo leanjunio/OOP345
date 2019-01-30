@@ -142,8 +142,6 @@
     <Text Include="Sales.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="List.cpp" />
-    <ClCompile Include="LVPair.cpp" />
     <ClCompile Include="w3.cpp" />
   </ItemGroup>
   <ItemGroup>
