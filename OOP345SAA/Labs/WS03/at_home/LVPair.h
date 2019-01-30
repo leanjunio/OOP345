@@ -65,14 +65,6 @@ namespace sict
 		size_t m_minFieldWidth;
 	public:
 
-		// Template specialization for LVPair<std::string, int>
-		template<>
-		SummableLVPair<std::string, int>()
-			:
-		{
-		}
-
-
 		// A templated declaration that initializes the field width class variable to 0
 		// leaves the object in a safe empty state
 		SummableLVPair()
@@ -80,6 +72,14 @@ namespace sict
 			, m_minFieldWidth(0)
 		{
 		}
+
+		// Template specialization for LVPair<std::string, int>
+		template<>
+		SummableLVPair<std::string, int>::SummableLVPair()
+		{
+		}
+
+
 
 		// calls the base class 2-argument constructor and passes the values received to the base class
 		// increases the stored field width if it is less than the return of characters required to display the label for all LVPair objects
