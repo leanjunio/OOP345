@@ -39,6 +39,9 @@ namespace sict
 			os << m_label << " : " << m_value << std::endl;
 		}
 
+		// TODO: Create getters for the 
+		const L& label() { return m_label; }
+		const V& value() { return m_value; }
 	};
 
 	// a non - friend helper function that inserts into the 
@@ -52,7 +55,7 @@ namespace sict
 
 	// manage the addition and pretty displaying of individual labeled values
 	template <typename L, typename V>
-	class SummableLVPair : LVPair
+	class SummableLVPair : LVPair<L, V>
 	{
 		// holds the initial value for starting a summation (this depends on the type of the value in the label-value pair
 		V m_initialValueForSummation = 0;
@@ -100,6 +103,8 @@ namespace sict
 		// and the partially accumulated sum in a V object
 		V sum(const L& label, const V& sum) const
 		{
+			LVPair<L, V>::label();
+			LVPair<L, V>::Value();
 		}
 
 		// a query that inserts into the std::ostream object the label and value stored in the base class
