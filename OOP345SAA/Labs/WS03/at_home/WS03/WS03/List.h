@@ -50,8 +50,8 @@ namespace sict
 	};
 
 	// a class template named LVList to manage a list of summable elements
-	template<typename L, typename V>
-	class LVList : List
+	template<typename L, typename V, typename T, int N>
+	class LVList : public List<T, N>
 	{
 		// a query that receives a reference to an unmodifiable label (L) object
 		// returns the sum of the values of all elements in the current LVList object in a locally created value (V) object 
@@ -64,7 +64,7 @@ namespace sict
 			V sumOfElementsInCurrentLVList = ((List<T, N>&)*this)->m_list[0];
 
 			// append each element stored in the base class
-			for (const auto &i : )
+			for (int i = 0; i < ((List<T, N>&)*this)->m_list.size(); ++i)
 				sumOfElementsInCurrentLVList += ((List<T, N>&)*this)->m_list[i];
 
 			return sumOfElementsInCurrentLVList;
