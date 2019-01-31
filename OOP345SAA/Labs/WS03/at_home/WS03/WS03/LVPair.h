@@ -31,6 +31,9 @@ namespace sict
 		{
 		}
 
+		const L& getLabel() { return m_label; }
+		const V& getValue() { return m_value; }
+
 		// a query that inserts into os the label and value 
 		// stored in the current object separated by 
 		// a space - colon - space string(“ : ”) 
@@ -55,7 +58,11 @@ namespace sict
 
 	// manage the addition and pretty displaying of individual labeled values
 	template <typename L, typename V>
+<<<<<<< HEAD:OOP345SAA/Labs/WS03/at_home/LVPair.h
 	class SummableLVPair : LVPair<L, V>
+=======
+	class SummableLVPair : public LVPair<L, V>
+>>>>>>> W19_W3_AH:OOP345SAA/Labs/WS03/at_home/WS03/WS03/LVPair.h
 	{
 		// holds the initial value for starting a summation (this depends on the type of the value in the label-value pair
 		V m_initialValueForSummation = 0;
