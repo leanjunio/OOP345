@@ -45,7 +45,8 @@ int main(int argc, char* argv[]) {
 			// TODO: create a temporary SummableLVPair from ticketType and number
 			// add the tempoary object to the references list
 			//
-			references +=
+
+			references += SummableLVPair<>
 		}
 	} while (index);
 	index.clear();

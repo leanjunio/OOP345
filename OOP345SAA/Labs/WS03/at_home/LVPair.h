@@ -31,13 +31,10 @@ namespace sict
 		{
 		}
 
-		const L& getLabel() { return m_label; }
-		const V& getValue() { return m_value; }
-
 		// a query that inserts into os the label and value 
 		// stored in the current object separated by 
 		// a space - colon - space string(“ : ”) 
-		void display(std::ostream& os) const
+		virtual void display(std::ostream& os) const
 		{
 			os << m_label << " : " << m_value << std::endl;
 		}
@@ -76,16 +73,10 @@ namespace sict
 		{
 		}
 
-		// Template specialization for LVPair<std::string, int>
-		/*template<>
-		SummableLVPair<std::string, int>::SummableLVPair()
-		{
-		}*/
-
 		// calls the base class 2-argument constructor and passes the values received to the base class
 		// increases the stored field width if it is less than the return of characters required to display the label for all LVPair objects
 		// This class assumes that the type of the first parameter has a member function named size(), which returns that value
-		SummableLVPair(const L& label, const V& v)
+		SummableLVPair(const L& label, const V& v)	
 			: LVPair(label, v)
 		{
 			if (m_minFieldWidth < label.size())
@@ -95,6 +86,7 @@ namespace sict
 		// returns the initial value for summations of LVPair objects
 		const V& getInitialValue()
 		{
+			return V{};
 		}
 
 		// receives two unmodifiable references - one to a label (label) and another to a partially 

@@ -50,7 +50,7 @@ namespace sict
 	};
 
 	// a class template named LVList to manage a list of summable elements
-	template<typename L, typename V, typename T, int N>
+	template<typename T, typename L, typename V, int N>
 	class LVList : public List<T, N>
 	{
 		// a query that receives a reference to an unmodifiable label (L) object
@@ -65,11 +65,7 @@ namespace sict
 			size_t numElementsInBaseObject = ((List<T, N>&)*this).size();
 			
 			// append each element stored in the base class
-<<<<<<< HEAD:OOP345SAA/Labs/WS03/at_home/List.h
 			for (int i = 0; i < numElementsInBaseObject; ++i)
-=======
-			for (int i = 0; i < ((List<T, N>&)*this)->m_list.size(); ++i)
->>>>>>> W19_W3_AH:OOP345SAA/Labs/WS03/at_home/WS03/WS03/List.h
 				sumOfElementsInCurrentLVList += ((List<T, N>&)*this)->m_list[i];
 
 			return sumOfElementsInCurrentLVList;
