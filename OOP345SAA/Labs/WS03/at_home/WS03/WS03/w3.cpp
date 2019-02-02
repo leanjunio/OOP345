@@ -26,10 +26,7 @@ int main(int argc, char* argv[]) {
 		return 2;
 	}
 
-	// TODO: create a list of summable LVPairs named references
-	// each LVPair consists of a label of type std::string and a value of type std::string
-	// the maximum number of elements in the list is 50
-	//
+	// LVList<std::string, std::string, std::string, 50> references;
 	LVList<SummableLVPair<std::string, std::string>, std::string, std::string, 50> references;
 
 	std::ifstream index(argv[1]);

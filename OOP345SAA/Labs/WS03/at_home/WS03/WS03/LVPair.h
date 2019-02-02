@@ -60,13 +60,11 @@ namespace sict
 		size_t m_minFieldWidth;
 	public:
 		SummableLVPair()
-			: m_initialValueForSummation{}
-			, m_minFieldWidth{0}
 		{
 		}
 
 		SummableLVPair(const L& label, const V& v)
-			: LVPair(label, v)
+			: LVPair<L, V>(label, v)
 		{
 			if (m_minFieldWidth < label.size())
 				m_minFieldWidth = label.size() + 1;
@@ -77,7 +75,7 @@ namespace sict
 		// returns the initial value for summations of LVPair objects
 		const V& getInitialValue()
 		{
-
+			return m_initialValueForSummation;
 		}
 
 		// receives two unmodifiable references - one to a label (label) and another to a partially accumulated sum (sum) 
@@ -101,6 +99,7 @@ namespace sict
 	template<>
 	class SummableLVPair<std::string, int> : public LVPair<std::string, int>
 	{
+	public:
 		SummableLVPair(const std::string& label, const int& v)
 			: LVPair(label, 0)
 		{
@@ -111,6 +110,7 @@ namespace sict
 	template<>
 	class SummableLVPair<std::string, std::string> : public LVPair<std::string, std::string>
 	{
+	public:
 		SummableLVPair(const std::string& label, const std::string& v)
 			: LVPair(label, "")
 		{
