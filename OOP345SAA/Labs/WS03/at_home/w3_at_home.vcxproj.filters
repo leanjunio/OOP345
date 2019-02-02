@@ -15,12 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WS03\WS03\List.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="WS03\WS03\LVPair.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="WS03\WS03\w3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

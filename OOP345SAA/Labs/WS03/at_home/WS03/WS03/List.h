@@ -42,7 +42,7 @@ namespace sict
 			size_t numElementsInBaseObject = ((List<T, N>&)*this).size();
 			
 			// append each element stored in the base class
-			for (int i = 0; i < numElementsInBaseObject; ++i)
+			for (size_t i = 0; i < numElementsInBaseObject; ++i)
 				sumOfElementsInCurrentLVList += ((List<T, N>&)*this)->m_list[i];
 
 			return sumOfElementsInCurrentLVList;

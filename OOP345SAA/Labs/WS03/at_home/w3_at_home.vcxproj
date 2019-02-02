@@ -19,8 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="WS03\WS03\List.cpp" />
-    <ClCompile Include="WS03\WS03\LVPair.cpp" />
     <ClCompile Include="WS03\WS03\w3.cpp" />
   </ItemGroup>
   <ItemGroup>
