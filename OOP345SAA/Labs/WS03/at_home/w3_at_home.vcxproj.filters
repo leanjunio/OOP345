@@ -35,10 +35,10 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="WS03\WS03\References.txt">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files</Filter>
     </Text>
     <Text Include="WS03\WS03\Sales.txt">
-      <Filter>Source Files</Filter>
+      <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>
 </Project>
