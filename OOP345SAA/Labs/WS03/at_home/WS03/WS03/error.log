@@ -1,139 +1,97 @@
-In file included from List.cpp:1:
-List.h:10:3: error: 'size_t' does not name a type
-   size_t m_numElementsInArray = {0u};
-   ^~~~~~
-List.h:10:3: note: 'size_t' is defined in header '<cstddef>'; did you forget to '#include <cstddef>'?
-List.h:1:1:
-+#include <cstddef>
- #ifndef _SICT_LIST_H
-List.h:10:3:
-   size_t m_numElementsInArray = {0u};
-   ^~~~~~
-List.h:12:3: error: 'size_t' does not name a type
-   size_t size() const
-   ^~~~~~
-List.h:12:3: note: 'size_t' is defined in header '<cstddef>'; did you forget to '#include <cstddef>'?
-List.h:17:23: error: declaration of 'operator[]' as non-function
-   const T& operator[](size_t i) const
-                       ^~~~~~
-List.h:17:21: error: expected ';' at end of member declaration
-   const T& operator[](size_t i) const
-                     ^
-                      ;
-List.h:17:29: error: expected ')' before 'i'
-   const T& operator[](size_t i) const
-                      ~      ^~
-                             )
-List.h: In member function 'void sict::List<T, N>::operator+=(const T&)':
-List.h:25:8: error: 'm_numElementsInArray' was not declared in this scope
-    if (m_numElementsInArray < N)
-        ^~~~~~~~~~~~~~~~~~~~
-List.h: In member function 'V sict::LVList<T, L, V, N>::accumulate(const L&) const':
-List.h:39:37: error: 'SummableLVPair' was not declared in this scope
-    V sumOfElementsInCurrentLVList = SummableLVPair<L,V>::getInitialValue();
-                                     ^~~~~~~~~~~~~~
-List.h:39:53: error: expected primary-expression before ',' token
-    V sumOfElementsInCurrentLVList = SummableLVPair<L,V>::getInitialValue();
-                                                     ^
-List.h:41:4: error: 'size_t' was not declared in this scope
-    size_t numElementsInBaseObject = ((List<T, N>&)*this).size();
-    ^~~~~~
-List.h:41:4: note: 'size_t' is defined in header '<cstddef>'; did you forget to '#include <cstddef>'?
-List.h:44:24: error: 'numElementsInBaseObject' was not declared in this scope
-    for (int i = 0; i < numElementsInBaseObject; ++i)
-                        ^~~~~~~~~~~~~~~~~~~~~~~
-List.h:44:24: note: suggested alternative: 'sumOfElementsInCurrentLVList'
-    for (int i = 0; i < numElementsInBaseObject; ++i)
-                        ^~~~~~~~~~~~~~~~~~~~~~~
-                        sumOfElementsInCurrentLVList
-w3.cpp: In function 'int main(int, char**)':
-w3.cpp:30:81: error: use of deleted function 'sict::LVList<sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >, std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char>, 50>::LVList()'
+w3.cpp: In function ‘int main(int, char**)’:
+w3.cpp:30:81: error: use of deleted function ‘sict::LVList<sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >, std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char>, 50>::LVList()’
   LVList<SummableLVPair<std::string, std::string>, std::string, std::string, 50> references;
                                                                                  ^~~~~~~~~~
 In file included from w3.cpp:11:
-List.h:34:8: note: 'sict::LVList<sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >, std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char>, 50>::LVList()' is implicitly deleted because the default definition would be ill-formed:
+List.h:34:8: note: ‘sict::LVList<sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >, std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char>, 50>::LVList()’ is implicitly deleted because the default definition would be ill-formed:
   class LVList : public List<T, N>
         ^~~~~~
-List.h:34:8: error: use of deleted function 'sict::List<sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >, 50>::List()'
-List.h:7:8: note: 'sict::List<sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >, 50>::List()' is implicitly deleted because the default definition would be ill-formed:
+List.h:34:8: error: use of deleted function ‘sict::List<sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >, 50>::List()’
+List.h:7:8: note: ‘sict::List<sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >, 50>::List()’ is implicitly deleted because the default definition would be ill-formed:
   class List
         ^~~~
-List.h:7:8: error: no matching function for call to 'sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::SummableLVPair()'
+List.h:7:8: error: no matching function for call to ‘sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::SummableLVPair()’
 In file included from w3.cpp:10:
-LVPair.h:114:3: note: candidate: 'sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::SummableLVPair(const string&, const string&)'
+LVPair.h:114:3: note: candidate: ‘sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::SummableLVPair(const string&, const string&)’
    SummableLVPair(const std::string& label, const std::string& v)
    ^~~~~~~~~~~~~~
 LVPair.h:114:3: note:   candidate expects 2 arguments, 0 provided
-LVPair.h:111:8: note: candidate: 'sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::SummableLVPair(const sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >&)'
+LVPair.h:111:8: note: candidate: ‘sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::SummableLVPair(const sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >&)’
   class SummableLVPair<std::string, std::string> : public LVPair<std::string, std::string>
         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 LVPair.h:111:8: note:   candidate expects 1 argument, 0 provided
-LVPair.h:111:8: note: candidate: 'sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::SummableLVPair(sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >&&)'
+LVPair.h:111:8: note: candidate: ‘sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >::SummableLVPair(sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >&&)’
 LVPair.h:111:8: note:   candidate expects 1 argument, 0 provided
-w3.cpp:56:63: error: 'V sict::LVList<T, L, V, N>::accumulate(const L&) const [with T = sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >; L = std::__cxx11::basic_string<char>; V = std::__cxx11::basic_string<char>; int N = 50]' is private within this context
+w3.cpp:56:63: error: ‘V sict::LVList<T, L, V, N>::accumulate(const L&) const [with T = sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >; L = std::__cxx11::basic_string<char>; V = std::__cxx11::basic_string<char>; int N = 50]’ is private within this context
   std::cout << "Pointers  " << references.accumulate("Pointers") << std::endl;
                                                                ^
 In file included from w3.cpp:11:
 List.h:36:5: note: declared private here
    V accumulate(const L& label) const
      ^~~~~~~~~~
-w3.cpp:57:65: error: 'V sict::LVList<T, L, V, N>::accumulate(const L&) const [with T = sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >; L = std::__cxx11::basic_string<char>; V = std::__cxx11::basic_string<char>; int N = 50]' is private within this context
+w3.cpp:57:65: error: ‘V sict::LVList<T, L, V, N>::accumulate(const L&) const [with T = sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >; L = std::__cxx11::basic_string<char>; V = std::__cxx11::basic_string<char>; int N = 50]’ is private within this context
   std::cout << "References" << references.accumulate("References") << std::endl;
                                                                  ^
 In file included from w3.cpp:11:
 List.h:36:5: note: declared private here
    V accumulate(const L& label) const
      ^~~~~~~~~~
-w3.cpp:65:65: error: use of deleted function 'sict::LVList<sict::SummableLVPair<std::__cxx11::basic_string<char>, int>, std::__cxx11::basic_string<char>, int, 50>::LVList()'
+w3.cpp:65:65: error: use of deleted function ‘sict::LVList<sict::SummableLVPair<std::__cxx11::basic_string<char>, int>, std::__cxx11::basic_string<char>, int, 50>::LVList()’
   LVList<SummableLVPair<std::string, int>, std::string, int, 50> ticketSales;
                                                                  ^~~~~~~~~~~
 In file included from w3.cpp:11:
-List.h:34:8: note: 'sict::LVList<sict::SummableLVPair<std::__cxx11::basic_string<char>, int>, std::__cxx11::basic_string<char>, int, 50>::LVList()' is implicitly deleted because the default definition would be ill-formed:
+List.h:34:8: note: ‘sict::LVList<sict::SummableLVPair<std::__cxx11::basic_string<char>, int>, std::__cxx11::basic_string<char>, int, 50>::LVList()’ is implicitly deleted because the default definition would be ill-formed:
   class LVList : public List<T, N>
         ^~~~~~
-List.h:34:8: error: use of deleted function 'sict::List<sict::SummableLVPair<std::__cxx11::basic_string<char>, int>, 50>::List()'
-List.h:7:8: note: 'sict::List<sict::SummableLVPair<std::__cxx11::basic_string<char>, int>, 50>::List()' is implicitly deleted because the default definition would be ill-formed:
+List.h:34:8: error: use of deleted function ‘sict::List<sict::SummableLVPair<std::__cxx11::basic_string<char>, int>, 50>::List()’
+List.h:7:8: note: ‘sict::List<sict::SummableLVPair<std::__cxx11::basic_string<char>, int>, 50>::List()’ is implicitly deleted because the default definition would be ill-formed:
   class List
         ^~~~
-List.h:7:8: error: no matching function for call to 'sict::SummableLVPair<std::__cxx11::basic_string<char>, int>::SummableLVPair()'
+List.h:7:8: error: no matching function for call to ‘sict::SummableLVPair<std::__cxx11::basic_string<char>, int>::SummableLVPair()’
 In file included from w3.cpp:10:
-LVPair.h:103:3: note: candidate: 'sict::SummableLVPair<std::__cxx11::basic_string<char>, int>::SummableLVPair(const string&, const int&)'
+LVPair.h:103:3: note: candidate: ‘sict::SummableLVPair<std::__cxx11::basic_string<char>, int>::SummableLVPair(const string&, const int&)’
    SummableLVPair(const std::string& label, const int& v)
    ^~~~~~~~~~~~~~
 LVPair.h:103:3: note:   candidate expects 2 arguments, 0 provided
-LVPair.h:100:8: note: candidate: 'sict::SummableLVPair<std::__cxx11::basic_string<char>, int>::SummableLVPair(const sict::SummableLVPair<std::__cxx11::basic_string<char>, int>&)'
+LVPair.h:100:8: note: candidate: ‘sict::SummableLVPair<std::__cxx11::basic_string<char>, int>::SummableLVPair(const sict::SummableLVPair<std::__cxx11::basic_string<char>, int>&)’
   class SummableLVPair<std::string, int> : public LVPair<std::string, int>
         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 LVPair.h:100:8: note:   candidate expects 1 argument, 0 provided
-LVPair.h:100:8: note: candidate: 'sict::SummableLVPair<std::__cxx11::basic_string<char>, int>::SummableLVPair(sict::SummableLVPair<std::__cxx11::basic_string<char>, int>&&)'
+LVPair.h:100:8: note: candidate: ‘sict::SummableLVPair<std::__cxx11::basic_string<char>, int>::SummableLVPair(sict::SummableLVPair<std::__cxx11::basic_string<char>, int>&&)’
 LVPair.h:100:8: note:   candidate expects 1 argument, 0 provided
-w3.cpp:91:87: error: 'V sict::LVList<T, L, V, N>::accumulate(const L&) const [with T = sict::SummableLVPair<std::__cxx11::basic_string<char>, int>; L = std::__cxx11::basic_string<char>; V = int; int N = 50]' is private within this context
+w3.cpp:91:87: error: ‘V sict::LVList<T, L, V, N>::accumulate(const L&) const [with T = sict::SummableLVPair<std::__cxx11::basic_string<char>, int>; L = std::__cxx11::basic_string<char>; V = int; int N = 50]’ is private within this context
   std::cout << "Student Tickets = " << std::setw(7) << ticketSales.accumulate("Student") * studentFare << std::endl;
                                                                                        ^
 In file included from w3.cpp:11:
 List.h:36:5: note: declared private here
    V accumulate(const L& label) const
      ^~~~~~~~~~
-w3.cpp:92:85: error: 'V sict::LVList<T, L, V, N>::accumulate(const L&) const [with T = sict::SummableLVPair<std::__cxx11::basic_string<char>, int>; L = std::__cxx11::basic_string<char>; V = int; int N = 50]' is private within this context
+w3.cpp:92:85: error: ‘V sict::LVList<T, L, V, N>::accumulate(const L&) const [with T = sict::SummableLVPair<std::__cxx11::basic_string<char>, int>; L = std::__cxx11::basic_string<char>; V = int; int N = 50]’ is private within this context
   std::cout << "Adult Tickets   = " << std::setw(7) << ticketSales.accumulate("Adult") * adultFare << std::endl;
                                                                                      ^
 In file included from w3.cpp:11:
 List.h:36:5: note: declared private here
    V accumulate(const L& label) const
      ^~~~~~~~~~
-List.h: In instantiation of 'V sict::LVList<T, L, V, N>::accumulate(const L&) const [with T = sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >; L = std::__cxx11::basic_string<char>; V = std::__cxx11::basic_string<char>; int N = 50]':
+List.h: In instantiation of ‘V sict::LVList<T, L, V, N>::accumulate(const L&) const [with T = sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >; L = std::__cxx11::basic_string<char>; V = std::__cxx11::basic_string<char>; int N = 50]’:
 w3.cpp:56:63:   required from here
-List.h:39:73: error: 'getInitialValue' is not a member of 'sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >'
+List.h:39:73: error: ‘getInitialValue’ is not a member of ‘sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >’
     V sumOfElementsInCurrentLVList = SummableLVPair<L,V>::getInitialValue();
                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
-List.h:45:37: error: base operand of '->' has non-pointer type 'sict::List<sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >, 50>'
+List.h:44:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+    for (int i = 0; i < numElementsInBaseObject; ++i)
+                    ~~^~~~~~~~~~~~~~~~~~~~~~~~~
+List.h:45:37: error: base operand of ‘->’ has non-pointer type ‘sict::List<sict::SummableLVPair<std::__cxx11::basic_string<char>, std::__cxx11::basic_string<char> >, 50>’
      sumOfElementsInCurrentLVList += ((List<T, N>&)*this)->m_list[i];
                                      ^
-List.h: In instantiation of 'V sict::LVList<T, L, V, N>::accumulate(const L&) const [with T = sict::SummableLVPair<std::__cxx11::basic_string<char>, int>; L = std::__cxx11::basic_string<char>; V = int; int N = 50]':
+List.h: In instantiation of ‘V sict::LVList<T, L, V, N>::accumulate(const L&) const [with T = sict::SummableLVPair<std::__cxx11::basic_string<char>, int>; L = std::__cxx11::basic_string<char>; V = int; int N = 50]’:
 w3.cpp:91:87:   required from here
-List.h:39:73: error: 'getInitialValue' is not a member of 'sict::SummableLVPair<std::__cxx11::basic_string<char>, int>'
+List.h:39:73: error: ‘getInitialValue’ is not a member of ‘sict::SummableLVPair<std::__cxx11::basic_string<char>, int>’
     V sumOfElementsInCurrentLVList = SummableLVPair<L,V>::getInitialValue();
                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
-List.h:45:37: error: base operand of '->' has non-pointer type 'sict::List<sict::SummableLVPair<std::__cxx11::basic_string<char>, int>, 50>'
+List.h:44:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+    for (int i = 0; i < numElementsInBaseObject; ++i)
+                    ~~^~~~~~~~~~~~~~~~~~~~~~~~~
+List.h:45:37: error: base operand of ‘->’ has non-pointer type ‘sict::List<sict::SummableLVPair<std::__cxx11::basic_string<char>, int>, 50>’
      sumOfElementsInCurrentLVList += ((List<T, N>&)*this)->m_list[i];
                                      ^
