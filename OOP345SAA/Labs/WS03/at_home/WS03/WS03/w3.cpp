@@ -26,7 +26,6 @@ int main(int argc, char* argv[]) {
 		return 2;
 	}
 
-	// LVList<std::string, std::string, std::string, 50> references;
 	LVList<SummableLVPair<std::string, std::string>, std::string, std::string, 50> references;
 
 	std::ifstream index(argv[1]);

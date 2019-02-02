@@ -33,6 +33,7 @@ namespace sict
 	template<typename T, typename L, typename V, int N>
 	class LVList : public List<T, N>
 	{
+	public:
 		V accumulate(const L& label) const
 		{
 			// Initialize the accumulator to the initial value for objects of the label-value pair
