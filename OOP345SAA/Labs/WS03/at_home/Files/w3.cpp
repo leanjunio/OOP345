@@ -11,6 +11,15 @@
 #include "List.h"
 using namespace sict;
 
+// Declared m_minFieldWidth as static
+template<typename L, typename V>
+size_t SummableLVPair<L,V>::m_minFieldWidth { 0u };
+
+// Explicit specialization of LVList<std::string, std::string>
+template<> std::string SummableLVPair<std::string, std::string>::m_initialValueForSummation = "";
+// Explicit specialization of LVList<std::string, int>
+template<> int SummableLVPair<std::string, int>::m_initialValueForSummation = 0;
+
 int main(int argc, char* argv[]) {
 	std::cout << "Command Line : ";
 	for (int i = 0; i < argc; i++) {

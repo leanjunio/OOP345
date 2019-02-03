@@ -42,8 +42,8 @@ namespace sict
 	template <typename L, typename V>
 	class SummableLVPair : public LVPair<L, V>
 	{
-		V m_initialValueForSummation = { 0u };
-		size_t m_minFieldWidth;
+		static V m_initialValueForSummation;
+		static size_t m_minFieldWidth;
 	public:
 		SummableLVPair()
 		{
@@ -56,7 +56,7 @@ namespace sict
 				m_minFieldWidth = label.size() + 1;
 		}
 		
-		const V& getInitialValue()
+		static const V& getInitialValue()
 		{
 			return m_initialValueForSummation;
 		}
@@ -68,20 +68,30 @@ namespace sict
 
 		void display(std::ostream& os) const
 		{
-			
+			os.setf(std::ios::left);
+			os.width(m_minFieldWidth);
+			os << LVPair<L, V>::getLabel() << " : " << LVPair<L, V>::getValue() << std::endl;
+			os.unsetf(std::ios::left);
 		}
 
 	};
 
-	template<> 
-	SummableLVPair<std::string, std::string>::SummableLVPair(const std::string& label, const std::string& v)
-		: LVPair(label, "")
+	// Replace with static member as per: https://en.cppreference.com/w/cpp/language/template_specialization
+	// template<> 
+	// SummableLVPair<std::string, std::string>::SummableLVPair(const std::string& label, const std::string& v)
+	// 	: SummableLVPair(label, v)
+	// {
+	// }
+	// template<> 
+	// SummableLVPair<std::string, int>::SummableLVPair(const std::string& label, const int& v)
+	// 	: SummableLVPair(label, v)
+	// {
+	// }
+
+	template<>
+	std::string SummableLVPair<std::string, std::string>::sum(const std::string& label, const std::string& value) const
 	{
-	}
-	template<> 
-	SummableLVPair<std::string, int>::SummableLVPair(const std::string& label, const int& v)
-		: LVPair(label, 0)
-	{
+		return (value + " " + LVPair<std::string, std::string>::getValue());
 	}
 }
 
