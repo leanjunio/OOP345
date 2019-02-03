@@ -35,13 +35,15 @@ namespace sict
 		V accumulate(const L& label) const
 		{
 			// Initialize the accumulator to the initial value for objects of the label-value pair
-			V sumOfElementsInCurrentLVList = SummableLVPair<L,V>::getInitialValue();
+			SummableLVPair<L,V> currentSummable;
+			V sumOfElementsInCurrentLVList = currentSummable.getInitialValue();
 
-			size_t numElementsInBaseObject = ((List<T, N>&)*this).size();
-			
-			// append each element stored in the base class
-			for (size_t i = 0; i < numElementsInBaseObject; ++i)
-				sumOfElementsInCurrentLVList += ((List<T, N>&)*this).m_list[i];
+			for (size_t i = 0; i < ((List<T, N>&)*this).size(); ++i)
+			{
+				// If the labels match, append the values
+				if (label == ((List<T, N>&)*this)[i].getLabel())
+					sumOfElementsInCurrentLVList = ((List<T, N>&)*this)[i].sum(label, sumOfElementsInCurrentLVList);
+			}
 
 			return sumOfElementsInCurrentLVList;
 		}

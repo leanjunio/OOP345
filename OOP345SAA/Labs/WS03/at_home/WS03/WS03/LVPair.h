@@ -60,6 +60,8 @@ namespace sict
 		size_t m_minFieldWidth;
 	public:
 		SummableLVPair()
+			: m_initialValueForSummation{}
+			, m_minFieldWidth{0u}
 		{
 		}
 
@@ -83,8 +85,7 @@ namespace sict
 		// and the partially accumulated sum in a V object
 		V sum(const L& label, const V& sum) const
 		{
-			LVPair<L, V>::label();
-			LVPair<L, V>::Value();
+			return LVPair<L, V>::getValue() + sum;
 		}
 
 		// a query that inserts into the std::ostream object the label and value stored in the base class
