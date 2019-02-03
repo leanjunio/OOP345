@@ -6,46 +6,32 @@
 
 namespace sict
 {
-	/*
-	
-	defines a class template for a label-value pair (for example, a product label stored in an std::string object and a quantity stored in an int object)
-	
-	*/
 	template <typename L, typename V>
 	class LVPair
 	{
 		L m_label;
 		V m_value;
 	public:
-		// leaves the object in a safe empty state
 		LVPair()
 			: m_label{}
 			, m_value{}
 		{
 		}
-
-		// an overloaded constructor that copies the values received 
-		// in its parameters into the instance variables
 		LVPair(const L& label, const V& value)
 			: m_label(label)
 			, m_value(value)
 		{
 		}
 
-		const L& getLabel() { return m_label; }
-		const V& getValue() { return m_value; }
+		const L& getLabel() const { return m_label; }
+		const V& getValue() const { return m_value; }
 
-		// a query that inserts into os the label and value 
-		// stored in the current object separated by 
-		// a space - colon - space string(“ : ”) 
 		virtual void display(std::ostream& os) const
 		{
 			os << m_label << " : " << m_value << std::endl;
 		}
 	};
 
-	// a non - friend helper function that inserts into the 
-	// os object the LVPair object referenced in the 2nd function parameter
 	template <typename L, typename V>
 	std::ostream& operator<<(std::ostream& os, const LVPair<L, V>& pair)
 	{
@@ -56,12 +42,10 @@ namespace sict
 	template <typename L, typename V>
 	class SummableLVPair : public LVPair<L, V>
 	{
-		V m_initialValueForSummation;
-		size_t m_minFieldWidth;
+		static V m_initialValueForSummation;
+		static size_t m_minFieldWidth;
 	public:
 		SummableLVPair()
-			: m_initialValueForSummation{}
-			, m_minFieldWidth{0u}
 		{
 		}
 
@@ -72,51 +56,43 @@ namespace sict
 				m_minFieldWidth = label.size() + 1;
 		}
 		
-		
-
-		// returns the initial value for summations of LVPair objects
-		const V& getInitialValue()
+		static const V& getInitialValue()
 		{
 			return m_initialValueForSummation;
 		}
 
-		// receives two unmodifiable references - one to a label (label) and another to a partially accumulated sum (sum) 
-		// returns the sum of the value of the current object 
-		// and the partially accumulated sum in a V object
 		V sum(const L& label, const V& sum) const
 		{
 			return LVPair<L, V>::getValue() + sum;
 		}
 
-		// a query that inserts into the std::ostream object the label and value stored in the base class
-		// Before calling the display() function on the base class, this query sets the std::ostream object to left - 
-		// justified insertion and a field width equal to that stored for objects of this class
 		void display(std::ostream& os) const
 		{
+			os.setf(std::ios::left);
+			os.width(m_minFieldWidth);
+			os << LVPair<L, V>::getLabel() << " : " << LVPair<L, V>::getValue() << std::endl;
+			os.unsetf(std::ios::left);
 		}
+
 	};
 
-	// Template specialization for LVPair<std::string, int>
-	template<>
-	class SummableLVPair<std::string, int> : public LVPair<std::string, int>
-	{
-	public:
-		SummableLVPair(const std::string& label, const int& v)
-			: LVPair(label, 0)
-		{
-		}
-	};
+	// Replace with static member as per: https://en.cppreference.com/w/cpp/language/template_specialization
+	// template<> 
+	// SummableLVPair<std::string, std::string>::SummableLVPair(const std::string& label, const std::string& v)
+	// 	: SummableLVPair(label, v)
+	// {
+	// }
+	// template<> 
+	// SummableLVPair<std::string, int>::SummableLVPair(const std::string& label, const int& v)
+	// 	: SummableLVPair(label, v)
+	// {
+	// }
 
-	// Template specialization for LVPair<std::string, std::string>
 	template<>
-	class SummableLVPair<std::string, std::string> : public LVPair<std::string, std::string>
+	std::string SummableLVPair<std::string, std::string>::sum(const std::string& label, const std::string& value) const
 	{
-	public:
-		SummableLVPair(const std::string& label, const std::string& v)
-			: LVPair(label, "")
-		{
-		}
-	};
+		return (value + " " + LVPair<std::string, std::string>::getValue());
+	}
 }
 
 
