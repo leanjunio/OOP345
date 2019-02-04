@@ -70,7 +70,7 @@ namespace sict
 		{
 			os.setf(std::ios::left);
 			os.width(m_minFieldWidth);
-			os << LVPair<L, V>::getLabel() << " : " << LVPair<L, V>::getValue() << std::endl;
+			os << LVPair<L, V>::getLabel() << ": " << LVPair<L, V>::getValue() << std::endl;
 			os.unsetf(std::ios::left);
 		}
 
