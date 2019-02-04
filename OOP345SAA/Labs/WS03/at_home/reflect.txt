@@ -34,8 +34,11 @@ template<> std::string SummableLVPair<std::string, std::string>::m_initialValueF
 // Explicit specialization of LVList<std::string, int>
 template<> int SummableLVPair<std::string, int>::m_initialValueForSummation = 0;
 
-3.) The reason for defining the class variable outside the class definition
+QUIZ CORRECTIONS:
 
+Question 2: Aggregation is a ________________ that does not manage the _____________ of the objects it uses.
+Correct Answer: 
+An aggregation is a composition that does not manage the creation or destruction of the objects that it uses.
 
-
- 
+Question 3: Association is a __________________ relationship and does not involve _________________ of one type by another.
+Correct Answer: An association is a service relationship and does not involve ownership of one type by another.
