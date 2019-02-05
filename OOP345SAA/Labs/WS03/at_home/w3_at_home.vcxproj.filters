@@ -15,20 +15,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="List.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LVPair.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="w3.cpp">
+    <ClCompile Include="WS03\WS03\w3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="Sales.txt" />
-    <Text Include="References.txt" />
+    <ClInclude Include="WS03\WS03\List.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WS03\WS03\LVPair.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="WS03\WS03\References.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="WS03\WS03\Sales.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
 </Project>

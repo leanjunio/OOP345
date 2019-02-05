@@ -1,0 +1,44 @@
+What was learned during the workshop:
+
+During the workshop, I learned how to create templated classes, functions, specialized template classes and functions, defining template constructors and functions out side of the class that it's in.
+How to use another class template within another class template.
+
+The reason for specializing the sum() member function.
+
+1.) The specialization of sum() was necessary because the original sum:
+
+LVPair.h::64
+
+V sum(const L& label, const V& sum) const
+{
+  return LVPair<L, V>::getValue() + sum;
+}
+
+Only assumes that the type of sum that was being passed is a number which can be added with a '+' natively. Specializing sum() such as:
+
+template<>
+std::string SummableLVPair<std::string, std::string>::sum(const std::string& label, const std::string& value) const
+{
+  return (value + " " + LVPair<std::string, std::string>::getValue());
+}
+
+ensures that strings are properly 'concatenated' rather than attempted to be added natively.
+
+2.) The reason for specializing the initial value for a summation.
+
+This again relates to the reason why we specialized some of the methods in the classes. The 2nd template argument could either be an integer or a string. 
+By specializing m_initialValueForSummation, we can control what the safe empty value is for its initial value as shown in the following:
+
+// Explicit specialization of LVList<std::string, std::string>
+template<> std::string SummableLVPair<std::string, std::string>::m_initialValueForSummation = "";
+// Explicit specialization of LVList<std::string, int>
+template<> int SummableLVPair<std::string, int>::m_initialValueForSummation = 0;
+
+QUIZ CORRECTIONS:
+
+Question 2: Aggregation is a ________________ that does not manage the _____________ of the objects it uses.
+Correct Answer: 
+An aggregation is a composition that does not manage the creation or destruction of the objects that it uses.
+
+Question 3: Association is a __________________ relationship and does not involve _________________ of one type by another.
+Correct Answer: An association is a service relationship and does not involve ownership of one type by another.
