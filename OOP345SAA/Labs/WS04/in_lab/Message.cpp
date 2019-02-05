@@ -14,21 +14,62 @@ namespace sict
   {
   }
 
+
+  /*
+  
+  jim Workshop 4 is cool
+harry @jim working on workshop 4 now
+
+chris
+dave what the ^#$%!
+john @harry I'm done
+
+  
+  */
+
   Message::Message(const std::string& str)
-    : m_FullTweet{str}
+	  : m_FullTweet{str}
+	  , m_directedToRecipient{m_FullTweet.find('@') != std::string::npos ? true : false}
+	  , pos{0}
   {
-    size_t next_space = {m_FullTweet.find(' ')};  // calculates the next space after the word
-    m_sender = m_FullTweet.substr(pos, next_space);         // gets the 'sender' substring
+	  size_t next_space = { m_FullTweet.find(' ') };
+	  m_sender = m_FullTweet.substr(pos, next_space + 1);
 
-    std::cout << "m_sender: " << m_sender << std::endl;
+	  if (m_sender.size() > 0)
+	  {
+		  if (m_directedToRecipient)
+		  {
+			  pos = next_space;
+			  size_t at_pos = { m_FullTweet.find('@', pos + 1) };
+			  next_space = { m_FullTweet.find(' ', pos + 1) };
 
-    if (m_sender.size() > 0)
-    {
-      pos = next_space;
-      next_space = {m_FullTweet.find(' ')};
-      m_tweet = m_FullTweet.substr(pos, next_space);
-      std::cout << "m_tweet: " << m_tweet << std::endl;
-    }
+			  m_recepient = {m_FullTweet.substr(at_pos, next_space - at_pos)};
+			  // std::cout << "m_recepient: " << m_recepient << std::endl;
+		  }
+		  
+		  pos = next_space;
+		  m_tweet = m_FullTweet.substr(pos + 1, m_FullTweet.size());
+		  // std::cout << "m_tweet: " << m_tweet << std::endl;
+	  }
+
+	  /*if (m_sender.size() > 0)
+	  {
+		  pos = next_space;
+		  next_space = { m_FullTweet.find(' ', pos + 1) };
+
+		  if (!m_directedToRecipient)
+		  {
+			  m_tweet = m_FullTweet.substr(pos + 1, m_FullTweet.size());
+			  std::cout << "m_tweet: " << m_tweet << std::endl;
+		  }
+		  else
+		  {
+			  size_t at_pos = { m_FullTweet.find('@', pos + 1) };
+			  next_space = { m_FullTweet.find(' ', pos + 1) };
+			  m_recepient = { m_FullTweet.substr(at_pos, next_space) };
+			  std::cout << "Recipient: " << m_recepient << std::endl;
+		  }
+	  }*/
   }
 
   bool Message::empty() const
