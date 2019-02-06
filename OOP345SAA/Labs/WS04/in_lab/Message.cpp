@@ -54,10 +54,10 @@ namespace sict
 	  {
 		  if (m_FullTweet.size())
 		  {
-			  os << ">User  : " << m_sender << '\n';
+			  os << ">User  : " << m_sender << std::endl;
 			  if (m_recepient.size() > 0)
-				  os << " Reply : " << m_recepient << '\n';
-			  os << " Tweet : " << m_tweet << '\n';
+				  os << " Reply : " << m_recepient << std::endl;
+			  os << " Tweet : " << m_tweet << std::endl;
 		  }
 	  }
   
