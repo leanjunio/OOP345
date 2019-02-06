@@ -57,7 +57,7 @@ namespace sict
 			  os << ">User  : " << m_sender << std::endl;
 			  if (m_recepient.size() > 0)
 				  os << " Reply : " << m_recepient << std::endl;
-			  os << " Tweet : " << m_tweet << std::endl;
+			  os << " Tweet : " << m_tweet << std::endl << std::endl;
 		  }
 	  }
   
