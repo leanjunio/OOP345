@@ -20,7 +20,7 @@ namespace sict
 		, pos{ 0 }
 	{
 		size_t next_space = { m_FullTweet.find(' ') };
-		m_sender = m_FullTweet.substr(pos, next_space + 1);
+		m_sender = { m_FullTweet.substr(pos, next_space) };
 
 		if (m_sender.size() > 0 && m_sender.size() != m_FullTweet.size())
 		{
