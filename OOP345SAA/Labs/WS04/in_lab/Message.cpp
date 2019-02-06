@@ -33,7 +33,7 @@ namespace sict
 				m_recepient = { m_FullTweet.substr(at_pos + 1, next_space - at_pos) };
 			}
 
-			pos = next_space;
+			pos = { next_space };
 			m_tweet = m_FullTweet.substr(pos + 1, m_FullTweet.size());
 		}
 		else
@@ -54,10 +54,10 @@ namespace sict
 	  {
 		  if (m_FullTweet.size())
 		  {
-			  os << ">User  : " << m_sender << std::endl;
+			  os << ">User  : " << m_sender;
 			  if (m_recepient.size() > 0)
-				  os << " Reply : " << m_recepient << std::endl;
-			  os << " Tweet : " << m_tweet << std::endl;
+				  os << "\n Reply : " << m_recepient;
+			  os << "\n Tweet : " << m_tweet;
 		  }
 	  }
   
