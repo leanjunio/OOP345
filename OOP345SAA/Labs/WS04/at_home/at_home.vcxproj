@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Message.cpp" />
     <ClCompile Include="MessagePack.cpp" />
+    <ClCompile Include="Notifications.cpp" />
     <ClCompile Include="w4.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -149,6 +150,7 @@
   <ItemGroup>
     <ClInclude Include="Message.h" />
     <ClInclude Include="MessagePack.h" />
+    <ClInclude Include="Notifications.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

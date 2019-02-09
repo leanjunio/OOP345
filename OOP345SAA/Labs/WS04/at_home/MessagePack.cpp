@@ -10,7 +10,7 @@ namespace sict
 		, m_numElementsInPack{ 0 }
 	{
 	}
-	MessagePack::MessagePack(const Message *arrMessages, int numElementsInArrayPassed)
+	MessagePack::MessagePack(const Message** arrMessages, int numElementsInArrayPassed)
 	{
 		if (numElementsInArrayPassed > 0 && arrMessages != nullptr)
 		{
@@ -19,9 +19,10 @@ namespace sict
 
 			for (int i = 0; i < numElementsInArrayPassed; ++i)
 			{
-				if (!arrMessages[i].empty())
+
+				if (!arrMessages[i]->empty())
 				{
-					m_messages[i] = arrMessages[i];
+					m_messages[i] = *arrMessages[i];
 				}
 				else
 				{
@@ -73,13 +74,18 @@ namespace sict
 	}
 	void MessagePack::display(std::ostream& os)
 	{
+		for (int i = 0; i < m_numElementsInPack; i++)
+		{
+			os << m_messages[i];
+		}
 	}
 	size_t MessagePack::size() const
 	{
 		return size_t(m_numElementsInPack);
 	}
-	std::ostream& operator<<(std::ostream& os, const MessagePack& MPack)
+	std::ostream& operator<<(std::ostream& os, const MessagePack& m)
 	{
+		m.display(os);
 		return os;
 	}
 }

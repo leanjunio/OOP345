@@ -12,7 +12,7 @@ namespace sict
 		int m_numElementsInPack;
 	public:
 		MessagePack();
-		MessagePack(const Message*, int);
+		MessagePack(const Message**, int);
 		MessagePack(const MessagePack&);
 		MessagePack& operator=(const MessagePack&);
 		MessagePack(MessagePack&&);
