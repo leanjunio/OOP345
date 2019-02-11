@@ -36,7 +36,7 @@ namespace sict
 	{
 		if (this != &other)
 		{
-			delete[] m_messages;
+			// delete[] m_messages;
 
 			m_messages = other.m_messages;
 			m_numElementsInPack = other.m_numElementsInPack;
@@ -60,15 +60,14 @@ namespace sict
 
 			for (int i = 0; i < numElementsInArrayPassed; ++i)
 			{
-				m_numElementsInPack++;
-
 				if (!(*pToArrayOfMessages[i]).empty())
 				{
 					m_messages[i] = *pToArrayOfMessages[i];
+					m_numElementsInPack = i;
 				}
 				else
 				{
-					m_messages[i] = Message();
+					*pToArrayOfMessages[i] = Message();
 				}
 			}
 		}
