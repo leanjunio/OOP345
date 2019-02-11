@@ -13,7 +13,6 @@ namespace sict
 		, pos{ 0 }
 	{
 	}
-
 	Message::Message(const std::string& str)
 		: m_FullTweet{ str }
 		, m_directedToRecipient{ m_FullTweet.find('@') != std::string::npos ? true : false }
@@ -41,7 +40,6 @@ namespace sict
 			*this = Message();
 		}
 	}
-
 	  bool Message::empty() const
 	  {
 		if (m_tweet.size() < 1)

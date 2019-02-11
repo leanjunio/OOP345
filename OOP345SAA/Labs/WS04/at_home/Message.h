@@ -14,7 +14,7 @@ namespace sict
     std::string m_recepient;
     bool m_directedToRecipient;
     size_t pos;
-public:
+	public:
     Message();
     Message(const std::string& str);
     bool empty() const;

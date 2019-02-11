@@ -12,13 +12,13 @@ namespace sict
 		int m_numElementsInPack;
 	public:
 		MessagePack();
-		MessagePack(const Message**, int);
+		MessagePack(Message**, int);
 		MessagePack(const MessagePack&);
 		MessagePack& operator=(const MessagePack&);
 		MessagePack(MessagePack&&);
 		MessagePack& operator=(MessagePack&&);
 		~MessagePack();
-		void display(std::ostream& os);
+		void display(std::ostream& os) const;
 		size_t size() const;
 	};
 

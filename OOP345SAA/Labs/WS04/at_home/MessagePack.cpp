@@ -10,27 +10,6 @@ namespace sict
 		, m_numElementsInPack{ 0 }
 	{
 	}
-	MessagePack::MessagePack(const Message** arrMessages, int numElementsInArrayPassed)
-	{
-		if (numElementsInArrayPassed > 0 && arrMessages != nullptr)
-		{
-			m_messages = new Message[numElementsInArrayPassed];
-			m_numElementsInPack = { numElementsInArrayPassed };
-
-			for (int i = 0; i < numElementsInArrayPassed; ++i)
-			{
-
-				if (!arrMessages[i]->empty())
-				{
-					m_messages[i] = *arrMessages[i];
-				}
-				else
-				{
-					m_messages[i] = Message();
-				}
-			}
-		}
-	}
 	MessagePack::MessagePack(const MessagePack& other)
 	{
 		*this = other;
@@ -72,11 +51,33 @@ namespace sict
 		delete[] m_messages;
 		m_messages = nullptr;
 	}
-	void MessagePack::display(std::ostream& os)
+	MessagePack::MessagePack(Message** pToArrayOfMessages, int numElementsInArrayPassed)
+	{
+		if (numElementsInArrayPassed > 0 && pToArrayOfMessages != nullptr)
+		{
+			m_numElementsInPack = { 0 };
+			m_messages = new Message[numElementsInArrayPassed];
+
+			for (int i = 0; i < numElementsInArrayPassed; ++i)
+			{
+				m_numElementsInPack++;
+
+				if (!(*pToArrayOfMessages[i]).empty())
+				{
+					m_messages[i] = *pToArrayOfMessages[i];
+				}
+				else
+				{
+					m_messages[i] = Message();
+				}
+			}
+		}
+	}
+	void MessagePack::display(std::ostream& os) const
 	{
 		for (int i = 0; i < m_numElementsInPack; i++)
 		{
-			os << m_messages[i];
+			m_messages[i].display(os);
 		}
 	}
 	size_t MessagePack::size() const
