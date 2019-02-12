@@ -102,7 +102,7 @@ namespace sict
 	}
 	void Notifications::display(std::ostream& os) const
 	{
-		for (size_t i = 0; i < m_numCurrentlyStoredAddresses; i++)
+		for (int i = 0; i < m_numCurrentlyStoredAddresses; i++)
 			(*p_arrAddresses[i]).display(os);
 	}
 	size_t Notifications::size() const
