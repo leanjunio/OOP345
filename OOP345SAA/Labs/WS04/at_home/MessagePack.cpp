@@ -22,9 +22,7 @@ namespace sict
 			m_numElementsInPack = other.m_numElementsInPack;
 
 			for (int i = 0; i < m_numElementsInPack; i++)
-			{
 				m_messages[i] = other.m_messages[i];
-			}
 		}
 		return *this;
 	}
