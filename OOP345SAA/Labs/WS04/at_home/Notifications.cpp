@@ -5,7 +5,7 @@
 namespace sict
 {
 	Notifications::Notifications()
-		: pp_arrAddresses{nullptr}
+		: p_arrAddresses{nullptr}
 		, m_maxNumAddresses{0}
 		, m_numCurrentlyStoredAddresses{0}
 	{
@@ -20,35 +20,31 @@ namespace sict
 	{
 		if (this != &other)
 		{
-			delete[] pp_arrAddresses;
+			delete[] p_arrAddresses;
 
 			m_maxNumAddresses = other.m_maxNumAddresses;
 			m_numCurrentlyStoredAddresses = other.m_numCurrentlyStoredAddresses;
 
 			for (int i = 0; i < other.m_numCurrentlyStoredAddresses; i++)
-			{
-				pp_arrAddresses[i] = other.pp_arrAddresses[i];
-			}
+				p_arrAddresses[i] = other.p_arrAddresses[i];
 		}
 		return *this;
 	}
-
 	Notifications::Notifications(Notifications&& other)
 	{
 		*this = std::move(other);
 	}
-
 	Notifications& Notifications::operator=(Notifications&& other)
 	{
 		if (this != &other)
 		{
-			delete[] pp_arrAddresses;
+			// delete[] p_arrAddresses;
 
-			pp_arrAddresses = other.pp_arrAddresses;
+			p_arrAddresses = other.p_arrAddresses;
 			m_maxNumAddresses = other.m_maxNumAddresses;
 			m_numCurrentlyStoredAddresses = other.m_numCurrentlyStoredAddresses;
 
-			other.pp_arrAddresses = { nullptr };
+			other.p_arrAddresses = { nullptr };
 			other.m_maxNumAddresses = { 0 };
 			other.m_numCurrentlyStoredAddresses = { 0 };
 		}
@@ -56,51 +52,62 @@ namespace sict
 	}
 	Notifications::~Notifications()
 	{
-		delete[] pp_arrAddresses;
-		pp_arrAddresses = { nullptr };
+		delete[] p_arrAddresses;
+		p_arrAddresses = { nullptr };
 	}
 	Notifications::Notifications(int maxNumberOfElementsInAggregation)
 	{
 		if (maxNumberOfElementsInAggregation > 0)
 		{
-			*pp_arrAddresses = new Message[maxNumberOfElementsInAggregation];
+			p_arrAddresses = new const Message*[maxNumberOfElementsInAggregation];
+			m_maxNumAddresses = maxNumberOfElementsInAggregation;
+			m_numCurrentlyStoredAddresses = { 0 };
 		}
 		else
-		{
 			*this = Notifications();
-		}
 	}
-	Notifications& Notifications::operator+=(const Message& msg)
+	Notifications& Notifications::operator+=(const Message& messagedToAdd)
 	{
-		if (!msg.empty() && m_numCurrentlyStoredAddresses < m_maxNumAddresses)
+		bool space_available = m_numCurrentlyStoredAddresses < m_maxNumAddresses;
+
+		if (!messagedToAdd.empty() && space_available)
 		{
-			pp_arrAddresses[m_numCurrentlyStoredAddresses + 1] = &msg;	// store the address
+			p_arrAddresses[m_numCurrentlyStoredAddresses] = &messagedToAdd;	// store the address
+			++m_numCurrentlyStoredAddresses;
 		}
 
 		return *this;
 	}
-	Notifications& Notifications::operator-=(const Message& msg)
+	Notifications& Notifications::operator-=(const Message& messageToRemove)
 	{
-		for (size_t i = 0; i < m_numCurrentlyStoredAddresses; i++)
+		for (int i = 0; i < m_numCurrentlyStoredAddresses; i++)
 		{
-			if (pp_arrAddresses[i] == &msg)
+			bool address_found = p_arrAddresses[i] == &messageToRemove;
+
+			if (address_found)
 			{
-				pp_arrAddresses = { nullptr };
+				p_arrAddresses[i] = { nullptr };
+
+				// move all subsequent addresses left
+				for (int x = i; x < m_numCurrentlyStoredAddresses - 1; ++x)
+					p_arrAddresses[x] = p_arrAddresses[x + 1];
+
+				p_arrAddresses[m_numCurrentlyStoredAddresses - 1] = { nullptr };
 			}
 		}
+
+		m_numCurrentlyStoredAddresses--;
 
 		return *this;
 	}
 	void Notifications::display(std::ostream& os) const
 	{
 		for (size_t i = 0; i < m_numCurrentlyStoredAddresses; i++)
-		{
-			os << pp_arrAddresses[i];
-		}
+			(*p_arrAddresses[i]).display(os);
 	}
 	size_t Notifications::size() const
 	{
-		return size_t(m_numCurrentlyStoredAddresses);
+		return m_numCurrentlyStoredAddresses;
 	}
 	std::ostream & operator<<(std::ostream & os, Notifications & n)
 	{

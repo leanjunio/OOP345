@@ -77,7 +77,7 @@ int main(int argc, char* argv[]) {
 		Notifications notifications(no_msgs);
 		std::cout << "Notification Contents\n" << "=====================\n";
 		std::cout << " No of Messages " << notifications.size() << std::endl;
-		std::cout << notifications << std::endl;
+ 		std::cout << notifications << std::endl;
 
 		for (int i = 0; i < no_msgs; i++) {
 			notifications += *message[i];

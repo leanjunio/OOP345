@@ -8,7 +8,7 @@ namespace sict
 {
 	class Notifications
 	{
-		const Message** pp_arrAddresses;
+		const Message** p_arrAddresses;	// points to the pointer contaiing array of Message object
 		int m_maxNumAddresses;
 		int m_numCurrentlyStoredAddresses;
 	public:
