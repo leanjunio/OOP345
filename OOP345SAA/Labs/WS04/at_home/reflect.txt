@@ -1,0 +1,74 @@
+1. The difference between the implementations of a composition and an aggregation
+
+The main difference between composition and aggression is the fact that a composition is "part of" a class. The child class cannot exist indipendently without the parent class.
+However, an aggression allows the child class to exist indipendently. It is a "has a" relationship.
+
+An example of an aggregation is Notifications to Message.
+
+class Notifications
+{
+  const Message** p_arrAddresses;
+  int m_maxNumAddresses;
+  int m_numCurrentlyStoredAddresses;
+public:
+  Notifications();
+  Notifications(const Notifications&);
+  Notifications& operator=(const Notifications&);
+  Notifications(Notifications&&);
+  Notifications& operator=(Notifications&&);
+  ~Notifications();
+
+  Notifications(int);
+  Notifications& operator+=(const Message& msg);
+  Notifications& operator-=(const Message& msg);
+  void display(std::ostream& os) const;
+  size_t size() const;
+};
+
+The child class Message can exist without being part of Notifications, however Notifications "has a" Message object.
+
+In Composition, the child class is a "part of" the parent class. As in the case of MessagePack.
+
+class MessagePack
+{
+  Message* m_messages;
+  int m_numElementsInPack;
+public:
+  MessagePack();
+  MessagePack(Message**, int);
+  MessagePack(const MessagePack&);
+  MessagePack& operator=(const MessagePack&);
+  MessagePack(MessagePack&&);
+  MessagePack& operator=(MessagePack&&);
+  ~MessagePack();
+  void display(std::ostream& os) const;
+  size_t size() const;
+};
+
+The child class Message is a "part of" MessagePack, not having Message can greatly reduce the functionality of MessagePack. If the MessagePack is deleted, the Messages as well will also be destroyed.
+
+QUIZ CORRECTIONS:
+
+Q3: Using the pointer 'p' defined in the previous question, write the code to call getData passing in a value of 5 and storing the return in 'Result'
+Answer: float Result = (*p)(5);
+Correct Answer: 
+
+I'm not sure why I'm given 0.5/1
+
+https://repl.it/@leanjunio/UnwrittenFloralwhiteTrapezoid - working example using the code that I have.
+
+
+Q4: Complete the declaration for the missing operator that will make this class act as a function object:  
+
+class Compare {      
+  Order order;    
+public:      
+  Compare(Order o) : order(o) {}      
+  bool operator()(T& a, T& b) const {
+    return order == Order::ascending ? a > b : a < b; 
+  }      
+};
+
+This allows the function call to be overloaded upon call.
+
+
