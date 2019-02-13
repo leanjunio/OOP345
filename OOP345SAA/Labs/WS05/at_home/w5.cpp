@@ -52,7 +52,7 @@ int main(int argc, char* argv[]) {
 	std::cout << std::endl;
 
 	// check for command line errors
-	if (argc != 2) exit(1);
+	if (argc != 3) exit(1);
 
 	// set for fixed, 2-decimal point output
 	std::cout << std::fixed << std::setprecision(2);
@@ -76,6 +76,6 @@ int main(int argc, char* argv[]) {
 		float>
 		(argv[2]);
 	std::cout << "\nStudent List Letter Grades Included\n==================================\n";
-	std::cout << "Student No:      Grade Letter\n";
+	std::cout << "Student No :      Grade    Letter\n";
 	gradeList.display(std::cout, Taxable(HST));
 }

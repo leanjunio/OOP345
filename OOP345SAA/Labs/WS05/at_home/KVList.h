@@ -48,7 +48,7 @@ namespace sict
 		const T& operator[](size_t i) const
 		{
 			if (i > m_numElementsInList)
-				throw "ERROR: The index passed to the subscripting operator is out-of-bounds"
+				throw "ERROR: The index passed to the subscripting operator is out-of-bounds";
 			return m_list[i];
 		}
 		template<typename F>
