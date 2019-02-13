@@ -15,6 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="w5.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="PriceList.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="KVList.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -24,13 +34,5 @@
     <ClInclude Include="Taxable.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="PriceList.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="w5.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

@@ -22,7 +22,7 @@ namespace sict
 				m_list = new T[n];
 			}
 			else
-				*this = KVList();
+				*this = KVList();	// BUG? Put in empty state with deleted copy operator?
 		}
 		KVList(KVList&& other)
 		{
@@ -34,8 +34,6 @@ namespace sict
 				other.m_list = { nullptr };
 				other.m_numElementsInList = { 0 };
 			}
-
-			return *this;
 		}
 		~KVList()
 		{
@@ -58,7 +56,7 @@ namespace sict
 		}
 		KVList(const KVList&) = delete;
 		KVList& operator=(const KVList&) = delete;
-		KVList& KVList(KVList&&) = delete;
+		KVList& operator=(KVList&&) = delete;
 	};
 }
 

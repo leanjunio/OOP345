@@ -23,7 +23,7 @@
     <ProjectGuid>{C14F2D5B-8D6D-4BE0-BC66-355FE5AB7B68}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>inlab</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -139,15 +139,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="KVList.h" />
-    <ClInclude Include="KVPair.h" />
-    <ClInclude Include="Taxable.h" />
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="PriceList.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="w5.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="KVList.h" />
+    <ClInclude Include="KVPair.h" />
+    <ClInclude Include="Taxable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
