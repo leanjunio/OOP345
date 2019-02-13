@@ -20,7 +20,6 @@ namespace sict
 		{
 			if (n > 0)
 			{
-
 				m_numElementsInList = { n };
 				m_numCurrentElementsInList = { 0 };
 				m_list = new T[n];
@@ -48,6 +47,8 @@ namespace sict
 		}
 		const T& operator[](size_t i) const
 		{
+			if (i > m_numElementsInList)
+				throw "ERROR: The index passed to the subscripting operator is out-of-bounds";
 			return m_list[i];
 		}
 		template<typename F>
