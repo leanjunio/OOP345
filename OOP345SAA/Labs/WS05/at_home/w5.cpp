@@ -67,4 +67,15 @@ int main(int argc, char* argv[]) {
 	std::cout << "\nPrice List with G+S Taxes Included\n==================================\n";
 	std::cout << "Description:      Price Price+Tax\n";
 	priceList.display(std::cout, Taxable(HST));
+
+	// grade list file
+	KVList<KVPair<int, float>> gradeList = createList<
+		KVList<KVPair<int, float>>,
+		KVPair<int, float>,
+		int,
+		float>
+		(argv[2]);
+	std::cout << "\nStudent List Letter Grades Included\n==================================\n";
+	std::cout << "Student No:      Grade Letter\n";
+	gradeList.display(std::cout, Taxable(HST));
 }
