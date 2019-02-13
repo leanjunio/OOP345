@@ -57,25 +57,54 @@ int main(int argc, char* argv[]) {
 	// set for fixed, 2-decimal point output
 	std::cout << std::fixed << std::setprecision(2);
 
-	// process price list file
-	KVList<KVPair<std::string, float>> priceList = createList< 
-		KVList<KVPair<std::string, float>>, 
-		KVPair<std::string, float>, 
-		std::string, 
-		float>
-		(argv[1]);
-	std::cout << "\nPrice List with G+S Taxes Included\n==================================\n";
-	std::cout << "Description:      Price Price+Tax\n";
-	priceList.display(std::cout, Taxable(HST));
+	try
+	{
+		// process price list file
+		KVList<KVPair<std::string, float>> priceList = createList<
+			KVList<KVPair<std::string, float>>,
+			KVPair<std::string, float>,
+			std::string,
+			float>
+			(argv[1]);
+		std::cout << "\nPrice List with G+S Taxes Included\n==================================\n";
+		std::cout << "Description:      Price Price+Tax\n";
+		priceList.display(std::cout, Taxable(HST));
 
-	// grade list file
-	KVList<KVPair<int, float>> gradeList = createList<
-		KVList<KVPair<int, float>>,
-		KVPair<int, float>,
-		int,
-		float>
-		(argv[2]);
-	std::cout << "\nStudent List Letter Grades Included\n==================================\n";
-	std::cout << "Student No :      Grade    Letter\n";
-	gradeList.display(std::cout, Taxable(HST));
+		// grade list file
+		KVList<KVPair<int, float>> gradeList = createList<
+			KVList<KVPair<int, float>>,
+			KVPair<int, float>,
+			int,
+			float>
+			(argv[2]);
+		std::cout << "\nStudent List Letter Grades Included\n==================================\n";
+		std::cout << "Student No :      Grade    Letter\n";
+		gradeList.display(std::cout, [](float grade) -> std::string
+		{
+			if (grade >= 90 && grade <= 100)
+				return "A+";
+			else if (grade >= 80 && grade <= 89.9)
+				return "A ";
+			else if (grade >= 75 && grade <= 79.9)
+				return "B+";
+			else if (grade >= 70 && grade <= 74.9)
+				return "B ";
+			else if (grade >= 65 && grade <= 69.9)
+				return "C+";
+			else if (grade >= 60 && grade <= 64.9)
+				return "C ";
+			else if (grade >= 55 && grade <= 59.9)
+				return "D+";
+			else if (grade >= 50 && grade <= 54.9)
+				return "D ";
+			else if (grade >= 0 && grade <= 49.9)
+				return "F ";
+			else
+				throw "Not a grade";
+		});
+	}
+	catch (const std::string& ex)
+	{
+		std::cout << ex << std::endl;
+	}
 }
