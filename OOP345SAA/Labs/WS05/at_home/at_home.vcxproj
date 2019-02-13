@@ -23,7 +23,7 @@
     <ProjectGuid>{ED641970-2164-4253-9EE6-AA0BD316791C}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>athome</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -144,11 +144,11 @@
     <ClInclude Include="Taxable.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="w5.cpp" />
-  </ItemGroup>
-  <ItemGroup>
     <Text Include="PriceList.txt" />
     <Text Include="Student.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="w5.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
