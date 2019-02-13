@@ -8,10 +8,12 @@ namespace sict
 	{
 		T* m_list;
 		int m_numElementsInList;
+		int m_numCurrentElementsInList;
 	public:
 		KVList()
 			: m_list{nullptr}
 			, m_numElementsInList{0}
+			, m_numCurrentElementsInList{0}
 		{
 		}
 		KVList(int n)
@@ -19,10 +21,15 @@ namespace sict
 			if (n > 0)
 			{
 				m_numElementsInList = { n };
+				m_numCurrentElementsInList = { 0 };
 				m_list = new T[n];
 			}
 			else
-				*this = KVList();	// BUG? Put in empty state with deleted copy operator?
+			{
+				m_list = {};
+				m_numElementsInList = {};
+				m_numCurrentElementsInList = {};
+			}
 		}
 		KVList(KVList&& other)
 		{
@@ -30,9 +37,11 @@ namespace sict
 			{
 				m_list = other.m_list;
 				m_numElementsInList = other.m_numElementsInList;
+				m_numCurrentElementsInList = other.m_numCurrentElementsInList;
 
 				other.m_list = { nullptr };
 				other.m_numElementsInList = { 0 };
+				other.m_numCurrentElementsInList = { 0 };
 			}
 		}
 		~KVList()
@@ -52,7 +61,10 @@ namespace sict
 		}
 		void push_back(const T& t)
 		{
-			
+			if (m_numCurrentElementsInList + 1 <= m_numElementsInList)
+				m_list[m_numCurrentElementsInList] = t;
+
+			++m_numCurrentElementsInList;
 		}
 		KVList(const KVList&) = delete;
 		KVList& operator=(const KVList&) = delete;
