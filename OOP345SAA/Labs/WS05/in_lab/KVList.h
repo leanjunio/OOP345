@@ -24,16 +24,9 @@ namespace sict
 				m_numElementsInList = { n };
 				m_numCurrentElementsInList = { 0 };
 				m_list = new T[n];
-
-				throw "ERROR: Number of elements must be a positive number";
 			}
 			else
-			{
-
-				m_list = {};
-				m_numElementsInList = {};
-				m_numCurrentElementsInList = {};
-			}
+				throw "ERROR: Number of elements must be a positive number";
 		}
 		KVList(KVList&& other)
 		{
