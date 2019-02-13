@@ -47,6 +47,10 @@ public:
 
 The child class Message is a "part of" MessagePack, not having Message can greatly reduce the functionality of MessagePack. If the MessagePack is deleted, the Messages as well will also be destroyed.
 
+2. The difference between the implementations of move and copy functions in a composition and an aggregation
+
+
+
 QUIZ CORRECTIONS:
 
 Q3: Using the pointer 'p' defined in the previous question, write the code to call getData passing in a value of 5 and storing the return in 'Result'
