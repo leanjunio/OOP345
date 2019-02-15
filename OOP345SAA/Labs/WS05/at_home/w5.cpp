@@ -6,6 +6,7 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
+#include <exception>
 #include <string>
 #include "KVPair.h"
 #include "KVList.h"
@@ -51,14 +52,15 @@ int main(int argc, char* argv[]) {
 	}
 	std::cout << std::endl;
 
-	// check for command line errors
-	if (argc != 3) exit(1);
-
-	// set for fixed, 2-decimal point output
-	std::cout << std::fixed << std::setprecision(2);
-
 	try
 	{
+		// check for command line errors
+		if (argc != 3) 
+			exit(1);
+
+		// set for fixed, 2-decimal point output
+		std::cout << std::fixed << std::setprecision(2);
+
 		// process price list file
 		KVList<KVPair<std::string, float>> priceList = createList<
 			KVList<KVPair<std::string, float>>,
@@ -103,8 +105,9 @@ int main(int argc, char* argv[]) {
 				throw "Not a grade";
 		});
 	}
-	catch (const std::string& ex)
+	catch (const std::exception& ex)
 	{
-		std::cout << ex << std::endl;
+		std::cerr << "Caught exception: " << ex.what() << std::endl;
+		exit(2);
 	}
 }
