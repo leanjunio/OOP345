@@ -8,17 +8,12 @@ namespace sict
 	class iProduct
 	{
 	public:
-		double price() const
-		{
-		}
-		
-		void display(std::ostream& os) const
-		{
-		}
+		virtual double price() const = 0;
+		virtual void display(std::ostream& os) const = 0;
+		iProduct* readRecord(std::ifstream& file);
 	};
 
 	std::ostream& operator<<(std::ostream& os, const iProduct& p);
-	iProduct* readRecord(std::ifstream& file);
 }
 
 #endif // !_SICT_IPRODUCT_H

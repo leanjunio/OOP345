@@ -18,12 +18,24 @@
     <ClCompile Include="w6.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Sale.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Product.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Sales.dat" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="iProduct.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sale.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Product.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
