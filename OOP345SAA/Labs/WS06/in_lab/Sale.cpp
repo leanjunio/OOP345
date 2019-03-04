@@ -18,10 +18,7 @@ namespace sict
 				std::string line;
 				while (std::getline(fs, line))
 				{
-					size_t space_pos = line.find(' ');
-					int product_number = std::stoi(line.substr(0, space_pos));
-					double cost = std::stod(line.substr(space_pos));
-
+					
 					products.push_back(sict::Product(product_number, cost));
 				}
 			}
@@ -32,8 +29,14 @@ namespace sict
 
 	void Sale::display(std::ostream & os) const
 	{
+		std::cout << "Product No      Cost" << std::endl;
+		double total = { 0.0 };
 		for (auto& i : products)
-			i.display(os);
+		{
+			os << i;
+			total += i.price();
+		}
+		std::cout << "Total: " << total << std::endl;
 	}
 
 
