@@ -13,15 +13,7 @@ namespace sict
 			std::ifstream fs;
 			fs.open(file);
 
-			if (fs.is_open())
-			{
-				std::string line;
-				while (std::getline(fs, line))
-				{
-					
-					products.push_back(sict::Product(product_number, cost));
-				}
-			}
+			// Call readRecord()
 
 			fs.close();
 		}
@@ -34,7 +26,7 @@ namespace sict
 		for (auto& i : products)
 		{
 			os << i;
-			total += i.price();
+			total += i->price();
 		}
 		std::cout << "Total: " << total << std::endl;
 	}

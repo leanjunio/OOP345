@@ -8,7 +8,7 @@ namespace sict
 {
 	class Sale
 	{
-		std::vector<Product> products;
+		std::vector<Product*> products;
 	public:
 		explicit Sale(const char*);
 		void display(std::ostream& os) const;
