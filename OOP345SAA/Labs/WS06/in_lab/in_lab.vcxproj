@@ -139,17 +139,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="iProduct.h" />
-    <ClInclude Include="Product.h" />
-    <ClInclude Include="Sale.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Product.cpp" />
-    <ClCompile Include="Sale.cpp" />
     <ClCompile Include="w6.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Sales.dat" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="iProduct.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
