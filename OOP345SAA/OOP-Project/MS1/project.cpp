@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 	}
 	std::cout << '\n' << std::endl;
 
-	Utilities::setDelimiter('|');
+	// Utilities::setDelimiter('|');
 
 	#ifdef OUTPUT_TO_FILE
 	std::ofstream os("Output.txt");
