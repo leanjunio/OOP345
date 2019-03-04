@@ -32,8 +32,7 @@ namespace sict
 			int product_number = std::stoi(buffer.substr(0, space_pos));
 			double cost = std::stod(buffer.substr(space_pos));      
 
-			Product *p = new Product(product_number, cost);
-			return p;
+			return new Product(product_number, cost);;
 		}
 	}
 	std::ostream & operator<<(std::ostream & os, const iProduct & p)

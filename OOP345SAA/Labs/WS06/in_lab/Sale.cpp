@@ -35,8 +35,6 @@ namespace sict
 		}
 		std::cout << "Total: " << total << std::endl;
 	}
-
-
 	Sale::~Sale()
 	{
 	}
