@@ -14,9 +14,10 @@ namespace sict
 		explicit Product(int, double);
 		double price() const override;
 		void display(std::ostream& os) const override;
-		iProduct* readRecord(std::ifstream& file);
-		friend std::ostream& operator<<(std::ostream& os, const iProduct& p);
 	};
+
+	iProduct* readRecord(std::ifstream& file);
+	std::ostream& operator<<(std::ostream& os, const iProduct& p);
 	
 }
 #endif // !_SICT_PRODUCT_H

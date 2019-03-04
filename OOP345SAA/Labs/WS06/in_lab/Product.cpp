@@ -23,14 +23,14 @@ namespace sict
 	{	
 		os << m_productNumber << " " << m_cost << std::endl;
 	}
-	iProduct * Product::readRecord(std::ifstream & file)
+	iProduct * readRecord(std::ifstream & file)
 	{
 		std::string buffer;
 		while (std::getline(file, buffer))
 		{
 			size_t space_pos = buffer.find(' ');
 			int product_number = std::stoi(buffer.substr(0, space_pos));
-			double cost = std::stod(buffer.substr(space_pos));
+			double cost = std::stod(buffer.substr(space_pos));      
 
 			Product *p = new Product(product_number, cost);
 			return p;
@@ -38,7 +38,6 @@ namespace sict
 	}
 	std::ostream & operator<<(std::ostream & os, const iProduct & p)
 	{
-		// std::cout << "std::ostream & operator<<(std::ostream & os, const iProduct & p)" << std::endl;
 		p.display(os);
 		return os;
 	}
