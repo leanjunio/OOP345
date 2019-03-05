@@ -26,17 +26,15 @@ namespace sict
 
 	void Sale::display(std::ostream & os) const
 	{
-		std::cout << "Product No      Cost" << std::endl;
+		os << "Product No" << std::setw(10) << "Cost" << std::endl;
 		double total = { 0.0 };
 		for (auto& i : products)
 		{
 			os << *i;
+			os << std::fixed << std::setprecision(2);
 			total += i->price();
 		}
-		std::cout << "Total: " << total << std::endl;
-	}
-	Sale::~Sale()
-	{
+		os << std::setw(10) << "Total" << std::setw(10) << total << std::endl;
 	}
 }
 

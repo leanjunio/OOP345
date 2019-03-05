@@ -12,7 +12,6 @@ namespace sict
 	public:
 		explicit Sale(const char*);
 		void display(std::ostream& os) const;
-		~Sale();
 	};
 }
 

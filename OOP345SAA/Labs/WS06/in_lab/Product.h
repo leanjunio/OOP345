@@ -17,9 +17,6 @@ namespace sict
 	};
 
 	iProduct* readRecord(std::ifstream& file);
-	std::ostream& operator<<(std::ostream& os, const iProduct& p);
-	
+	std::ostream& operator<<(std::ostream& os, const iProduct& p);	
 }
 #endif // !_SICT_PRODUCT_H
-
-
