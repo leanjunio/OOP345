@@ -11,14 +11,14 @@ namespace sict
 		if (file != nullptr && file[0] != '\0')
 		{
 			std::string buffer;
-			int cnt = {0};
+			int count = {0};
 			std::ifstream fs;
 			fs.open(file);
 			while (std::getline(fs, buffer))
-				cnt++;
+				count++;
 			fs.clear();
 			fs.seekg(0, std::ios::beg);
-			for (size_t i = 0; i < cnt; i++)
+			for (size_t i = 0; i < count; i++)
 				products.push_back(readRecord(fs));
 			fs.close();
 		}
