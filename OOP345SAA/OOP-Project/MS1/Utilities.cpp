@@ -10,8 +10,10 @@ namespace sict
 	}
 	const std::string Utilities::extractToken(const std::string & str, size_t & next_pos)
 	{
+		m_delimiter = '|'; // NOTE: Manually added - should be fetched from the main function
 		size_t delim_pos = str.find(m_delimiter);
-		std::string item = str.substr(next_pos, delim_pos - next_pos);
+		size_t word_length = next_pos;
+		std::string item = str.substr(delim_pos - next_pos, next_pos);
 		return item;
 	}
 	const char Utilities::getDelimiter() const

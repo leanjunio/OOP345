@@ -13,9 +13,9 @@ namespace sict
 		unsigned int m_quantity;
 	public:
 		explicit ItemSet(const std::string);
+		ItemSet(ItemSet&&);
 		ItemSet(const ItemSet&) = delete;
 		ItemSet& operator=(const ItemSet&) = delete;
-		ItemSet(ItemSet&&) = delete;
 		ItemSet& operator=(ItemSet&&) = delete;
 		ItemSet();
 		~ItemSet();
