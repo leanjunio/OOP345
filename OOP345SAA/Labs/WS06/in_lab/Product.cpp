@@ -23,7 +23,7 @@ namespace sict
 		return m_cost;
 	}
 	void Product::display(std::ostream & os) const
-	{	
+	{
 		os << std::setw(FW) << m_productNumber << std::setw(FW) << m_cost << std::endl;
 	}
 	iProduct * readRecord(std::ifstream & file)

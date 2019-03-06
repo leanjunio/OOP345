@@ -16,14 +16,21 @@ namespace sict
 			size_t count = {0};
 			std::ifstream fs;
 			fs.open(file);
-			while (std::getline(fs, buffer))
-				count++;
-			fs.clear();
-			fs.seekg(0, std::ios::beg);
-			for (size_t i = 0; i < count; i++)
-				m_products.push_back(readRecord(fs));
-			fs.close();
+			if (fs.is_open())
+			{
+				while (std::getline(fs, buffer))
+					count++;
+				fs.clear();
+				fs.seekg(0, std::ios::beg);
+				for (size_t i = 0; i < count; i++)
+					m_products.push_back(readRecord(fs));
+				fs.close();
+			}
+			else
+				throw "File cannot be opened";
 		}
+		else
+			throw "File does not exist";
 	}
 
 	void Sale::display(std::ostream & os) const
