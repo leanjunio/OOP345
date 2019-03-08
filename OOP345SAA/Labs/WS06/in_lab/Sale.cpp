@@ -35,7 +35,7 @@ namespace sict
 
 	void Sale::display(std::ostream & os) const
 	{
-		os << "Product No" << std::setw(FW) << "Cost" << std::endl;
+		os << "\nProduct No" << std::setw(FW) << "Cost" << std::endl;
 		double total = { 0.0 };
 		for (auto& i : m_products)
 		{
