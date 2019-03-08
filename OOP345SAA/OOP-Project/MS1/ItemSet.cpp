@@ -58,7 +58,7 @@ namespace sict
 		size_t fw = m_utility.getFieldWidth();
 
 		if (full)
-			os << std::left << std::setw(fw) << m_name << " [" << std::setw(5) << m_serialNumber << "] Quantity " << std::setw(3) << m_quantity << std::right<< "Description: " << m_description << std::endl;
+			os << std::left << std::setw(fw) << m_name << " [" << std::setw(5) << m_serialNumber << "] Quantity " << std::setw(3) << m_quantity << std::right<< " Description: " << m_description << std::endl;
 	}
 }
 
