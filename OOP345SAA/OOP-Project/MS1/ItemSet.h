@@ -20,8 +20,6 @@ namespace sict
 		ItemSet(const ItemSet&) = delete;
 		ItemSet& operator=(const ItemSet&) = delete;
 		ItemSet& operator=(ItemSet&&) = delete;
-		ItemSet();
-		~ItemSet();
 
 		const std::string& getName() const;
 		const unsigned int getSerialNumber() const;

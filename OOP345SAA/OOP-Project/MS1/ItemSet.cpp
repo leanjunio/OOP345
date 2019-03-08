@@ -34,9 +34,6 @@ namespace sict
 			other.m_quantity = { 0 };
 		}
 	}
-	ItemSet::~ItemSet()
-	{
-	}
 	const std::string & ItemSet::getName() const
 	{
 		return m_name;
