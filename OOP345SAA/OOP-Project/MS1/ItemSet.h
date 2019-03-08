@@ -2,17 +2,20 @@
 #define _SICT_ITEMSET_H
 
 #include <string>
+#include "Utilities.h"
 
 namespace sict
 {
 	class ItemSet
 	{
+		// Tokens
 		std::string m_name;
 		std::string m_description;
 		unsigned int m_serialNumber;
 		unsigned int m_quantity;
+		Utilities m_utility;
 	public:
-		explicit ItemSet(const std::string);
+		explicit ItemSet(const std::string&);
 		ItemSet(ItemSet&&);
 		ItemSet(const ItemSet&) = delete;
 		ItemSet& operator=(const ItemSet&) = delete;

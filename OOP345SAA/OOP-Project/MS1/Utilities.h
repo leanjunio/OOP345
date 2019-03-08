@@ -7,14 +7,14 @@ namespace sict
 {
 	class Utilities
 	{
-		char m_delimiter;
-		size_t m_fieldWidth;
+		static char m_delimiter;
+		static size_t m_fieldWidth;
 	public:
 		Utilities();
 		const std::string extractToken(const std::string& str, size_t& next_pos);
 		const char getDelimiter() const;
 		size_t getFieldWidth() const;
-		void setDelimiter(const char d);
+		static void setDelimiter(const char d);
 		void setFieldWidth(size_t);
 	};
 }
