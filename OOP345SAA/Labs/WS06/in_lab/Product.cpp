@@ -4,11 +4,13 @@
 #include <iomanip>
 #include "Product.h"
 
+extern int FW;
+
 namespace sict
 {
 	Product::Product()
-		: m_cost{0.0}
-		, m_productNumber{0}
+		: m_productNumber{0}
+		, m_cost{0.0}
 	{
 	}
 	Product::Product(int productNumber, double cost)
@@ -21,20 +23,17 @@ namespace sict
 		return m_cost;
 	}
 	void Product::display(std::ostream & os) const
-	{	
-		os << std::setw(10) << m_productNumber << std::setw(10) << m_cost << std::endl;
+	{
+		os << std::setw(FW) << m_productNumber << std::setw(FW) << m_cost << std::endl;
 	}
 	iProduct * readRecord(std::ifstream & file)
 	{
-		std::string buffer = {""};
-		while (std::getline(file, buffer))
-		{
-			size_t space_pos = buffer.find(' ');
-			int product_number = std::stoi(buffer.substr(0, space_pos));
-			double cost = std::stod(buffer.substr(space_pos));
-
-			return new Product(product_number, cost);;
-		} 
+		iProduct* product = nullptr;
+		int product_number = { 0 };
+		double cost = { 0 };
+		file >> product_number >> cost;
+		product = new Product(product_number, cost);
+		return product;
 	}
 	std::ostream & operator<<(std::ostream & os, const iProduct & p)
 	{

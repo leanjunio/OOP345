@@ -1,0 +1,26 @@
+Quiz corrections:
+
+1.The C++ Standard Template Library (STL) It provides code for managing the elements of a ____________________ in a __________________ form, hiding the complex details and allowing re-use.  
+
+A: Data Structure in a generic form
+
+2. A container class represents a shell for a data structure that manages the _________________ associated with the elements of that structure and provides ______________________ to access those elements
+
+A: Manages the memory, member functions access to those elements
+
+4. An iterator is an object that
+
+A: points to an element within a sequence
+
+5. Write the declaration for an iterator 'i' that can be used with a std::vector<int>
+
+A: std::vector<int>::iterator i;
+
+6. Complete the following code that prints out the contents of a list container in STL
+
+int main() {   
+  std::list myList;        
+    
+  for(auto i = myList.begin(); i < myList.end(); i++)        
+       std::cout << *i << std::endl;
+}
