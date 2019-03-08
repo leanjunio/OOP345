@@ -5,7 +5,7 @@
 namespace sict
 {
 	char Utilities::m_delimiter = '\0';
-	size_t m_fieldWidth = { 0 };
+	size_t Utilities::m_fieldWidth = { 0 };
 	
 	// Default Constructor
 	// 
