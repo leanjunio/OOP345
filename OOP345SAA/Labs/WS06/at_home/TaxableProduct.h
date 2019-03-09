@@ -10,13 +10,13 @@ namespace sict
 	class TaxableProduct :
 		public Product
 	{
-		enum m_taxType { HST, PST };
+		enum class Tax: char { HST = 'H', PST = 'P' };
 		double m_taxRate;
 	public:
-		TaxableProduct(int productNumber, double price, char status);
-		void display(std::ostream& os) const;
-		iProduct* readRecord(std::ifstream& file);
-		~TaxableProduct();
+		TaxableProduct(int, double, Tax);
+		double price() const;
+		void display(std::ostream&) const;
+		iProduct* readRecord(std::ifstream&);
 	};
 
 }
