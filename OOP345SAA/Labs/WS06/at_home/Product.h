@@ -5,7 +5,8 @@
 
 namespace sict
 {
-	class Product : public iProduct
+	class Product : 
+		public iProduct
 	{
 		int m_productNumber;
 		double m_cost;

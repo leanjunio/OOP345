@@ -142,10 +142,12 @@
     <ClInclude Include="iProduct.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="Sale.h" />
+    <ClInclude Include="TaxableProduct.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Sale.cpp" />
+    <ClCompile Include="TaxableProduct.cpp" />
     <ClCompile Include="w6.cpp" />
   </ItemGroup>
   <ItemGroup>

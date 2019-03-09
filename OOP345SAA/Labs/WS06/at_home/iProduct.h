@@ -10,9 +10,9 @@ namespace sict
 	public:
 		virtual double price() const = 0;
 		virtual void display(std::ostream& os) const = 0;
-		iProduct* readRecord(std::ifstream& file);
 	};
 
+	iProduct* readRecord(std::ifstream& file);
 	std::ostream& operator<<(std::ostream& os, const iProduct& p);
 }
 
