@@ -10,6 +10,9 @@ namespace sict
 	void DataTable::displayData(std::ostream &)
 	{
 	}
+	void DataTable::displayStatistics(std::ostream &)
+	{
+	}
 }
 
 

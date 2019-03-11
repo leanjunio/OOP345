@@ -9,7 +9,7 @@ namespace sict
 	class DataTable
 	{
 	public:
-		DataTable(std::ifstream);
+		explicit DataTable(std::ifstream);
 		void displayData(std::ostream&);
 		void displayStatistics(std::ostream&);
 	};
