@@ -36,14 +36,11 @@ namespace sict {
 				T x = {0};
 				T y = {0};
 				do {
-					file >> x >> y;
-					if (x && y)
+					if (file >> x >> y)
 						m_dataTableNodes.push_back(std::make_pair(x,y));					
 					else
 						keepReading = false;
 				} while (keepReading);
-				
-				file >> x >> y;
 			}
 		}
 
@@ -61,7 +58,7 @@ namespace sict {
 		void displayData(std::ostream& os)	{
 			os << "Data Values" << std::endl;
 			os << "------------" << std::endl;
-			os << std::right << std::setw(FW) << "x" << std::setw(FW) << "y" << std::endl;
+			os << std::setw(FW) << "x" << std::setw(FW) << "y" << std::endl;
 
 			for (auto& i : m_dataTableNodes)
 				os << std::setprecision(ND) << std::get<0>(i) << ' ' << std::get<1>(i) << std::endl;
