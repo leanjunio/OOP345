@@ -1,2 +1,0 @@
-c:/mingw/bin/../lib/gcc/mingw32/8.2.0/../../../../mingw32/bin/ld.exe: C:\Users\Lean\AppData\Local\Temp\ccjcAZnY.o:Sale.cpp:(.text+0x115): undefined reference to `sict::readRecord(std::basic_ifstream<char, std::char_traits<char> >&)'
-collect2.exe: error: ld returned 1 exit status
