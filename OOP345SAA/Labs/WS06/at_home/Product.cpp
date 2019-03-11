@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <algorithm>
 #include <iomanip>
 #include "TaxableProduct.h"
 #include "Product.h"
