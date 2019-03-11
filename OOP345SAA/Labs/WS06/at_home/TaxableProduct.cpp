@@ -35,34 +35,4 @@ namespace sict
 		else
 			os << " PST";
 	}
-
-	iProduct* readRecord(std::ifstream & file)
-	{
-		iProduct* product = nullptr;
-
-		std::string line = {};
-		int product_number = { 0 };
-		double price = { 0 };
-		char tax = { '\0' };
-		
-		while (std::getline(file, line, '\n'))
-		{
-			size_t count = std::count(line.begin(), line.end(), ' ');		// count how many spaces in line
-			std::stringstream stream(line);
-			if (count == 2)
-			{
-				stream >> product_number >> price >> tax;
-				product = new TaxableProduct(product_number, price, tax);
-				break;
-			}
-			else
-			{
-				stream >> product_number >> price;
-				product = new Product(product_number, price);
-				break;
-			}
-		}
-
-		return product;
-	}
 }
