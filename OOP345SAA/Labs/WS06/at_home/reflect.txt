@@ -1,0 +1,10 @@
+
+
+- The reason for using the vector container rather than any other available in the STL.
+
+The vector container is the closest relative to an array - since it stores contiguous data without the need of tracking what's before/after the index. However, vectors have the ability to handle its own destruction once the object goes out of scope. 
+- Why there is no need to deallocate the dynamically allocated memory in your own code.
+Vectors have the ability to deallocate when the object goes out of scope.
+
+- How the range-based for simplifies coding in this case.
+Instead of accessing via index (i.e product[i]), we don't need to worry about the index since the current element (the pointer to the element within the container itself) of the container is accessed via reference (&) in a range based for loop.
