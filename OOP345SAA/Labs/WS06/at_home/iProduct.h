@@ -2,6 +2,7 @@
 #define _SICT_IPRODUCT_H
 
 #include <iostream>
+#include <fstream>
 
 namespace sict
 {

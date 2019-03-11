@@ -1,6 +1,8 @@
 #ifndef _SICT_PRODUCT_H
 #define _SICT_PRODUCT_H
 
+#include <iostream>
+#include <fstream>
 #include "iProduct.h"
 
 namespace sict
