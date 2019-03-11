@@ -24,9 +24,11 @@ namespace sict
 	}
 	void Product::display(std::ostream & os) const
 	{
-		os << std::setw(FW) << m_productNumber << std::setw(FW) << m_cost;
+		int fw = FW;
+		// std::cout << "Field Width: " << FW << std::endl;
+		os << std::setw(fw) << m_productNumber << std::setw(fw) << m_cost;
 	}
-	iProduct * readRecord(std::ifstream & file)
+	/*iProduct * readRecord(std::ifstream & file)
 	{
 		iProduct* product = nullptr;
 		int product_number = { 0 };
@@ -34,7 +36,7 @@ namespace sict
 		file >> product_number >> cost;
 		product = new Product(product_number, cost);
 		return product;
-	}
+	}*/
 	std::ostream & operator<<(std::ostream & os, const iProduct & p)
 	{
 		p.display(os);

@@ -3,6 +3,7 @@
 #include <iomanip>
 #include "Sale.h"
 #include "Product.h"
+#include "TaxableProduct.h"
 
 extern int FW;
 
@@ -35,13 +36,15 @@ namespace sict
 
 	void Sale::display(std::ostream & os) const
 	{
-		os << "\nProduct No" << std::setw(FW) << "Cost Taxable" << std::endl;
+		// BUG: std::setw(FW) does not work
+		os << "\nProduct No" << std::setw(FW) << " Cost Taxable" << std::endl;
 		double total = { 0.0 };
 		for (auto& i : m_products)
 		{
 			os << *i;
 			os << std::fixed << std::setprecision(2);
 			total += i->price();
+			os << std::endl;
 		}
 		os << std::setw(FW) << "Total" << std::setw(FW) << total << std::endl;
 	}
