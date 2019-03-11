@@ -1,6 +1,7 @@
 #include "DataTable.h"
 
 extern int FW;
+extern int ND;
 
 namespace sict
 {
