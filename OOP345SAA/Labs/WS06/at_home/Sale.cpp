@@ -36,8 +36,7 @@ namespace sict
 
 	void Sale::display(std::ostream & os) const
 	{
-		// BUG: std::setw(FW) does not work
-		os << "\nProduct No" << std::setw(FW) << " Cost Taxable" << std::endl;
+		os << "\nProduct No" << std::setw(FW) << "Cost" << ' ' << "Taxable" << std::endl;
 		double total = { 0.0 };
 		for (auto& i : m_products)
 		{
