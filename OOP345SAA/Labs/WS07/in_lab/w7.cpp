@@ -32,7 +32,7 @@ void processFile(const char* pFileName) {
 		sict::DataTable<float> data(dataFile);
 		cout << endl;
 		data.displayData(cout);
-		// data.displayStatistics(cout);
+		data.displayStatistics(cout);
 	}
 	catch (std::string& msg) {
 		cout << "ERROR: " << msg << endl;
