@@ -5,6 +5,13 @@
 #include <fstream>
 #include <vector>
 #include <utility>
+#include <iomanip>
+
+/**
+ * External variables coming from w7.cpp
+*/
+extern int FW;
+extern int ND;
 
 namespace sict {
 	/**
@@ -39,8 +46,25 @@ namespace sict {
 				file >> x >> y;
 			}
 		}
-		void displayData(std::ostream& os)	{
 
+		/**
+		 * Query function that displays the x-y data within the vector in the following format:
+		 * 2.1000 8.0000
+		 * 2.5000 12.0000
+     * 4.0000 14.0000
+     * 3.6000 10.0000
+		 * 
+		 * This can be done by utilizing the FW and ND provided from the main module
+		 * The method iterates element by element through the vector displaying one pair at a time.
+		 * To access first element from a pair: std::get<0>(pair_identifer)
+		*/
+		void displayData(std::ostream& os)	{
+			os << "Data Values" << std::endl;
+			os << "------------" << std::endl;
+			os << std::right << std::setw(FW) << "x" << std::setw(FW) << "y" << std::endl;
+
+			for (auto& i : m_dataTableNodes)
+				os << std::setprecision(ND) << std::get<0>(i) << ' ' << std::get<1>(i) << std::endl;
 		}
 		void displayStatistics(std::ostream& os) {
 
