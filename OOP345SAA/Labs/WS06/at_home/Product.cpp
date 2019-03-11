@@ -4,8 +4,8 @@
 #include <sstream>
 #include <algorithm>
 #include <iomanip>
-#include "TaxableProduct.h"
 #include "Product.h"
+#include "TaxableProduct.h"
 
 extern int FW;
 
