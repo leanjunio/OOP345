@@ -33,7 +33,8 @@ namespace sict {
 		 * mean = sum of all the integers on the Y/ num of integers on the Y
 		*/
 		T mean() const {
-			T total = sum("second");
+			// T total = sum("second");
+			T total = sum();
 			return total/m_data.size();
 		}
 
@@ -46,17 +47,30 @@ namespace sict {
 		 * currentValue with init - the value starts with 0 and increases based on the returned value of the lambda
 		 * currentValueInVector - the current element
 		*/
-		T sum(std::string& pos) {
-			T total = {0};
-			if (pos == "first") {
-				total += std::accumulate(m_data.begin(), m_data.end(), static_cast<T>(0), [](auto& a, auto* b) { return a + b.first });
+		// T sum(std::string& pos) {
+		T sum() const {
+			T total = total += std::accumulate(m_data.begin(), m_data.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.second; });;
+			/*if (pos == "first") {
+				total += std::accumulate(m_data.begin(), m_data.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.first; });
 			}
 			if (pos == "second") {
-				total += std::accumulate(m_data.begin(), m_data.end(), static_cast<T>(0), [](auto& a, auto* b) { return a + b.second });
-			}
+				total += std::accumulate(m_data.begin(), m_data.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.second; });
+			}*/
 			return total;
 		}
 
+		/**
+		 * Private method that returns all the y coordinates in a vector
+		*/
+		std::vector<T> y_collection() const {
+			std::vector y;
+
+			for(auto&& i : m_data)
+			{
+				
+			}
+			
+		}
 		/**
 		 * Private method that calculates the sample standard deviation
 		 * To calculate the sigma:
@@ -65,7 +79,7 @@ namespace sict {
 		T sigma() const {
 			T total = {0};
 			
-			std::for_each(m_data.begin(), m_data.end(), [](auto& n) {
+			std::for_each(m_data.begin(), m_data.end(), [&](T& n) {
 				total += std::pow(n - mean(), 2);
 			});
 
@@ -121,7 +135,7 @@ namespace sict {
 			os << "Statistics" << std::endl;
 			os << "----------" << std::endl;
 			os << std::fixed << std::setprecision(ND) << "y mean" << std::setw(FW) << "=" << mean() << std::endl;
-			os << std::fixed << std::setprecision(ND) << "y sigma" << std::setw(FW) << "=" << sigma << std::endl;
+			os << std::fixed << std::setprecision(ND) << "y sigma" << std::setw(FW) << "=" << sigma() << std::endl;
 		}
 	};
 }
