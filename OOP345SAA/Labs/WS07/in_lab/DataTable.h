@@ -56,6 +56,21 @@ namespace sict {
 			}
 			return total;
 		}
+
+		/**
+		 * Private method that calculates the sample standard deviation
+		 * To calculate the sigma:
+		 * - [(y_element_n1 - mean)^2 + (y_element_n2 - mean)^2 + n3...]/num_of_elements - 1
+		*/
+		T sigma() const {
+			T total = {0};
+			
+			std::for_each(m_data.begin(), m_data.end(), [](auto& n) {
+				total += std::pow(n - mean(), 2);
+			});
+
+			return total/(m_data.size() - 1);
+		}
 	public:
 
 		/**
@@ -105,25 +120,7 @@ namespace sict {
 		void displayStatistics(std::ostream& os) {
 			os << "Statistics" << std::endl;
 			os << "----------" << std::endl;
-			
 			os << std::fixed << std::setprecision(ND) << "y mean" << std::setw(FW) << "=" << mean() << std::endl;
-
-			// Calculating sigma
-			T total = {};
-			
-			// Create a vector containing all Ys
-			std::vector<T> seconds = {};
-			for (const auto& i : m_data)
-				seconds.push_back(std::get<1>(i));
-
-			// for each y, 
-			std::for_each(seconds.begin(), seconds.end(), [&](T& current_y) 
-			{ 
-				total += std::pow(current_y - mean, 2);
-			});
-
-			T sigma = std::sqrt(total / (m_data.size() - 1));
-
 			os << std::fixed << std::setprecision(ND) << "y sigma" << std::setw(FW) << "=" << sigma << std::endl;
 		}
 	};
