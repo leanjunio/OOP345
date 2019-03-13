@@ -33,9 +33,8 @@ namespace sict {
 		 * mean = sum of all the integers on the Y/ num of integers on the Y
 		*/
 		T mean() const {
-			// T total = sum("second");
-			T total = sum();
-			return total/m_data.size();
+			T t_xy = sum_x_y();
+			return std::get<1>(t_xy)/m_data.size();
 		}
 
 		/**
@@ -47,7 +46,7 @@ namespace sict {
 		 * currentValue with init - the value starts with 0 and increases based on the returned value of the lambda
 		 * currentValueInVector - the current element
 		*/
-		std::pair<T,T> sum() const {
+		std::pair<T,T> sum_x_y() const {
 			T t_x = {0};
 			T t_y = {0};
 
