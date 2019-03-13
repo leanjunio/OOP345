@@ -137,7 +137,7 @@ namespace sict {
 			os << "\nStatistics" << std::endl;
 			os << "----------" << std::endl;
 			os << std::fixed << std::setprecision(ND) << "  y mean    =  " << mean() << std::endl;
-			os << std::fixed << std::setprecision(ND) << "  y sigma   =  " << sigma() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  y sigma   =   " << sigma() << std::endl;
 		}
 	};
 }
