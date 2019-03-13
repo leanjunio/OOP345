@@ -136,8 +136,8 @@ namespace sict {
 		void displayStatistics(std::ostream& os) {
 			os << "\nStatistics" << std::endl;
 			os << "----------" << std::endl;
-			os << std::fixed << std::setprecision(ND) << "  y mean    = " << mean() << std::endl;
-			os << std::fixed << std::setprecision(ND) << "  y sigma   = " << sigma() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  y mean    =  " << mean() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  y sigma   =  " << sigma() << std::endl;
 		}
 	};
 }
