@@ -1,5 +1,5 @@
-#ifndef _SICT_DATATABLE_H
-#define _SICT_DATATABLE_H
+#ifndef SICT_DATA_TABLE_H
+#define SICT_DATA_TABLE_H
 
 #include <iostream>
 #include <fstream>
@@ -49,7 +49,8 @@ namespace sict {
 		*/
 		// T sum(std::string& pos) {
 		T sum() const {
-			T total = total += std::accumulate(m_data.begin(), m_data.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.second; });;
+			T total = {0};
+			total += std::accumulate(m_data.begin(), m_data.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.second; });;
 			/*if (pos == "first") {
 				total += std::accumulate(m_data.begin(), m_data.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.first; });
 			}
@@ -60,16 +61,16 @@ namespace sict {
 		}
 
 		/**
-		 * Private method that returns all the y coordinates in a vector
+		 * Private method that returns all the y coordinates in a vector by using a range-based for loop
 		*/
 		std::vector<T> y_collection() const {
-			std::vector y;
+			std::vector<T> y;
 
-			for(auto&& i : m_data)
-			{
-				
+			for (auto& i : m_data) {
+				y.push_back(std::get<1>(i));
 			}
-			
+
+			return y;			
 		}
 		/**
 		 * Private method that calculates the sample standard deviation
@@ -78,12 +79,13 @@ namespace sict {
 		*/
 		T sigma() const {
 			T total = {0};
+			auto y = y_collection();
 			
-			std::for_each(m_data.begin(), m_data.end(), [&](T& n) {
+			std::for_each(y.begin(), y.end(), [&](T& n) {
 				total += std::pow(n - mean(), 2);
 			});
 
-			return total/(m_data.size() - 1);
+			return std::sqrt(total/(y.size() - 1));
 		}
 	public:
 
@@ -134,9 +136,9 @@ namespace sict {
 		void displayStatistics(std::ostream& os) {
 			os << "Statistics" << std::endl;
 			os << "----------" << std::endl;
-			os << std::fixed << std::setprecision(ND) << "y mean" << std::setw(FW) << "=" << mean() << std::endl;
-			os << std::fixed << std::setprecision(ND) << "y sigma" << std::setw(FW) << "=" << sigma() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  y mean    = " << mean() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  y sigma   = " << sigma() << std::endl;
 		}
 	};
 }
-#endif // !_SICT_DATATABLE_H
+#endif // !SICT_DATA_TABLE_H
