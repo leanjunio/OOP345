@@ -87,6 +87,17 @@ namespace sict {
 
 			return std::sqrt(total/(y.size() - 1));
 		}
+
+		/**
+		 * Private method that calculates the median 
+		 * The median is described as the value that separates the values right in the middle
+		 * In order to find the median, we can sort the values and then take the middle
+		*/
+		T median() const {
+			auto y = y_collection();
+			std::sort(y.begin(), y.end());
+			return y[y.size()/2];
+		}
 	public:
 
 		/**
@@ -137,7 +148,8 @@ namespace sict {
 			os << "\nStatistics" << std::endl;
 			os << "----------" << std::endl;
 			os << std::fixed << std::setprecision(ND) << "  y mean    =  " << mean() << std::endl;
-			os << std::fixed << std::setprecision(ND) << "  y sigma   =   " << sigma() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  y sigma   =  " << sigma() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  y median  =  " << median() << std::endl;
 		}
 	};
 }
