@@ -39,7 +39,7 @@ namespace sict {
 		}
 
 		/**
-		 * Private method that calculates the sum of the chosen coordinates (first, second)
+		 * Private method that calculates the sum of the X and Y coordinates and returns them both via a pair object
 		 * by using the STL algorithm: accumulate(begin, end, initialValue, [](currentValue with init, currentValueInVector))
 		 * Explanation:
 		 * begin/end - range of the vector to iterate through
@@ -47,17 +47,14 @@ namespace sict {
 		 * currentValue with init - the value starts with 0 and increases based on the returned value of the lambda
 		 * currentValueInVector - the current element
 		*/
-		// T sum(std::string& pos) {
-		T sum() const {
-			T total = {0};
-			total += std::accumulate(m_data.begin(), m_data.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.second; });;
-			/*if (pos == "first") {
-				total += std::accumulate(m_data.begin(), m_data.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.first; });
-			}
-			if (pos == "second") {
-				total += std::accumulate(m_data.begin(), m_data.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.second; });
-			}*/
-			return total;
+		std::pair<T,T> sum() const {
+			T t_x = {0};
+			T t_y = {0};
+
+			t_x += std::accumulate(m_data.begin(), m_data.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.first; });
+			t_y += std::accumulate(m_data.begin(), m_data.end(), static_cast<T>(0), [](auto& a, auto& b) { return a + b.second; });
+			
+			return std::make_pair(t_x, t_y);
 		}
 
 		/**
@@ -97,6 +94,16 @@ namespace sict {
 			auto y = y_collection();
 			std::sort(y.begin(), y.end());
 			return y[y.size()/2];
+		}
+
+		/**
+		 * Private method that calculates the slope
+		 * The slope is the ratio of the amount that y increases as x increases
+		 * The slope tells you how much y increases as x increases
+		*/
+		T slope() const {
+			size_t n = m_data.size();
+			T total_x = 
 		}
 	public:
 
