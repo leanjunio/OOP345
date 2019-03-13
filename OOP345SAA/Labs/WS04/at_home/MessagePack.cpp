@@ -22,7 +22,9 @@ namespace sict
 			m_numElementsInPack = other.m_numElementsInPack;
 
 			for (int i = 0; i < m_numElementsInPack; i++)
+			{
 				m_messages[i] = other.m_messages[i];
+			}
 		}
 		return *this;
 	}
@@ -54,41 +56,28 @@ namespace sict
 		if (numElementsInArrayPassed > 0 && pToArrayOfMessages != nullptr)
 		{
 			m_numElementsInPack = { 0 };
-			m_messages = new Message[numElementsInArrayPassed];	
+			m_messages = new Message[numElementsInArrayPassed];
 
-			// store all message elements into the member
 			for (int i = 0; i < numElementsInArrayPassed; ++i)
 			{
 				if (!(*pToArrayOfMessages[i]).empty())
-					m_messages[i] = *pToArrayOfMessages[i];
-				else
-					m_messages[i] = Message();
-
-				m_numElementsInPack++;
-			}
-
-			// take out the objects that aren't supposed to be part of the class
-			for (int i = 0; i < m_numElementsInPack; ++i)
-			{
-				// overwrite empty space with next element and shift to left
-				if (m_messages[i].empty())
 				{
-					for (int x = i; x < m_numElementsInPack - 1; ++x)	
-						m_messages[x] = m_messages[x + 1];
-
-					m_messages[m_numElementsInPack - 1] = Message();
+					m_messages[i] = *pToArrayOfMessages[i];
+					m_numElementsInPack = i;595959
+				
+				}
+				else
+				{
+					*pToArrayOfMessages[i] = Message();
 				}
 			}
-
-			m_numElementsInPack--;
 		}
 	}
 	void MessagePack::display(std::ostream& os) const
 	{
 		for (int i = 0; i < m_numElementsInPack; i++)
 		{
-			if (!m_messages[i].empty())
-				m_messages[i].display(os);
+			m_messages[i].display(os);
 		}
 	}
 	size_t MessagePack::size() const

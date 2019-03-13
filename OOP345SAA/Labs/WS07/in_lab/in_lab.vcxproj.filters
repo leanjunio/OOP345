@@ -15,16 +15,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="DataTable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Simple.dat" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="w7.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="DataTable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DataTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
