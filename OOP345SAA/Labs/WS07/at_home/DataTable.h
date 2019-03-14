@@ -33,7 +33,7 @@ namespace sict {
 		 * mean = sum of all the integers on the Y/ num of integers on the Y
 		*/
 		T mean() const {
-			T t_xy = sum_x_y();
+			std::pair<T,T> t_xy = sum_x_y();
 			return std::get<1>(t_xy)/m_data.size();
 		}
 
@@ -55,19 +55,20 @@ namespace sict {
 			
 			return std::make_pair(t_x, t_y);
 		}
-
+		
 		/**
-		 * Private method that returns all the y coordinates in a vector by using a range-based for loop
+		 * Private method that returns all the x and y coordinates in a pair of enclosed vectors by using a range-based for loop
 		*/
-		std::vector<T> y_collection() const {
+		std::pair<std::vector<T>,std::vector<T>> xy_collection() const {
+			std::vector<T> x;
 			std::vector<T> y;
-
 			for (auto& i : m_data) {
+				x.push_back(std::get<0>(i));
 				y.push_back(std::get<1>(i));
 			}
-
-			return y;			
+			return std::make_pair(x,y);			
 		}
+
 		/**
 		 * Private method that calculates the sample standard deviation
 		 * To calculate the sigma:
@@ -75,7 +76,8 @@ namespace sict {
 		*/
 		T sigma() const {
 			T total = {0};
-			auto y = y_collection();
+			std::pair<std::vector<T>, std::vector<T>> v_xy = xy_collection();
+			std::vector<T> y = std::get<1>(v_xy);
 			
 			std::for_each(y.begin(), y.end(), [&](T& n) {
 				total += std::pow(n - mean(), 2);
@@ -90,7 +92,8 @@ namespace sict {
 		 * In order to find the median, we can sort the values and then take the middle
 		*/
 		T median() const {
-			auto y = y_collection();
+			std::pair<std::vector<T>, std::vector<T>> xy = xy_collection();
+			std::vector<T> y = std::get<1>(xy);  
 			std::sort(y.begin(), y.end());
 			return y[y.size()/2];
 		}
@@ -108,9 +111,22 @@ namespace sict {
 		*/
 		T slope() const {
 			size_t n = m_data.size();
-			T sums_xy = sum_x_y();
+			std::pair<T,T> sums_xy = sum_x_y();
+			std::pair<std::vector<T>,std::vector<T>> v_xy = xy_collection();
+			std::vector<T> x = std::get<0>(v_xy);
 			T sum_x = std::get<0>(sums_xy);
 			T sum_y = std::get<1>(sums_xy);
+			
+			T sum_prod_x_y = {0};
+			std::for_each(m_data.begin(), m_data.end(), [&](auto& i) { sum_prod_x_y += i.first * i.second; });
+
+			T sum_squared_x = {0};
+			std::for_each(x.begin(), x.end(), [&](auto& i) { sum_squared_x += i * i; });
+			
+			T numerator = (n * sum_prod_x_y) - (sum_x * sum_y);
+			T denominator = ((n * sum_squared_x) - (sum_x * sum_x));
+			
+			return numerator/denominator;
 		}
 	public:
 
@@ -164,6 +180,7 @@ namespace sict {
 			os << std::fixed << std::setprecision(ND) << "  y mean    =  " << mean() << std::endl;
 			os << std::fixed << std::setprecision(ND) << "  y sigma   =  " << sigma() << std::endl;
 			os << std::fixed << std::setprecision(ND) << "  y median  =  " << median() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  slope     =  " << slope() << std::endl;
 		}
 	};
 }
