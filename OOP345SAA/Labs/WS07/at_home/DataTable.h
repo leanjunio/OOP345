@@ -99,10 +99,18 @@ namespace sict {
 		 * Private method that calculates the slope
 		 * The slope is the ratio of the amount that y increases as x increases
 		 * The slope tells you how much y increases as x increases
+		 * The following information is needed in order to calculate the slope:
+		 * n - number of elements
+		 * sum_x - sum of all the x coordinates
+		 * sum_y - sum of all the y coordinates
+		 * sum_prod_x_y - sum of the products of each x*y coordinates
+		 * sum_squared_x - sum of all x^2
 		*/
 		T slope() const {
 			size_t n = m_data.size();
-			T total_x = 
+			T sums_xy = sum_x_y();
+			T sum_x = std::get<0>(sums_xy);
+			T sum_y = std::get<1>(sums_xy);
 		}
 	public:
 
