@@ -128,6 +128,24 @@ namespace sict {
 			
 			return numerator/denominator;
 		}
+
+		/**
+		 * Private method that calculates the y-intercept of the given coordinates
+		 * The following information is needed in order to calculate the intercept:
+		 * slope
+		 * n - number of elements
+		 * sum_y - sum of all the y coordinates
+		 * sum_x - sum of all the x coordinates
+		 * 
+		*/
+		T intercept() const {
+			size_t n = m_data.size();
+			std::pair<T,T> sums_xy = sum_x_y();
+			T sum_x = std::get<0>(sums_xy);
+			T sum_y = std::get<1>(sums_xy);
+
+			return (sum_y - (slope() * sum_x))/n;
+		}
 	public:
 
 		/**
@@ -181,6 +199,7 @@ namespace sict {
 			os << std::fixed << std::setprecision(ND) << "  y sigma   =  " << sigma() << std::endl;
 			os << std::fixed << std::setprecision(ND) << "  y median  =  " << median() << std::endl;
 			os << std::fixed << std::setprecision(ND) << "  slope     =  " << slope() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  intercept =  " << intercept() << std::endl;
 		}
 	};
 }
