@@ -28,14 +28,12 @@ namespace sict {
 		std::vector<std::pair<T,T>> m_data;
 	private:
 		/**
-		 * private method that calculates the mean of all the Y coordinates
-		 * The mean can be calculated using the following formula:
-		 * mean = sum of all the integers on the Y/ num of integers on the Y
+		 * Assistance methods
+		 * Methods that assist in the calculation of queries
+		 * 
+		 * 
+		 * 
 		*/
-		T mean() const {
-			std::pair<T,T> t_xy = sum_x_y();
-			return std::get<1>(t_xy)/m_data.size();
-		}
 
 		/**
 		 * Private method that calculates the sum of the X and Y coordinates and returns them both via a pair object
@@ -55,7 +53,7 @@ namespace sict {
 			
 			return std::make_pair(t_x, t_y);
 		}
-		
+
 		/**
 		 * Private method that returns all the x and y coordinates in a pair of enclosed vectors by using a range-based for loop
 		*/
@@ -70,7 +68,25 @@ namespace sict {
 		}
 
 		/**
-		 * Private method that calculates the sample standard deviation
+		 * Query Classes
+		 * Classes that returns values that are requested from it (mean, sigma, slope, etc)
+		 * 
+		 * 
+		 * 
+		 * 
+		*/
+		/**
+		 * private method that calculates the mean of all the Y coordinates
+		 * The mean can be calculated using the following formula:
+		 * mean = sum of all the integers on the Y/ num of integers on the Y
+		*/
+		T mean() const {
+			std::pair<T,T> t_xy = sum_x_y();
+			return std::get<1>(t_xy)/m_data.size();
+		}
+
+		/**
+		 * Private method that calculates the sample standard deviation (sigma)
 		 * To calculate the sigma:
 		 * - [(y_element_n1 - mean)^2 + (y_element_n2 - mean)^2 + n3...]/num_of_elements - 1
 		*/
@@ -92,7 +108,7 @@ namespace sict {
 		 * In order to find the median, we can sort the values and then take the middle
 		*/
 		T median() const {
-			std::pair<std::vector<T>, std::vector<T>> xy = xy_collection();
+			std::pair<std::vector<T>,std::vector<T>> xy = xy_collection();
 			std::vector<T> y = std::get<1>(xy);  
 			std::sort(y.begin(), y.end());
 			return y[y.size()/2];
