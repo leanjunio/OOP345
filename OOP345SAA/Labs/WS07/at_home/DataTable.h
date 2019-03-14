@@ -39,7 +39,7 @@ namespace sict {
 
 		/**
 		 * Private method that calculates the sum of the X and Y coordinates and returns them both via a pair object
-		 * by using the STL algorithm: accumulate(begin, end, initialValue, [](currentValue with init, currentValueInVector))
+		 * by using the STL algorithm: accumulate(begin, end, initialValue, [](currentValue - starts with the initialValue, currentValueInVector))
 		 * Explanation:
 		 * begin/end - range of the vector to iterate through
 		 * initialValue - 'static_cast<T>(0)' -> make the initial value 0
