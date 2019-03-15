@@ -1,0 +1,35 @@
+- The reason for using the vector container rather than any other available in the STL.
+
+The vector container is the best tool for storing data in a contiguous set of memory. It closely mimics the abilities of an array. Unlike an array, it does not need an initial declaration for the size since memory is allocated on the fly
+
+- List the STL template functions that you used in your solution.
+Assuming that STL template functions means any function that could be used for a container...
+
+std::pair<T,T> sum_x_y() const:
+- std::accumulate(...)
+
+T sigma() const:
+- std::for_each(...)
+
+T median() const:
+- std::sort(...)
+
+- Identify where you used lambda expressions
+
+Lambda expressions were used in the following methods:
+
+std::pair<T,T> sum_x_y() const;
+
+When accumulating the values of the x and y coordinates, a lambda was needed for each in order to add to the current value
+
+T sigma() const;
+
+In order to calculate the total for the sigma, a lambda was needed in order to subtract the mean from the current y value prior to being squared.
+
+T slope() const;
+
+In order for the slope to be calculated, xs and ys needed to be multipled to each other. A lambda was also used when the sum of each x^2 needed to be found.
+
+- Comment on the ease of programming associated with the STL.
+
+STL containers provided a way for programmers to interact and process data coming from containers.

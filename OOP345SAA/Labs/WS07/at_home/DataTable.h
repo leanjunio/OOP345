@@ -207,15 +207,18 @@ namespace sict {
 		 * Query that displays the statistics for the current object in the following format:
 		 * y mean    = 11.0000
 		 * y sigma   =  2.5820 
+		 * y median  = 12.0000
+     * slope     = 1.9087
+     * intercept = 5.1784
 		*/
 		void displayStatistics(std::ostream& os) {
 			os << "\nStatistics" << std::endl;
 			os << "----------" << std::endl;
-			os << std::fixed << std::setprecision(ND) << "  y mean    =  " << mean() << std::endl;
-			os << std::fixed << std::setprecision(ND) << "  y sigma   =  " << sigma() << std::endl;
-			os << std::fixed << std::setprecision(ND) << "  y median  =  " << median() << std::endl;
-			os << std::fixed << std::setprecision(ND) << "  slope     =  " << slope() << std::endl;
-			os << std::fixed << std::setprecision(ND) << "  intercept =  " << intercept() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  y mean    =   " << mean() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  y sigma   =   " << sigma() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  y median  =   " << median() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  slope     =   " << slope() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  intercept =   " << intercept() << std::endl;
 		}
 	};
 }
