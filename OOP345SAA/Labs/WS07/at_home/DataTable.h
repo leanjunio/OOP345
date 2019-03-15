@@ -214,11 +214,11 @@ namespace sict {
 		void displayStatistics(std::ostream& os) {
 			os << "\nStatistics" << std::endl;
 			os << "----------" << std::endl;
-			os << std::fixed << std::setprecision(ND) << "  y mean    = " << std::setw(FW) << mean() << std::endl;
-			os << std::fixed << std::setprecision(ND) << "  y sigma   = " << std::setw(FW) << sigma() << std::endl;
-			os << std::fixed << std::setprecision(ND) << "  y median  = " << std::setw(FW) << median() << std::endl;
-			os << std::fixed << std::setprecision(ND) << "  slope     = " << std::setw(FW) << slope() << std::endl;
-			os << std::fixed << std::setprecision(ND) << "  intercept = " << std::setw(FW) << intercept() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  y mean    =" << std::setw(FW) << mean() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  y sigma   =" << std::setw(FW) << sigma() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  y median  =" << std::setw(FW) << median() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  slope     =" << std::setw(FW) << slope() << std::endl;
+			os << std::fixed << std::setprecision(ND) << "  intercept =" << std::setw(FW) << intercept() << std::endl;
 		}
 	};
 }
