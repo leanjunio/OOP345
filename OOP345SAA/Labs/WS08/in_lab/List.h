@@ -32,11 +32,12 @@ namespace sict {
 		size_t size() const { return list.size(); }
 		const T& operator[](size_t i) const { return list[i]; }
 
-		// TODO: Overload the += operator with a raw pointer
-		//       as a second operand.
-
-
-
+		/**
+		  * Receives the address of an object to be stored in the List container and moves the object into that container
+		  */
+		void operator+=(const T* p) {
+			list.push_back(p);
+		}
 
 		void display(std::ostream& os) const {
             os << std::fixed << std::setprecision(2);
