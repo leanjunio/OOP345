@@ -36,7 +36,7 @@ namespace sict {
 		  * Receives the address of an object to be stored in the List container and moves the object into that container
 		  */
 		void operator+=(const T* p) {
-			list.push_back(p);
+			list.push_back(*p);
 		}
 
 		void display(std::ostream& os) const {

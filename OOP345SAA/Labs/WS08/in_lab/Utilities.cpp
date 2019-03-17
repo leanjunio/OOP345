@@ -11,19 +11,23 @@
 using namespace std;
 
 namespace sict {
+
+	/**
+	  * Compares the two passed arguments' product codes and builds the user-friendly list from the matching pairs
+	  * For each successful comparison, the function dynamically allocates memory of Product type using the descriptiion and price
+	  */
 	List<Product> mergeRaw(const List<Description>& desc, const List<Price>& price) {
 		List<Product> priceList;
 		// TODO: Add your code here to build a list of products
 		//         using raw pointers
-
-
-
-
-
-
-
-
-
+		
+		for (size_t i = 0; i < desc.size(); ++i) {
+			for (size_t x = 0; x < price.size(); ++x) {
+				if (desc[i].code == price[x].code) {
+					priceList += new Product(desc[i].desc, price[x].price);
+				}
+			}
+		}
 		return priceList;
 	}
 }
