@@ -92,8 +92,9 @@ namespace sict {
 		 * This method reports an exception if the price is negative
 		 */
 		void validate() const {
-			if (price < 0)
-				throw "The price of the Product is negative!";
+			if (price < 0) {
+				throw std::string("ERROR: *** Negative prices are invalid ***");
+			}
 		}
     };
 }

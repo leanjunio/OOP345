@@ -24,7 +24,9 @@ namespace sict {
 		for (size_t i = 0; i < desc.size(); ++i) {
 			for (size_t x = 0; x < price.size(); ++x) {
 				if (desc[i].code == price[x].code) {
-					priceList += new Product(desc[i].desc, price[x].price);
+					Product* p = new Product(desc[i].desc, price[x].price);
+					p->validate();
+					priceList += p;
 				}
 			}
 		}
