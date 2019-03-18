@@ -93,7 +93,7 @@ namespace sict {
 		 */
 		void validate() const {
 			if (price < 0) {
-				throw std::string("ERROR: *** Negative prices are invalid ***");
+				throw std::string("*** Negative prices are invalid ***");
 			}
 		}
     };
