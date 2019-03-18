@@ -57,7 +57,17 @@ namespace sict {
 
 	/**
 	 * Inserts the data for the current object into the ostream
+	 * Has a default showDetail as false
+	 * Displays in the following format:
+	 * Name       [Product]
+	 *            Part 1
+	 *            Part 2
+	 *            Part 3
+	 *            Part 4
 	*/
 	void CustomerOrder::display(std::ostream & os, bool showDetail) const {
+		if (!showDetail) {
+			os << m_ItemInfo.s_name << ' ' << getNameProduct() << std::endl;
+		}
 	}
 }

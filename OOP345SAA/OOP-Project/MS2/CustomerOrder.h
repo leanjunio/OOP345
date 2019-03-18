@@ -28,7 +28,7 @@ namespace sict {
         bool isFilled() const;
         bool isItemFilled(const std::string&) const;
         std::string getNameProduct() const;
-        void display(std::ostream& os, bool showDetail) const;
+        void display(std::ostream& os, bool showDetail = false) const;
     };
 }
 
