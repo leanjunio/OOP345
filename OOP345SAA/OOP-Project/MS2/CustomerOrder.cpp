@@ -1,12 +1,5 @@
 #include "CustomerOrder.h"
 
-namespace sict
-{
-    CustomerOrder::CustomerOrder(/* args */)
-    {
-    }
-
-    CustomerOrder::~CustomerOrder()
-    {
-    }
+namespace sict {
+	CustomerOrder::CustomerOrder() : m_ItemInfo() {}
 } // namespace sict

@@ -6,22 +6,20 @@
 #include "ItemSet.h"
 
 namespace sict {
-
-    /**
-     * Nested object that holds information about an Item
-    */
-    struct ItemInfo {
-        std::string s_name;
-        int s_serialNumer;
-        bool s_filled;
-    };
-    
     /**
      * Contains all the functionality for handling customers as they move along the assembly line
      * CustomerOrder objects are unique, therefore they cannot be copied, but they are moveable
     */
-    class CustomerOrder
-    {
+    class CustomerOrder {
+		/**
+		 * Nested object that holds information about an Item
+		*/
+			struct ItemInfo {
+				std::string s_name;
+				int s_serialNumer;
+				bool s_filled;
+				ItemInfo() : s_name{ "" }, s_serialNumer{ 0 }, s_filled{ false } {}
+			} m_ItemInfo;
     public:
         /**
          * Default Constructor that sets the object to a safe empty state
