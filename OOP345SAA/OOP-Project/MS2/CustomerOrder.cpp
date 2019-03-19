@@ -1,3 +1,5 @@
+#include <vector>
+#include <algorithm>
 #include "CustomerOrder.h"
 #include "Utilities.h"
 
@@ -19,13 +21,43 @@ namespace sict {
 		m_customerName = record.substr(0, next_pos);
 		m_productName = m_utility.extractToken(record, next_pos);
 
-		
+		size_t delimiter_count = std::count(record.begin(), record.end(), m_utility.getDelimiter());
+		m_itemInfo = new ItemInfo[delimiter_count - 1];
+
+		if (delimiter_count >= 2) {
+			for (size_t i = 0; i < delimiter_count - 1; ++i) {
+				m_itemInfo[i].s_name = m_utility.extractToken(record, next_pos);
+			}
+		}
+		else
+			throw std::string("***No items are found***");
+	}
+
+	CustomerOrder::CustomerOrder(CustomerOrder&& other) {
+		*this = std::move(other);
+	}
+
+	CustomerOrder & CustomerOrder::operator=(CustomerOrder&& other) {
+		if (this != &other) {
+			m_utility = other.m_utility;
+			m_itemInfo = other.m_itemInfo;
+			m_customerName = other.m_customerName;
+			m_productName = other.m_productName;
+
+			other.m_utility = Utilities::Utilities();
+			other.m_itemInfo = { nullptr };
+			other.m_customerName = { "" };
+			other.m_productName = { "" };
+		}
+		return *this;
 	}
 
 	/**
 	 * Destructor that deallocates memory
 	*/
 	CustomerOrder::~CustomerOrder() {
+		delete[] m_itemInfo;
+		m_itemInfo = { nullptr };
 	}
 
 	/**
@@ -74,7 +106,7 @@ namespace sict {
 	*/
 	void CustomerOrder::display(std::ostream & os, bool showDetail) const {
 		if (!showDetail) {
-			os << m_ItemInfo.s_name << ' ' << getNameProduct() << std::endl;
+			// os << m_itemInfo.s_name << ' ' << getNameProduct() << std::endl;
 		}
 	}
 }

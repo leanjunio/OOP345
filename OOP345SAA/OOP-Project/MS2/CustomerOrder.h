@@ -21,14 +21,19 @@ namespace sict {
             int s_serialNumer;
             bool s_filled;
             ItemInfo() : s_name{ "" }, s_serialNumer{ 0 }, s_filled{ false } {}
-        };
-		std::unique_ptr<ItemInfo> m_itemInfo;
+		};
+		
+		ItemInfo* m_itemInfo;
         Utilities m_utility;
         std::string m_customerName;
 		std::string m_productName;
     public:
         CustomerOrder();
         CustomerOrder(const std::string&);
+		CustomerOrder(const CustomerOrder&) = delete;
+		CustomerOrder& operator=(const CustomerOrder&) = delete;
+		CustomerOrder(CustomerOrder&&);
+		CustomerOrder& operator=(CustomerOrder&&);
         ~CustomerOrder();
         void fillItem (ItemSet&, std::ostream&);
         bool isFilled() const;
