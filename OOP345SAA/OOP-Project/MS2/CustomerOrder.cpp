@@ -1,10 +1,11 @@
 #include "CustomerOrder.h"
+#include "Utilities.h"
 
 namespace sict {
 	/**
 	 * Default Constructor that sets the object to a safe empty state
 	*/
-	CustomerOrder::CustomerOrder() : m_ItemInfo() {}
+	CustomerOrder::CustomerOrder() : m_itemInfo{ nullptr }, m_customerName{ "" }, m_productName{""} {}
 	/**
 	 * One argument constructor that receives a string that contains at least 3 tokens:
 	 * - Customer's name
@@ -13,7 +14,12 @@ namespace sict {
 	 * If no items are requested to be added (no products are present within the string), throw an exception that says so
 	 * If items are present, allocate memory for each one
 	*/
-	CustomerOrder::CustomerOrder(const std::string &) {
+	CustomerOrder::CustomerOrder(const std::string& record) {
+		size_t next_pos = record.find(m_utility.getDelimiter());
+		m_customerName = record.substr(0, next_pos);
+		m_productName = m_utility.extractToken(record, next_pos);
+
+		
 	}
 
 	/**
@@ -52,6 +58,7 @@ namespace sict {
 	 * CUSTOMER [PRODUCT]
 	*/
 	std::string CustomerOrder::getNameProduct() const {
+		//return std::string(m_ItemInfo.s_name) + " " + 
 		return std::string();
 	}
 

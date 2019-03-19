@@ -1,9 +1,11 @@
 #ifndef _SICT_CUSTOMER_ORDER_H
 #define _SICT_CUSTOMER_ORDER_H
 
-#include  <string>
+#include <string>
+#include <memory>
 #include <iostream>
 #include "ItemSet.h"
+#include "Utilities.h"
 
 namespace sict {
     /**
@@ -14,12 +16,16 @@ namespace sict {
 		/**
 		 * Nested object that holds information about an Item
 		*/
-			struct ItemInfo {
-				std::string s_name;
-				int s_serialNumer;
-				bool s_filled;
-				ItemInfo() : s_name{ "" }, s_serialNumer{ 0 }, s_filled{ false } {}
-			} m_ItemInfo;
+        struct ItemInfo {
+            std::string s_name;
+            int s_serialNumer;
+            bool s_filled;
+            ItemInfo() : s_name{ "" }, s_serialNumer{ 0 }, s_filled{ false } {}
+        };
+		std::unique_ptr<ItemInfo> m_itemInfo;
+        Utilities m_utility;
+        std::string m_customerName;
+		std::string m_productName;
     public:
         CustomerOrder();
         CustomerOrder(const std::string&);
