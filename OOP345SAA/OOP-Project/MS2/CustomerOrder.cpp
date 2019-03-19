@@ -7,7 +7,7 @@ namespace sict {
 	/**
 	 * Default Constructor that sets the object to a safe empty state
 	*/
-	CustomerOrder::CustomerOrder() : m_itemInfo{ nullptr }, m_customerName{ "" }, m_productName{""} {}
+	CustomerOrder::CustomerOrder() : m_itemInfo{ nullptr }, m_customerName{ "" }, m_productName{ "" }, numItems{0} {}
 	/**
 	 * One argument constructor that receives a string that contains at least 3 tokens:
 	 * - Customer's name
@@ -22,10 +22,11 @@ namespace sict {
 		m_productName = m_utility.extractToken(record, next_pos);
 
 		size_t delimiter_count = std::count(record.begin(), record.end(), m_utility.getDelimiter());
-		m_itemInfo = new ItemInfo[delimiter_count - 1];
+		numItems = delimiter_count - 1;
+		m_itemInfo = new ItemInfo[numItems];
 
 		if (delimiter_count >= 2) {
-			for (size_t i = 0; i < delimiter_count - 1; ++i) {
+			for (size_t i = 0; i < numItems; ++i) {
 				m_itemInfo[i].s_name = m_utility.extractToken(record, next_pos);
 			}
 		}
@@ -67,7 +68,7 @@ namespace sict {
 	 * Unable to fill CUSTOMER [PRODUCT][ITEM][SERIAL NUMBER] out of stock 
 	 * Also decrements the item stock by one
 	*/
-	void CustomerOrder::fillItem(ItemSet &, std::ostream &)	{
+	void CustomerOrder::fillItem(ItemSet&, std::ostream&)	{
 	}
 
 	/**
@@ -90,8 +91,7 @@ namespace sict {
 	 * CUSTOMER [PRODUCT]
 	*/
 	std::string CustomerOrder::getNameProduct() const {
-		//return std::string(m_ItemInfo.s_name) + " " + 
-		return std::string();
+		return std::string(m_customerName) + "[" + std::string(m_productName) + "]";
 	}
 
 	/**
@@ -106,7 +106,9 @@ namespace sict {
 	*/
 	void CustomerOrder::display(std::ostream & os, bool showDetail) const {
 		if (!showDetail) {
-			// os << m_itemInfo.s_name << ' ' << getNameProduct() << std::endl;
+			os << getNameProduct() << std::endl;
+			for (size_t i = 0; i < numItems - 1; i++)
+				os << m_itemInfo[i].s_name << std::endl;
 		}
 	}
 }

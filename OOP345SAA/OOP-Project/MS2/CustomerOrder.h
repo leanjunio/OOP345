@@ -27,6 +27,7 @@ namespace sict {
         Utilities m_utility;
         std::string m_customerName;
 		std::string m_productName;
+		size_t numItems;
     public:
         CustomerOrder();
         CustomerOrder(const std::string&);
