@@ -8,7 +8,6 @@ namespace sict
 {
 	class ItemSet
 	{
-		// Tokens
 		std::string m_name;
 		std::string m_description;
 		unsigned int m_serialNumber;
