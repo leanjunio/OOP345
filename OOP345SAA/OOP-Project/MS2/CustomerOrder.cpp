@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <algorithm>
 #include "CustomerOrder.h"
+#include "ItemSet.h"
 #include "Utilities.h"
 
 namespace sict {
@@ -73,29 +74,43 @@ namespace sict {
 	 * Unable to fill CUSTOMER [PRODUCT][ITEM][SERIAL NUMBER] out of stock
 	 * Also decrements the item stock by one
 	*/
-	void CustomerOrder::fillItem(ItemSet& set, std::ostream& os) {
+	void CustomerOrder::fillItem(ItemSet& item, std::ostream& os) {
+		for (size_t i = 0; m_numItems; ++i) {
+			if (item.getName() == m_itemInfo[i].s_name) {
+				if (item.getQuantity() == 0)
+					os << "Unable to fill " << m_customerName << " [" << m_productName << "][" << m_itemInfo[i].s_name << "][" << m_itemInfo[i].s_serialNumer << "] out of stock" << std::endl;
+				else 
+				{
+					if (m_itemInfo[i].s_filled)
+						os << "Unable to fill " << m_customerName << " [" << m_productName << "][" << m_itemInfo[i].s_name << "][" << m_itemInfo[i].s_serialNumer << "] already filled" << std::endl;
+					else 
+					{
+						m_itemInfo[i].s_serialNumer = item.getSerialNumber();
+						m_itemInfo[i].s_filled = true;
+						item.operator--();
+						os << "Filled " << m_customerName << " [" << m_productName << "][" << m_itemInfo[i].s_name << "][" << m_itemInfo[i].s_serialNumer << "]" << std::endl;
+					}
+				}
+			}
+		}
 	}
 
 	/**
 	 * Searches the list of items requested and returns true if all have ben filled
 	*/
 	bool CustomerOrder::isFilled() const {
-		bool filled = true;
-		for (size_t i = 0; i < m_numItems; i++) {
-			if (!m_itemInfo[i].s_filled) {
-				filled = false;
-				break;
-			}
-		}
-		return filled;
+		for (size_t i = 0; i < m_numItems; ++i) 
+			if (!m_itemInfo[i].s_filled)
+				return false;
+		return true;
 	}
 
 	/**
 	 * Receives an item name
 	 * search the list for that ItemName, return true if all requests for the item has been filled or if the item is not in the lists
 	*/
-	bool CustomerOrder::isItemFilled(const std::string &) const {
-		return false;
+	bool CustomerOrder::isItemFilled(const std::string& itemName) const {
+		return true;
 	}
 
 	/**
