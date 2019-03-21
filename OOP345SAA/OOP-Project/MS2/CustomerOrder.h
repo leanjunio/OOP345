@@ -20,17 +20,17 @@ namespace sict {
             std::string s_name;
             int s_serialNumer;
             bool s_filled;
-            ItemInfo() : s_name{ "" }, s_serialNumer{ 0 }, s_filled{ false } {}
+			ItemInfo() : s_name{ "" }, s_serialNumer{ 0 }, s_filled{ false } {}
 		};
 		
 		ItemInfo* m_itemInfo;
-        Utilities m_utility;
         std::string m_customerName;
 		std::string m_productName;
-		size_t numItems;
+		size_t m_numItems;
+		static size_t m_fieldWidth;
     public:
         CustomerOrder();
-        CustomerOrder(const std::string&);
+        explicit CustomerOrder(const std::string&);
 		CustomerOrder(const CustomerOrder&) = delete;
 		CustomerOrder& operator=(const CustomerOrder&) = delete;
 		CustomerOrder(CustomerOrder&&);
