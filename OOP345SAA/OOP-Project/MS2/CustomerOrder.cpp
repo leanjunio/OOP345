@@ -73,14 +73,21 @@ namespace sict {
 	 * Unable to fill CUSTOMER [PRODUCT][ITEM][SERIAL NUMBER] out of stock
 	 * Also decrements the item stock by one
 	*/
-	void CustomerOrder::fillItem(ItemSet&, std::ostream&) {
+	void CustomerOrder::fillItem(ItemSet& set, std::ostream& os) {
 	}
 
 	/**
 	 * Searches the list of items requested and returns true if all have ben filled
 	*/
 	bool CustomerOrder::isFilled() const {
-		return false;
+		bool filled = true;
+		for (size_t i = 0; i < m_numItems; i++) {
+			if (!m_itemInfo[i].s_filled) {
+				filled = false;
+				break;
+			}
+		}
+		return filled;
 	}
 
 	/**
