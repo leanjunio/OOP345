@@ -75,20 +75,20 @@ namespace sict {
 	 * Also decrements the item stock by one
 	*/
 	void CustomerOrder::fillItem(ItemSet& item, std::ostream& os) {
-		for (size_t i = 0; m_numItems; ++i) {
+		for (size_t i = 0; i < m_numItems; ++i) {
 			if (item.getName() == m_itemInfo[i].s_name) {
 				if (item.getQuantity() == 0)
-					os << "Unable to fill " << m_customerName << " [" << m_productName << "][" << m_itemInfo[i].s_name << "][" << m_itemInfo[i].s_serialNumer << "] out of stock" << std::endl;
+					os << " Unable to fill " << m_customerName << " [" << m_productName << "][" << m_itemInfo[i].s_name << "][" << m_itemInfo[i].s_serialNumer << "] out of stock" << std::endl;
 				else 
 				{
 					if (m_itemInfo[i].s_filled)
-						os << "Unable to fill " << m_customerName << " [" << m_productName << "][" << m_itemInfo[i].s_name << "][" << m_itemInfo[i].s_serialNumer << "] already filled" << std::endl;
+						os << " Unable to fill " << m_customerName << " [" << m_productName << "][" << m_itemInfo[i].s_name << "][" << m_itemInfo[i].s_serialNumer << "] already filled" << std::endl;
 					else 
 					{
 						m_itemInfo[i].s_serialNumer = item.getSerialNumber();
 						m_itemInfo[i].s_filled = true;
 						item.operator--();
-						os << "Filled " << m_customerName << " [" << m_productName << "][" << m_itemInfo[i].s_name << "][" << m_itemInfo[i].s_serialNumer << "]" << std::endl;
+						os << " Filled " << m_customerName << " [" << m_productName << "][" << m_itemInfo[i].s_name << "][" << m_itemInfo[i].s_serialNumer << "]" << std::endl;
 					}
 				}
 			}
@@ -110,6 +110,12 @@ namespace sict {
 	 * search the list for that ItemName, return true if all requests for the item has been filled or if the item is not in the lists
 	*/
 	bool CustomerOrder::isItemFilled(const std::string& itemName) const {
+		for (size_t i = 0; i < m_numItems;  ++i) {
+			if (m_itemInfo[i].s_name == itemName) {
+				if (!m_itemInfo->s_filled)
+					return false;
+			}
+		}
 		return true;
 	}
 
@@ -136,7 +142,7 @@ namespace sict {
 		if (!showDetail) {
 
 			for (size_t i = 0; i < m_numItems; ++i) {
-				os << std::setw(m_fieldWidth) << m_itemInfo[i].s_name << std::endl;
+				os << std::setfill(' ') << std::setw(m_fieldWidth + 1) << "    " << std::right << m_itemInfo[i].s_name << std::endl;
 			}
 		}
 	}
