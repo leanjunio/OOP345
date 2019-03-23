@@ -20,13 +20,13 @@
     <None Include="Prices.dat" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Element.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="List.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utilities.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Element.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

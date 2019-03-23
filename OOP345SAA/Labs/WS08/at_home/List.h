@@ -34,13 +34,17 @@ namespace sict {
 
 		// TODO: Overload the += operator with a smart pointer
 		//       as a second operand.
-
+		void operator+=(std::unique_ptr<T>& price) {
+			list.push_back(*price);
+		}
 
 
 
 		// TODO: Overload the += operator with a raw pointer
 		//       as a second operand.
-
+		void operator+=(const T* price) {
+			list.push_back(*price);
+		}
 
 
 
