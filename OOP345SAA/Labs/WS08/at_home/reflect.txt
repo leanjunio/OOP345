@@ -1,0 +1,46 @@
+- The advantage that smart pointer syntax provides.
+Smart pointers prevent resource leaks since resource management is implicitly handled (no explicit deallocation of memory is needed to be declared after the pointer is used). It also allows for an explicit definition of the ownership of the pointer itself.
+
+As provided in the following:
+
+List<Product> mergeSmart(const List<Description>& desc, const List<Price>& price) {
+		List<Product> priceList;
+		// TODO: Add your code here to build a list of products
+		//         using smart pointers
+		for (size_t i = 0; i < desc.size(); ++i) {
+			for (size_t x = 0; x < price.size(); ++x) {
+				if (desc[i].code == price[x].code) {
+					std::unique_ptr<Product> p { new Product(desc[i].desc, price[x].price) };
+					p->validate();
+					priceList += p; // did not need to be deallocated is a syntactic advantage that a smart pointer provides
+				}
+			}
+		}
+
+- List the difference between raw and smart pointer syntax in your solution.
+
+The most obvious difference between a smart pointer and a raw pointer is the use of a dereferencing operator(*). 
+
+A raw pointer is declared as the following:
+Product* p = new Product(desc[i].desc, price[x].price);
+
+As shown, a dereferencing operator is needed in order to classify the p identifier as a raw pointer.
+
+Meanwhile, a smart pointer is actually a templated object (Product):
+std::unique_ptr<Product> p { new Product(desc[i].desc, price[x].price) };
+
+This line clearly indicates that the 'p' identifier is a unique_ptr that cannot be copied due to the following deleted copy operations
+
+// algorithm library line 2337 and 2338
+unique_ptr(const unique_ptr&) = delete;
+unique_ptr& operator=(const unique_ptr&) = delete;
+
+Quiz Corrections:
+- A raw pointer is a pointer (an identifier that contains an address as its value) that does not include the ability to handle resource management by itself, the ability to explicitly set ownership bounderies (copying, counting the instances of its copies)
+- A raw pointer provides the program to gain access to the value stored within its address without the need to create an alias (reference)
+- the (->) gives access to a pointer's containing object/value
+- A smart pointer allows its value to be initialized the moment the memory is acquired by the program
+- output
+1.1 : 0037F99C
+4.4 : 0037f9B4
+4.4 : 0037f9B4

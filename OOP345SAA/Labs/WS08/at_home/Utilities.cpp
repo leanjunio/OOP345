@@ -22,6 +22,7 @@ namespace sict {
 					p->validate();
 					priceList += p;
 					delete p;	// deallocate p
+					p = { nullptr };
 				}
 			}
 		}
@@ -36,7 +37,7 @@ namespace sict {
 		for (size_t i = 0; i < desc.size(); ++i) {
 			for (size_t x = 0; x < price.size(); ++x) {
 				if (desc[i].code == price[x].code) {
-					std::unique_ptr<Product> p(new Product(desc[i].desc, price[x].price));
+					std::unique_ptr<Product> p { new Product(desc[i].desc, price[x].price) };
 					p->validate();
 					priceList += p;
 				}
