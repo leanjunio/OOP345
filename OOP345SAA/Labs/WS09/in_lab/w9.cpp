@@ -18,12 +18,12 @@ int main(int argc, char** argv)
 		cout << " " << argv[i];
 	cout << endl << endl;
 
-	if (argc != 4) {
+	if (argc != 3) {
 		cerr << endl << "***Incorrect number of arguments***" << endl;
 		return 1;
 	}
 
-    char key = argv[3][0];
+    char key = argv[2][0];
 
     try {
         sict::SecureData sd(argv[1], key, &cout);
