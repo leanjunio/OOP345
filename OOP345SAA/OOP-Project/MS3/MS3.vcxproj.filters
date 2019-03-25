@@ -15,27 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AssemblyLine.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CustomerOrder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LineManager.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="project.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Station.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Utilities.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ItemSet.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <Text Include="AssemblyLine.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="CustomerOrders.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Inventory.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssemblyLine.h">
@@ -44,13 +32,10 @@
     <ClInclude Include="CustomerOrder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LineManager.h">
+    <ClInclude Include="ItemSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Utilities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ItemSet.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Station.h">
@@ -58,8 +43,23 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="AssemblyLine.txt" />
-    <Text Include="CustomerOrders.txt" />
-    <Text Include="Inventory.txt" />
+    <ClCompile Include="AssemblyLine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomerOrder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ItemSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="project.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilities.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Station.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
