@@ -14,11 +14,15 @@ using namespace std;
 
 namespace sict {
 
+	// encrypts information using the key
+	//
 	void converter(char* t, char key, int n, const Cryptor& c) {
 		for (int i = 0; i < n; i++)
 			t[i] = c(t[i], key);
 	}
 
+	// copies the file into memory
+	//
 	SecureData::SecureData(const char* file, char key, ostream* pOfs) {
 		ofs = pOfs;
 
@@ -49,10 +53,14 @@ namespace sict {
 		*ofs << "Data encrypted in memory\n";
 	}
 
+	// deallocate resource
+	//
 	SecureData::~SecureData() {
 		delete[] text;
 	}
 
+	// Displays the file contents
+	//
 	void SecureData::display(std::ostream& os) const {
 		if (text && !encoded)
 			os << text << std::endl;
@@ -62,12 +70,16 @@ namespace sict {
 			throw std::string("\n***No data stored***\n");
 	}
 
+	// creates another thread while the main application is running
+	//
 	void SecureData::code(char key) {
 		std::thread t1(converter, text, key, nbytes, Cryptor());
 		t1.join();
 		encoded = !encoded;
 	}
 
+	// creates another file as a "backup"
+	//
 	void SecureData::backup(const char* file) {
 		if (!text)
 			throw std::string("\n***No data stored***\n");
@@ -85,6 +97,8 @@ namespace sict {
 		}
 	}
 
+	// restores the file that was encrypted
+	//
 	void SecureData::restore(const char* file, char key) {
 		// TODO: open binary file for reading
 		std::ifstream ifs(file, std::ifstream::binary);
@@ -111,6 +125,8 @@ namespace sict {
 		*ofs << "Data decrypted in memory\n\n";
 	}
 
+	// Output stream
+	//
 	std::ostream& operator<<(std::ostream& os, const SecureData& sd) {
 		sd.display(os);
 		return os;
