@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="SecureData.cpp">
+    <ClCompile Include="w9.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="w9.cpp">
+    <ClCompile Include="SecureData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
