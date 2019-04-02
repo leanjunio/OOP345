@@ -11,7 +11,9 @@ namespace sict
 	class LineManager
 	{
 	public:
-		LineManager(std::vector<Station>&, std::vector<size_t>, std::vector<CustomerOrder>, size_t, std::ostream&);
+		// Constructor that moves the customer orders to the front of a queue holding the orders waiting to be filled
+		// Determines the index of the last station on the line
+		LineManager(std::vector<Station*>&, std::vector<size_t>&, std::vector<CustomerOrder>&, size_t, std::ostream&);
 		void display(std::ostream&);
 		bool run(std::ostream&);
 		~LineManager();

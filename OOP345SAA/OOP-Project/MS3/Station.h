@@ -12,6 +12,8 @@ namespace sict
 	class Station
 	{
 		std::queue<CustomerOrder> m_customerOrders;
+
+		// Set of identical items with different serial numbers
 		ItemSet m_set;
 	public:
 		Station(const std::string&);
@@ -28,8 +30,8 @@ namespace sict
 		bool hasAnOrderToRelease() const;
 		Station& operator--();
 		Station& operator+=(CustomerOrder&& order);
-		bool pop(CustomerOrder&);
-		void validate(std::ostream&);
+		bool pop(CustomerOrder& ready);
+		void validate(std::ostream& os) const;
 	};
 }
 

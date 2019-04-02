@@ -1,12 +1,9 @@
 #include "LineManager.h"
 
-
-
-LineManager::LineManager()
+namespace sict
 {
+	LineManager::~LineManager()
+	{
+	}
 }
 
-
-LineManager::~LineManager()
-{
-}

@@ -10,55 +10,58 @@ namespace sict
 	ItemSet::ItemSet(const std::string& record) 
 	{
 		size_t next_pos = record.find(m_utility.getDelimiter());
-		m_name = record.substr(0,next_pos);
-		m_serialNumber = std::stoul(m_utility.extractToken(record, next_pos));	// extract token and convert from string to ulong
-		m_quantity = std::stoi(m_utility.extractToken(record, next_pos));
-		m_description = m_utility.extractToken(record, next_pos);
+		m_itemName = record.substr(0,next_pos);
+		m_itemSerialNumber = std::stoul(m_utility.extractToken(record, next_pos));	// extract token and convert from string to ulong
+		m_itemQuantity = std::stoi(m_utility.extractToken(record, next_pos));
+		m_itemDescription = m_utility.extractToken(record, next_pos);
 
 		// update the utility fieldWidth with the largest name's length
-		if (m_utility.getFieldWidth() < m_name.length())
-			m_utility.setFieldWidth(m_name.length());
+		if (m_utility.getFieldWidth() < m_itemName.length())
+			m_utility.setFieldWidth(m_itemName.length());
 	}
 	ItemSet::ItemSet(ItemSet && other)
 	{
 		if (this != &other)
 		{
-			m_name = other.m_name;
-			m_description = other.m_description;
-			m_serialNumber = other.m_serialNumber;
-			m_quantity = other.m_quantity;
+			m_itemName = other.m_itemName;
+			m_itemDescription = other.m_itemDescription;
+			m_itemSerialNumber = other.m_itemSerialNumber;
+			m_itemQuantity = other.m_itemQuantity;
 
-			other.m_name = { "" };
-			other.m_description = { "" };
-			other.m_serialNumber = { 0 };
-			other.m_quantity = { 0 };
+			other.m_itemName = { "" };
+			other.m_itemDescription = { "" };
+			other.m_itemSerialNumber = { 0 };
+			other.m_itemQuantity = { 0 };
 		}
 	}
 	const std::string & ItemSet::getName() const
 	{
-		return m_name;
+		return m_itemName;
 	}
 	const unsigned int ItemSet::getSerialNumber() const
 	{
-		return m_serialNumber;
+		return m_itemSerialNumber;
 	}
 	const unsigned int ItemSet::getQuantity() const
 	{
-		return m_quantity;
+		return m_itemQuantity;
 	}
-	ItemSet & ItemSet::operator--()
+	
+	// a prefix decrement operator that reduces the number of items in stock by one and increases the serial number by one. This operator returns a reference to the current object
+	//
+	ItemSet& ItemSet::operator--()
 	{
-		m_quantity--;
-		m_serialNumber++;
+		m_itemQuantity--;
+		m_itemSerialNumber++;
 
 		return *this;
 	}
 	void ItemSet::display(std::ostream & os, bool full) const
 	{
 		size_t fw = m_utility.getFieldWidth();
-		os << std::left << std::setw(fw) << m_name << " [" << std::setw(5) << m_serialNumber << "]";
+		os << std::left << std::setw(fw) << m_itemName << " [" << std::setw(5) << m_itemSerialNumber << "]";
 		if (full)
-			 os << " Quantity " << std::setw(3) << m_quantity << std::right<< " Description: " << m_description << std::endl;
+			 os << " Quantity " << std::setw(3) << m_itemQuantity << std::right<< " Description: " << m_itemDescription << std::endl;
 	}
 }
 

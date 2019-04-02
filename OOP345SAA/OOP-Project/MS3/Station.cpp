@@ -7,9 +7,6 @@ namespace sict
 		: m_set(string)
 	{
 	}
-	Station::~Station()
-	{
-	}
 	void Station::display(std::ostream& os) const
 	{
 		m_set.display(os, true);
@@ -31,6 +28,22 @@ namespace sict
 		{
 			if (m_customerOrders.front().isFilled())
 		}
+	}
+	Station& Station::operator--()
+	{
+		this->m_set--;
+		return *this;
+	}
+	Station & Station::operator+=(CustomerOrder && order)
+	{
+		m_customerOrders.push(order);
+		return *this;
+	}
+	bool Station::pop(CustomerOrder & ready)
+	{
+		if (m_customerOrders.empty())
+			return false;
+		return false;
 	}
 }
 
