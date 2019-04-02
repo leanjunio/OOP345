@@ -22,16 +22,17 @@ namespace sict
 	}
 	bool Station::hasAnOrderToRelease() const
 	{
-		if (m_customerOrders.empty())
+		/*if (m_customerOrders.empty())
 			return false;
 		else
 		{
 			if (m_customerOrders.front().isFilled())
-		}
+		}*/
+		return false;
 	}
 	Station& Station::operator--()
 	{
-		this->m_set--;
+		--m_set;
 		return *this;
 	}
 	Station & Station::operator+=(CustomerOrder && order)
@@ -41,9 +42,13 @@ namespace sict
 	}
 	bool Station::pop(CustomerOrder & ready)
 	{
-		if (m_customerOrders.empty())
-			return false;
 		return false;
+	}
+	void Station::validate(std::ostream & os) const
+	{
+		os << "getName(): " << m_set.getName() << std::endl;
+		os << "getSerialNumber(): " << m_set.getSerialNumber() << std::endl;
+		os << "getQuantity(): " << m_set.getQuantity() << std::endl;
 	}
 }
 

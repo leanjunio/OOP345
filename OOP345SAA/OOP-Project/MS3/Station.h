@@ -16,13 +16,11 @@ namespace sict
 		// Set of identical items with different serial numbers
 		ItemSet m_set;
 	public:
-		Station(const std::string&);
+		explicit Station(const std::string&);
 		Station(const Station&) = delete;
 		Station& operator=(const Station&) = delete;
 		Station(Station&&) = delete;
 		Station& operator=(Station&&) = delete;
-		Station();
-		~Station();
 
 		void display(std::ostream&) const;
 		void fill(std::ostream&);

@@ -21,7 +21,9 @@ namespace sict {
 	 * If no items are requested to be added (no products are present within the string), throw an exception that says so
 	 * If items are present, allocate memory for each one
 	*/
-	CustomerOrder::CustomerOrder(const std::string& record) : CustomerOrder() {
+	CustomerOrder::CustomerOrder(const std::string& record) 
+		: CustomerOrder() 
+	{
 		Utilities utility;
 		
 		size_t delimiter_pos = record.find(utility.getDelimiter());
@@ -43,12 +45,15 @@ namespace sict {
 		}	
 	}
 
-	CustomerOrder::CustomerOrder(CustomerOrder&& other) {
+	CustomerOrder::CustomerOrder(CustomerOrder&& other) 
+	{
 		*this = std::move(other);
 	}
 
-	CustomerOrder & CustomerOrder::operator=(CustomerOrder&& other) {
-		if (this != &other) {
+	CustomerOrder & CustomerOrder::operator=(CustomerOrder&& other) 
+	{
+		if (this != &other) 
+		{
 			m_customerName = other.m_customerName;
 			m_productName = other.m_productName;
 			m_numItems = other.m_numItems;
@@ -62,7 +67,8 @@ namespace sict {
 	/**
 	 * Destructor that deallocates memory
 	*/
-	CustomerOrder::~CustomerOrder() {
+	CustomerOrder::~CustomerOrder() 
+	{
 		delete[] m_itemInfo;
 		m_itemInfo = { nullptr };
 	}
@@ -74,9 +80,12 @@ namespace sict {
 	 * Unable to fill CUSTOMER [PRODUCT][ITEM][SERIAL NUMBER] out of stock
 	 * Also decrements the item stock by one
 	*/
-	void CustomerOrder::fillItem(ItemSet& item, std::ostream& os) {
-		for (size_t i = 0; i < m_numItems; ++i) {
-			if (item.getName() == m_itemInfo[i].s_name) {
+	void CustomerOrder::fillItem(ItemSet& item, std::ostream& os) 
+	{
+		for (size_t i = 0; i < m_numItems; ++i) 
+		{
+			if (item.getName() == m_itemInfo[i].s_name) 
+			{
 				if (item.getQuantity() == 0)
 					os << " Unable to fill " << m_customerName << " [" << m_productName << "][" << m_itemInfo[i].s_name << "][" << m_itemInfo[i].s_serialNumer << "] out of stock" << std::endl;
 				else 
@@ -87,7 +96,7 @@ namespace sict {
 					{
 						m_itemInfo[i].s_serialNumer = item.getSerialNumber();
 						m_itemInfo[i].s_filled = true;
-						item.operator--();
+						--item;
 						os << " Filled " << m_customerName << " [" << m_productName << "][" << m_itemInfo[i].s_name << "][" << m_itemInfo[i].s_serialNumer << "]" << std::endl;
 					}
 				}
@@ -98,7 +107,8 @@ namespace sict {
 	/**
 	 * Searches the list of items requested and returns true if all have ben filled
 	*/
-	bool CustomerOrder::isFilled() const {
+	bool CustomerOrder::isFilled() const 
+	{
 		for (size_t i = 0; i < m_numItems; ++i) 
 			if (!m_itemInfo[i].s_filled)
 				return false;
@@ -109,9 +119,12 @@ namespace sict {
 	 * Receives an item name
 	 * search the list for that ItemName, return true if all requests for the item has been filled or if the item is not in the lists
 	*/
-	bool CustomerOrder::isItemFilled(const std::string& itemName) const {
-		for (size_t i = 0; i < m_numItems;  ++i) {
-			if (m_itemInfo[i].s_name == itemName) {
+	bool CustomerOrder::isItemFilled(const std::string& itemName) const 
+	{
+		for (size_t i = 0; i < m_numItems;  ++i) 
+		{
+			if (m_itemInfo[i].s_name == itemName) 
+			{
 				if (!m_itemInfo->s_filled)
 					return false;
 			}
@@ -123,7 +136,8 @@ namespace sict {
 	 * Returns the name of the customer and their product in the following format:
 	 * CUSTOMER [PRODUCT]
 	*/
-	std::string CustomerOrder::getNameProduct() const {
+	std::string CustomerOrder::getNameProduct() const 
+	{
 		return std::string(m_customerName) + "[" + std::string(m_productName) + "]";
 	}
 
@@ -137,7 +151,8 @@ namespace sict {
 	 *            Part 3
 	 *            Part 4
 	*/
-	void CustomerOrder::display(std::ostream & os, bool showDetail) const {
+	void CustomerOrder::display(std::ostream & os, bool showDetail) const 
+	{
 		os << std::left << std::setw(m_fieldWidth) << m_customerName << " [" << m_productName << "]" << std::endl;
 		if (!showDetail) {
 
