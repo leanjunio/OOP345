@@ -16,7 +16,7 @@ namespace sict
 		if (!m_customerOrders.empty())
 			m_customerOrders.back().fillItem(m_set, os);
 	}
-	const std::string & Station::getName() const
+	const std::string& Station::getName() const
 	{
 		return m_set.getName();
 	}
@@ -35,12 +35,12 @@ namespace sict
 		--m_set;
 		return *this;
 	}
-	Station & Station::operator+=(CustomerOrder && order)
+	Station & Station::operator+=(CustomerOrder&& order)
 	{
-		m_customerOrders.push(order);
+		m_customerOrders.push_back(order);
 		return *this;
 	}
-	bool Station::pop(CustomerOrder & ready)
+	bool Station::pop(CustomerOrder& ready)
 	{
 		return false;
 	}

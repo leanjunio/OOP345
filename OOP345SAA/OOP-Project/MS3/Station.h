@@ -11,7 +11,7 @@ namespace sict
 {
 	class Station
 	{
-		std::queue<CustomerOrder> m_customerOrders;
+		std::vector<CustomerOrder> m_customerOrders;
 
 		// Set of identical items with different serial numbers
 		ItemSet m_set;
