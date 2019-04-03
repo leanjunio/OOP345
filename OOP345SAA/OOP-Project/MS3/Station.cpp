@@ -37,7 +37,7 @@ namespace sict
 	}
 	Station & Station::operator+=(CustomerOrder&& order)
 	{
-		m_customerOrders.push_back(order);
+		m_customerOrders.push(order);
 		return *this;
 	}
 	bool Station::pop(CustomerOrder& ready)
