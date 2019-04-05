@@ -9,8 +9,8 @@ namespace sict
 	// 
 	ItemSet::ItemSet(const std::string& record) 
 	{
-		size_t next_pos = record.find(m_utility.getDelimiter());
-		m_itemName = record.substr(0,next_pos);
+		size_t next_pos = record.find(m_utility.getDelimiter());					// get the position of the first delimiter
+		m_itemName = record.substr(0, next_pos);
 		m_itemSerialNumber = std::stoul(m_utility.extractToken(record, next_pos));	// extract token and convert from string to ulong
 		m_itemQuantity = std::stoi(m_utility.extractToken(record, next_pos));
 		m_itemDescription = m_utility.extractToken(record, next_pos);

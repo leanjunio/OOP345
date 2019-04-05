@@ -9,7 +9,7 @@
 
 namespace sict {
     /**
-     * Contains all the functionality for handling customers as they move along the assembly line
+     * Contains all the functionality for handling customer orders as they move along the assembly line
      * CustomerOrder objects are unique, therefore they cannot be copied, but they are moveable
     */
     class CustomerOrder {
@@ -23,7 +23,7 @@ namespace sict {
 			ItemInfo() : s_name{ "" }, s_serialNumer{ 0 }, s_filled{ false } {}
 		};
 		
-		ItemInfo* m_itemInfo;
+		ItemInfo* m_itemsOrdered;
         std::string m_customerName;
 		std::string m_productName;
 		size_t m_numItems;

@@ -12,7 +12,7 @@ namespace sict {
 	/**
 	 * Default Constructor that sets the object to a safe empty state
 	*/
-	CustomerOrder::CustomerOrder() : m_itemInfo{ nullptr }, m_customerName{ "" }, m_productName{ "" }, m_numItems{ 0 } {}
+	CustomerOrder::CustomerOrder() : m_itemsOrdered{ nullptr }, m_customerName{ "" }, m_productName{ "" }, m_numItems{ 0 } {}
 	/**
 	 * One argument constructor that receives a string that contains at least 3 tokens:
 	 * - Customer's name
@@ -35,11 +35,11 @@ namespace sict {
 		m_productName = utility.extractToken(record, delimiter_pos);
 		
 		m_numItems = std::count(record.begin(), record.end(), utility.getDelimiter()) - 1;
-		m_itemInfo = new ItemInfo[m_numItems];
+		m_itemsOrdered = new ItemInfo[m_numItems];
 
 		if (m_numItems >= 1) {
 			for (size_t i = 0; i < m_numItems; i++)
-				m_itemInfo[i].s_name = utility.extractToken(record, delimiter_pos);
+				m_itemsOrdered[i].s_name = utility.extractToken(record, delimiter_pos);
 		} else {
 			throw "***No items are found***";
 		}	
@@ -57,9 +57,9 @@ namespace sict {
 			m_customerName = other.m_customerName;
 			m_productName = other.m_productName;
 			m_numItems = other.m_numItems;
-			m_itemInfo = other.m_itemInfo;
+			m_itemsOrdered = other.m_itemsOrdered;
 
-			other.m_itemInfo = { nullptr };
+			other.m_itemsOrdered = { nullptr };
 		}
 		return *this;
 	}
@@ -69,12 +69,13 @@ namespace sict {
 	*/
 	CustomerOrder::~CustomerOrder() 
 	{
-		delete[] m_itemInfo;
-		m_itemInfo = { nullptr };
+		delete[] m_itemsOrdered;
+		m_itemsOrdered = { nullptr };
 	}
 
 	/**
-	 * Modifier that checks each item request, fills it if the item is available and the request has not been filled and reports the filling in the following format:
+
+	 * Modifier that checks each item request, fills it if the item is available and the request has not been 58/.205/ and reports the filling in the following format:
 	 * Filled CUSTOMER [PRODUCT][ITEM][SERIAL NUMBER] OR
 	 * Unable to fill CUSTOMER [PRODUCT][ITEM][SERIAL NUMBER] already filled
 	 * Unable to fill CUSTOMER [PRODUCT][ITEM][SERIAL NUMBER] out of stock
@@ -84,20 +85,20 @@ namespace sict {
 	{
 		for (size_t i = 0; i < m_numItems; ++i) 
 		{
-			if (item.getName() == m_itemInfo[i].s_name) 
+			if (item.getName() == m_itemsOrdered[i].s_name) 
 			{
 				if (item.getQuantity() == 0)
-					os << " Unable to fill " << m_customerName << " [" << m_productName << "][" << m_itemInfo[i].s_name << "][" << m_itemInfo[i].s_serialNumer << "] out of stock" << std::endl;
+					os << " Unable to fill " << m_customerName << " [" << m_productName << "][" << m_itemsOrdered[i].s_name << "][" << m_itemsOrdered[i].s_serialNumer << "] out of stock" << std::endl;
 				else 
 				{
-					if (m_itemInfo[i].s_filled)
-						os << " Unable to fill " << m_customerName << " [" << m_productName << "][" << m_itemInfo[i].s_name << "][" << m_itemInfo[i].s_serialNumer << "] already filled" << std::endl;
+					if (m_itemsOrdered[i].s_filled)
+						os << " Unable to fill " << m_customerName << " [" << m_productName << "][" << m_itemsOrdered[i].s_name << "][" << m_itemsOrdered[i].s_serialNumer << "] already filled" << std::endl;
 					else 
 					{
-						m_itemInfo[i].s_serialNumer = item.getSerialNumber();
-						m_itemInfo[i].s_filled = true;
+						m_itemsOrdered[i].s_serialNumer = item.getSerialNumber();
+						m_itemsOrdered[i].s_filled = true;
 						--item;
-						os << " Filled " << m_customerName << " [" << m_productName << "][" << m_itemInfo[i].s_name << "][" << m_itemInfo[i].s_serialNumer << "]" << std::endl;
+						os << " Filled " << m_customerName << " [" << m_productName << "][" << m_itemsOrdered[i].s_name << "][" << m_itemsOrdered[i].s_serialNumer << "]" << std::endl;
 					}
 				}
 			}
@@ -110,7 +111,7 @@ namespace sict {
 	bool CustomerOrder::isFilled() const 
 	{
 		for (size_t i = 0; i < m_numItems; ++i) 
-			if (!m_itemInfo[i].s_filled)
+			if (!m_itemsOrdered[i].s_filled)
 				return false;
 		return true;
 	}
@@ -123,9 +124,9 @@ namespace sict {
 	{
 		for (size_t i = 0; i < m_numItems;  ++i) 
 		{
-			if (m_itemInfo[i].s_name == itemName) 
+			if (m_itemsOrdered[i].s_name == itemName) 
 			{
-				if (!m_itemInfo->s_filled)
+				if (!m_itemsOrdered->s_filled)
 					return false;
 			}
 		}
@@ -157,7 +158,7 @@ namespace sict {
 		if (!showDetail) {
 
 			for (size_t i = 0; i < m_numItems; ++i) {
-				os << std::setfill(' ') << std::setw(m_fieldWidth + 1) << "    " << std::right << m_itemInfo[i].s_name << std::endl;
+				os << std::setfill(' ') << std::setw(m_fieldWidth + 1) << "    " << std::right << m_itemsOrdered[i].s_name << std::endl;
 			}
 		}
 	}

@@ -13,12 +13,24 @@ namespace sict
 	
 	// Extracts the next token in the string starting at the position next_pos
 	// 
-	const std::string Utilities::extractToken(const std::string & str, size_t & next_pos) 
+	const std::string Utilities::extractToken(const std::string & str, size_t & next_pos)
 	{
+		std::string token;
+		size_t word_length = 0;
+		size_t starting_pos = 0;
 		size_t next_delimiter_pos = str.find(m_delimiter, next_pos + 1);	// find the next delimiter from 1 character after the previous one
-		size_t word_length = (next_delimiter_pos - next_pos) - 1;			// get the length of the next word
-		std::string token = str.substr(next_pos + 1, word_length);			// extract the string that starts from next_pos with the length of the next word
-		next_pos = next_delimiter_pos;										// sets the next_pos to contain the position of the upcoming delimiter
+		if (next_pos == 0)
+		{
+			word_length = next_delimiter_pos;
+			starting_pos = next_pos;
+		}
+		else
+		{
+			word_length = (next_delimiter_pos - next_pos) - 1;			// get the length of the next word
+			starting_pos = next_pos + 1;
+		}
+		token = str.substr(starting_pos, word_length);						// extract the string that starts from next_pos with the length of the next word
+		next_pos = next_delimiter_pos;											// sets the next_pos to contain the position of the upcoming delimiter
 		return token;
 	}
 	const char Utilities::getDelimiter() const

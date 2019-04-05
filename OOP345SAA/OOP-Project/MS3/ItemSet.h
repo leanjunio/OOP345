@@ -7,14 +7,14 @@
 namespace sict
 {
 	/*
-	 * Manages the stock inventory of a particular item
+	 * Manages the inventory for a particular item
 	 */
 	class ItemSet
 	{
 		std::string m_itemName;
 		std::string m_itemDescription;
-		unsigned int m_itemSerialNumber;
-		unsigned int m_itemQuantity;
+		unsigned long m_itemSerialNumber;
+		int m_itemQuantity;
 		Utilities m_utility;
 	public:
 		explicit ItemSet(const std::string&);

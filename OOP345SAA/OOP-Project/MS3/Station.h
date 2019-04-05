@@ -9,10 +9,15 @@
 
 namespace sict
 {
+	/**
+	 * Contains all the functionality for filling customer orders with items.
+	 * NOTE: Each station that has an order can fill one request at a time for an ITEM from that station (each station has one item)
+	 * An order can be incomplete due to insufficient items in stock to cover its requests
+	*/
 	class Station
 	{
-		std::queue<CustomerOrder> m_customerOrders;
-		ItemSet m_set;
+		std::queue<CustomerOrder> m_stationCustomerOrders;
+		ItemSet m_stationInventory;
 	public:
 		explicit Station(const std::string&);
 		Station(const Station&) = delete;
