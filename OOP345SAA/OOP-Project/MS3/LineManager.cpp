@@ -9,36 +9,42 @@ namespace sict
 	// determines the index of the last station on the line
 	//
 	LineManager::LineManager(std::vector<Station*>& stationAddresses, std::vector<size_t>& indexNextStation, std::vector<CustomerOrder>& customerOrders, size_t indexStartingStation, std::ostream& os)
-		: m_indexStartingStation(indexStartingStation)
+		: m_stationAddresses{ stationAddresses }
+		, m_indexStartingStation(indexStartingStation)
 	{
 		for (auto& i : customerOrders)
 			m_ordersToFill.push(std::move(i));
+
 		m_indexLastStation = createAssemblyOrder(indexNextStation, indexStartingStation);
 	}
 	void LineManager::display(std::ostream& os) const
 	{
-		if (!m_ordersToFill.empty())
-		{
-			
-		}
+		
 	}
 
 	bool LineManager::run(std::ostream& os)
 	{
-		// if there's a customer order on the back of the queue waiting to be filled this function 
-		if (!m_ordersToFill.empty())
+		// If there are items that are waiting to be filled
+		while (!m_ordersToFill.empty())
 		{
-			// moves the customer order to the starting station on the line
-			*m_stationAddresses[m_indexStartingStation] += std::move(m_ordersToFill.front());
+			// move the items to the starting station on the line then remove the transferred element from the queue
+			*(m_stationAddresses[m_indexStartingStation]) += std::move(m_ordersToFill.front());
+			m_ordersToFill.pop();
 
-			// executes one fill step of the assembly process at each station on the line
-			
-			
-			
-			return true;
+			// Fill each station's orders
+			for (auto& s : m_stationAddresses)
+				s->fill(os);
+
+			for (auto& s : m_stationAddresses)
+			{
+				if (s->hasAnOrderToRelease())
+				{
+
+				}
+			}
 		}
-		else
-			return false;
+
+		return false;
 	}
 
 	// PRIVATE MEMBERS

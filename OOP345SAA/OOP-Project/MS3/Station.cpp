@@ -7,6 +7,7 @@ namespace sict
 	//
 	Station::Station(const std::string& string)
 		: m_stationInventory(string)
+		, m_stationName{m_stationInventory.getName()}
 	{
 	}
 
@@ -57,10 +58,11 @@ namespace sict
 	}
 	bool Station::pop(CustomerOrder& ready)
 	{
-		if (m_stationCustomerOrders.empty())
-			return false;
-		else
-			return true;
+		// check if the order at the front of the station's queue is filled
+		bool filled = ready.isItemFilled(m_stationName);
+		ready = std::move(m_stationCustomerOrders.front());
+		m_stationCustomerOrders.pop();
+		return filled;
 	}
 
 	// A query that reports the state of the ItemSet object

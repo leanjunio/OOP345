@@ -36,7 +36,7 @@ namespace sict {
 		CustomerOrder(CustomerOrder&&);
 		CustomerOrder& operator=(CustomerOrder&&);
         ~CustomerOrder();
-        void fillItem (ItemSet&, std::ostream&);
+        void fillItem(ItemSet&, std::ostream&);
         bool isFilled() const;
         bool isItemFilled(const std::string&) const;
         std::string getNameProduct() const;

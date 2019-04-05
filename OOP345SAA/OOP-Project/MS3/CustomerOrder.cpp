@@ -74,7 +74,6 @@ namespace sict {
 	}
 
 	/**
-
 	 * Modifier that checks each item request, fills it if the item is available and the request has not been 58/.205/ and reports the filling in the following format:
 	 * Filled CUSTOMER [PRODUCT][ITEM][SERIAL NUMBER] OR
 	 * Unable to fill CUSTOMER [PRODUCT][ITEM][SERIAL NUMBER] already filled

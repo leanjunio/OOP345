@@ -17,6 +17,7 @@ namespace sict
 	class Station
 	{
 		std::queue<CustomerOrder> m_stationCustomerOrders;
+		std::string m_stationName;
 		ItemSet m_stationInventory;
 	public:
 		explicit Station(const std::string&);
