@@ -19,11 +19,14 @@ namespace sict
 		std::vector<size_t> m_indexNextStation;
 		std::vector<CustomerOrder> m_ordersCompleted;
 		size_t m_indexStartingStation;
+		size_t m_indexLastStation;
 		std::vector<size_t> m_stationOrder;
 	public:
 		LineManager(std::vector<Station*>&, std::vector<size_t>&, std::vector<CustomerOrder>&, size_t, std::ostream&);
 		void display(std::ostream&) const;
 		bool run(std::ostream&);
+	private:
+		size_t createAssemblyOrder(std::vector<size_t>&, size_t);
 	};
 }
 

@@ -1,5 +1,6 @@
 #include <algorithm>
 #include <vector>
+#include "Station.h"
 #include "LineManager.h"
 
 namespace sict
@@ -10,26 +11,9 @@ namespace sict
 	LineManager::LineManager(std::vector<Station*>& stationAddresses, std::vector<size_t>& indexNextStation, std::vector<CustomerOrder>& customerOrders, size_t indexStartingStation, std::ostream& os)
 		: m_indexStartingStation(indexStartingStation)
 	{
-		// add all the stationAddresses into the queue
-		for (auto&& i : stationAddresses)
-			m_stations.push(i);
-
-		//for (auto&& i : stationAddresses)
-
-
-		// add all the customerOrders to be filled into the ordersToFill queue
 		for (auto& i : customerOrders)
 			m_ordersToFill.push(std::move(i));
-
-		// copy the next station indexes
-		m_indexNextStation.assign(indexNextStation.begin(), indexNextStation.end());
-
-		// create the assembly line order
-		m_stationOrder.push_back(indexStartingStation);
-
-		// copy stationAddresses
-		for (auto&& i : stationAddresses)
-			m_stationAddresses.push_back(std::move(i));
+		m_indexLastStation = createAssemblyOrder(indexNextStation, indexStartingStation);
 	}
 	void LineManager::display(std::ostream& os) const
 	{
@@ -56,4 +40,24 @@ namespace sict
 		else
 			return false;
 	}
+
+	// PRIVATE MEMBERS
+
+	/**
+	 * Updates the m_stationOrder vector to contain the order that the stations will be processsed to
+	 * returns the index of the last station
+	*/
+	size_t LineManager::createAssemblyOrder(std::vector<size_t>& indexNextStation, size_t indexStartingStation)
+	{
+		m_stationOrder.push_back(indexStartingStation);
+
+		for (auto i = 0; i < indexNextStation.size(); ++i)
+		{
+			m_stationOrder.push_back(indexNextStation[indexStartingStation]);
+			indexStartingStation = indexNextStation[indexStartingStation];
+		}
+
+		return m_stationOrder.front();
+	}
 }
+
