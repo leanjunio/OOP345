@@ -13,30 +13,36 @@ namespace sict
 	{
 		// add the customer orders to a queue
 		for (auto& i : customerOrders)
-			m_ordersToFill.push(std::move(i));
+			m_ordersToFill.push_back(std::move(i));
 
 		m_indexLastStation = createAssemblyOrder(indexNextStation, indexStartingStation);
 
 		// change m_stationAddresses to be in order
 		for (auto i = 0; i < stationAddresses.size(); ++i)
 		{
-			m_stations.push(stationAddresses[m_stationOrder[i]]);
+			m_stations.push_back(stationAddresses[m_stationOrder[i]]);
 			m_stationAddresses.push_back(stationAddresses[m_stationOrder[i]]);
 		}
 	}
 	void LineManager::display(std::ostream& os) const
 	{
-		
+		os << "COMPLETED ORDERS" << std::endl;
+		for (auto& i : m_complete) { i.display(os, true); }
+		os << std::endl;
+		os << "INCOMPELTE ORDERS" << std::endl;
+		for (auto& i : m_incomplete) { i.display(os, true); }
 	}
 
 	bool LineManager::run(std::ostream& os)
 	{
+		bool done = false;
+		size_t remainingItems = m_ordersToFill.size();
 		// If there are items that are waiting to be filled
-		while (!m_ordersToFill.empty() || m_ordersToFill.size() != 0)
+		while (!m_ordersToFill.empty() || remainingItems)
 		{
 			// move order to the starting station - power supply in this case
 			*m_stationAddresses[0] += std::move(m_ordersToFill.front());
-			m_ordersToFill.pop();
+			m_ordersToFill.pop_front();
 
 			for (auto& s : m_stationAddresses)
 				s->fill(os);
@@ -59,11 +65,32 @@ namespace sict
 						*obj += std::move(temp);
 						os << " --> " << prodName << " moved from " << prev << " to " << next;
 					}
+					else
+					{
+						std::string prodName = temp.getNameProduct();
+						std::string prev = s->getName();
+						os << " --> " << prodName << " moved from " << prev << " to ";
+
+						if (temp.isFilled())
+						{
+							os << "Complete Set" << std::endl;
+							m_complete.push_back(std::move(temp));
+						}
+						else
+						{
+							os << "Incomplete Set" << std::endl;
+							m_incomplete.push_back(std::move(temp));
+						}
+						--remainingItems;
+					}
 				}
 			}
 		}
 
-		return false;
+		if (!remainingItems)
+			done = true;
+
+		return done;
 	}
 
 	// PRIVATE MEMBERS

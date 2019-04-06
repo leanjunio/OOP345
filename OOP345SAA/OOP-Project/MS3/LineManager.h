@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include <queue>
+#include <deque>
 #include "CustomerOrder.h"
 #include "Station.h"
 
@@ -14,10 +14,10 @@ namespace sict
 	class LineManager
 	{
 		std::vector<Station*> m_stationAddresses;
-		std::queue<Station*> m_stations;
-		std::queue<CustomerOrder> m_complete;
-		std::queue<CustomerOrder> m_incomplete;
-		std::queue<CustomerOrder> m_ordersToFill;
+		std::deque<Station*> m_stations;
+		std::deque<CustomerOrder> m_complete;
+		std::deque<CustomerOrder> m_incomplete;
+		std::deque<CustomerOrder> m_ordersToFill;
 		std::vector<size_t> m_indexNextStation;
 		size_t m_indexStartingStation;
 		size_t m_indexLastStation;
