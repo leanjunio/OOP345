@@ -15,9 +15,10 @@ namespace sict
 	{
 		std::vector<Station*> m_stationAddresses;
 		std::queue<Station*> m_stations;
+		std::queue<CustomerOrder> m_complete;
+		std::queue<CustomerOrder> m_incomplete;
 		std::queue<CustomerOrder> m_ordersToFill;
 		std::vector<size_t> m_indexNextStation;
-		std::vector<CustomerOrder> m_ordersCompleted;
 		size_t m_indexStartingStation;
 		size_t m_indexLastStation;
 		std::vector<size_t> m_stationOrder;
