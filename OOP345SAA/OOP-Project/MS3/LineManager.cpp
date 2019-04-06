@@ -19,8 +19,10 @@ namespace sict
 
 		// change m_stationAddresses to be in order
 		for (auto i = 0; i < stationAddresses.size(); ++i)
+		{
+			m_stations.push(stationAddresses[m_stationOrder[i]]);
 			m_stationAddresses.push_back(stationAddresses[m_stationOrder[i]]);
-			
+		}
 	}
 	void LineManager::display(std::ostream& os) const
 	{
@@ -39,8 +41,26 @@ namespace sict
 			for (auto& s : m_stationAddresses)
 				s->fill(os);
 
+			size_t index = m_indexStartingStation;
+			CustomerOrder temp;
+
 			for (auto& s : m_stationAddresses)
+			{
 				if (s->hasAnOrderToRelease())
+				{
+					s->pop(temp);
+
+					if (s != m_stationAddresses.back())
+					{
+						auto obj = *(&s + 1);
+						std::string prev = s->getName();
+						std::string next = obj->getName();
+						std::string prodName = temp.getNameProduct();
+						*obj += std::move(temp);
+						os << " --> " << prodName << " moved from " << prev << " to " << next;
+					}
+				}
+			}
 		}
 
 		return false;

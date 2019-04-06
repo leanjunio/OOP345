@@ -125,7 +125,7 @@ namespace sict {
 		{
 			if (m_itemsOrdered[i].s_name == itemName) 
 			{
-				if (!m_itemsOrdered->s_filled)
+				if (!m_itemsOrdered[i].s_filled)
 					return false;
 			}
 		}

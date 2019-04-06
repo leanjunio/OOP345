@@ -23,10 +23,7 @@ namespace sict
 	void Station::fill(std::ostream& os)
 	{
 		if (!m_stationCustomerOrders.empty())
-		{
-			std::cout << "FillItem: " << m_stationCustomerOrders.front().getNameProduct() << std::endl;
 			m_stationCustomerOrders.front().fillItem(m_stationInventory, os);	// fills the order
-		}
 	}
 
 	// returns a reference to the name of the ItemSet sub-object
@@ -41,15 +38,12 @@ namespace sict
 	//
 	bool Station::hasAnOrderToRelease() const
 	{
-		bool release = false;
-		if (m_stationCustomerOrders.empty())
-		{
-			if (!m_stationInventory.getQuantity())
-				release = true;
-			else
-				release = m_stationCustomerOrders.front().isItemFilled(m_stationName);
-		}
-		return release;
+		bool filled = m_stationCustomerOrders.front().isItemFilled(this->getName());
+		if (m_stationInventory.getQuantity() == 0 || !filled)
+			return false;
+		else
+			return true;
+
 	}
 	Station& Station::operator--()
 	{
@@ -61,8 +55,6 @@ namespace sict
 	//
 	Station& Station::operator+=(CustomerOrder&& order)
 	{
-		std::cout << "Pushing to station: " << m_stationName << " the product " << order.getNameProduct() << std::endl;
-
 		m_stationCustomerOrders.push(std::move(order));
 		return *this;
 	}
