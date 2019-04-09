@@ -40,22 +40,15 @@ namespace sict
 	//
 	bool Station::hasAnOrderToRelease() const
 	{
-		try
+		bool hasOrder = false;
+		if (!m_stationCustomerOrders.empty())
 		{
-			bool hasOrder = false;
-			if (!m_stationCustomerOrders.empty())
-			{
-				if (!m_stationInventory.getQuantity())
-					hasOrder = true;
-				else
-					hasOrder = m_stationCustomerOrders.front().isItemFilled(m_stationName);
-			}
-			return hasOrder;
+			if (!m_stationInventory.getQuantity())
+				hasOrder = true;
+			else
+				hasOrder = m_stationCustomerOrders.front().isItemFilled(m_stationName);
 		}
-		catch (const std::exception& e)
-		{
-			std::cerr << e.what();
-		}
+		return hasOrder;
 	}
 	Station& Station::operator--()
 	{

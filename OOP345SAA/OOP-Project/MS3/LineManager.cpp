@@ -37,25 +37,17 @@ namespace sict
 		bool done = false;
 		CustomerOrder temp;
 		
-		// move order at the front into m_stationAddresses
 		if (!m_ordersToFill.empty())
 		{
-			// assign order at front of pending to the first station's customerOrders
-			// delete the order that was assigned from the pending list
 			*m_stationAddresses[m_indexStartingStation] += std::move(m_ordersToFill.front());
 			m_ordersToFill.pop_front();
 		}
 
-		// fill the order that is at the front of each order...i.e Elliot - Power Supply
 		try
 		{
-			// BUG: Since only the "Power Supply" station is filled at this point, whenever other stations are attempted to be filled, an error will be found
-			// FACT CHECK: All orders are currently in station 1...
-			// TODO: Fill the order that's at the front of the station
 			for (size_t i = 0; i != m_indexNextStation.size(); ++i)
 				m_stationAddresses[i]->fill(os);
 
-			// if the current station has an order to release, release it.
 			for (size_t i = 0; i < m_stationAddresses.size(); ++i)
 			{
 				bool hasOrderForRelease = m_stationAddresses[i]->hasAnOrderToRelease();
@@ -80,14 +72,12 @@ namespace sict
 				}
 				if (hasOrderForRelease && !isTheLastStation)
 				{
-					// release the order at the front
 					m_stationAddresses[i]->pop(temp);
 					os << " --> " << temp.getNameProduct() << " moved from " << m_stationAddresses[i]->getName() << " to " << m_stationAddresses[m_indexNextStation[i]]->getName() << std::endl;
 
 					*m_stationAddresses[m_indexNextStation[i]] += std::move(temp);
 				}
 			}
-			
 		}
 		catch (const std::exception& e)
 		{
@@ -112,7 +102,7 @@ namespace sict
 	{
 		m_stationOrder.push_back(indexStartingStation);
 
-		for (auto i = 0; i < indexNextStation.size(); ++i)
+		for (size_t i = 0; i < indexNextStation.size(); ++i)
 		{
 			m_stationOrder.push_back(indexNextStation[indexStartingStation]);
 			indexStartingStation = indexNextStation[indexStartingStation];
