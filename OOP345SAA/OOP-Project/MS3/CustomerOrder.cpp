@@ -36,7 +36,7 @@ namespace sict {
 		
 		m_numItems = std::count(record.begin(), record.end(), utility.getDelimiter()) - 1;
 		m_itemsOrdered = new ItemInfo[m_numItems];
-
+		 
 		if (m_numItems >= 1) {
 			for (size_t i = 0; i < m_numItems; i++)
 				m_itemsOrdered[i].s_name = utility.extractToken(record, delimiter_pos);
@@ -155,9 +155,17 @@ namespace sict {
 	{
 		os << std::left << std::setw(m_fieldWidth) << m_customerName << " [" << m_productName << "]" << std::endl;
 		if (!showDetail) {
-
 			for (size_t i = 0; i < m_numItems; ++i) {
 				os << std::setfill(' ') << std::setw(m_fieldWidth + 1) << "    " << std::right << m_itemsOrdered[i].s_name << std::endl;
+			}
+		}
+		else
+		{
+			for (size_t i = 0; i < m_numItems; ++i) {
+				if (m_itemsOrdered[i].s_filled)
+					os << std::setfill(' ') << std::setw(m_fieldWidth + 1) << "    " << "[" << m_itemsOrdered[i].s_serialNumer << "] " << std::right << m_itemsOrdered[i].s_name << " - FILLED" << std::endl;
+				else
+					os << std::setfill(' ') << std::setw(m_fieldWidth + 1) << "    " << "[" << m_itemsOrdered[i].s_serialNumer << "] " << std::right << m_itemsOrdered[i].s_name << " - MISSING" << std::endl;
 			}
 		}
 	}

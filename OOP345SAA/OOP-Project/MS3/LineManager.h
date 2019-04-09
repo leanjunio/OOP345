@@ -14,13 +14,13 @@ namespace sict
 	class LineManager
 	{
 		std::vector<Station*> m_stationAddresses;
-		std::deque<Station*> m_stations;
 		std::deque<CustomerOrder> m_complete;
 		std::deque<CustomerOrder> m_incomplete;
 		std::deque<CustomerOrder> m_ordersToFill;
 		std::vector<size_t> m_indexNextStation;
 		size_t m_indexStartingStation;
 		size_t m_indexLastStation;
+		size_t m_orderSize;
 		std::vector<size_t> m_stationOrder;
 	public:
 		LineManager(std::vector<Station*>&, std::vector<size_t>&, std::vector<CustomerOrder>&, size_t, std::ostream&);

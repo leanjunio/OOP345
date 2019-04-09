@@ -16,7 +16,7 @@ namespace sict
 	*/
 	class Station
 	{
-		std::queue<CustomerOrder> m_stationCustomerOrders;
+		std::deque<CustomerOrder> m_stationCustomerOrders;
 		std::string m_stationName;
 		ItemSet m_stationInventory;
 	public:

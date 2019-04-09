@@ -23,7 +23,9 @@ namespace sict
 	void Station::fill(std::ostream& os)
 	{
 		if (!m_stationCustomerOrders.empty())
-			m_stationCustomerOrders.front().fillItem(m_stationInventory, os);	// fills the order
+			m_stationCustomerOrders.front().fillItem(m_stationInventory, os);	// fills only the last order
+		/*else
+			throw std::string("EXCEPTION FOUND: Data of type [") + typeid(m_stationName).name() + std::string("] with value: [" + m_stationName + "] not found\n");*/
 	}
 
 	// returns a reference to the name of the ItemSet sub-object
@@ -38,12 +40,22 @@ namespace sict
 	//
 	bool Station::hasAnOrderToRelease() const
 	{
-		bool filled = m_stationCustomerOrders.front().isItemFilled(this->getName());
-		if (m_stationInventory.getQuantity() == 0 || !filled)
-			return false;
-		else
-			return true;
-
+		try
+		{
+			bool hasOrder = false;
+			if (!m_stationCustomerOrders.empty())
+			{
+				if (!m_stationInventory.getQuantity())
+					hasOrder = true;
+				else
+					hasOrder = m_stationCustomerOrders.front().isItemFilled(m_stationName);
+			}
+			return hasOrder;
+		}
+		catch (const std::exception& e)
+		{
+			std::cerr << e.what();
+		}
 	}
 	Station& Station::operator--()
 	{
@@ -55,7 +67,7 @@ namespace sict
 	//
 	Station& Station::operator+=(CustomerOrder&& order)
 	{
-		m_stationCustomerOrders.push(std::move(order));
+		m_stationCustomerOrders.push_back(std::move(order));
 		return *this;
 	}
 	bool Station::pop(CustomerOrder& ready)
@@ -64,9 +76,9 @@ namespace sict
 		bool filled = false;
 		if (!m_stationCustomerOrders.empty())
 		{
-			ready.isItemFilled(m_stationName);
+			filled = m_stationCustomerOrders.front().isItemFilled(m_stationName);
 			ready = std::move(m_stationCustomerOrders.front());
-			m_stationCustomerOrders.pop();
+			m_stationCustomerOrders.erase(m_stationCustomerOrders.begin());
 		}
 		return filled;
 	}

@@ -9,86 +9,95 @@ namespace sict
 	// determines the index of the last station on the line
 	//
 	LineManager::LineManager(std::vector<Station*>& stationAddresses, std::vector<size_t>& indexNextStation, std::vector<CustomerOrder>& customerOrders, size_t indexStartingStation, std::ostream& os)
-		: m_indexStartingStation(indexStartingStation)
+		: m_stationAddresses{stationAddresses}
+		, m_indexStartingStation{ indexStartingStation }
 	{
-		// add the customer orders to a queue
-		for (auto& i : customerOrders)
-			m_ordersToFill.push_back(std::move(i));
+		for (auto& customerOrder : customerOrders)
+			m_ordersToFill.push_back(std::move(customerOrder));
 
 		m_indexLastStation = createAssemblyOrder(indexNextStation, indexStartingStation);
 
-		// change m_stationAddresses to be in order
-		for (auto i = 0; i < stationAddresses.size(); ++i)
-		{
-			m_stations.push_back(stationAddresses[m_stationOrder[i]]);
-			m_stationAddresses.push_back(stationAddresses[m_stationOrder[i]]);
-		}
+		m_indexNextStation = indexNextStation;
+		m_orderSize = m_ordersToFill.size();
 	}
 	void LineManager::display(std::ostream& os) const
 	{
 		os << "COMPLETED ORDERS" << std::endl;
-		for (auto& i : m_complete) { i.display(os, true); }
+		for (auto& i : m_complete)
+			i.display(os, true); 
 		os << std::endl;
-		os << "INCOMPELTE ORDERS" << std::endl;
-		for (auto& i : m_incomplete) { i.display(os, true); }
+
+		os << "INCOMPLETE ORDERS" << std::endl;
+		for (auto& i : m_incomplete) 
+			i.display(os, true); 
 	}
 
 	bool LineManager::run(std::ostream& os)
 	{
 		bool done = false;
-		size_t remainingItems = m_ordersToFill.size();
-		// If there are items that are waiting to be filled
-		while (!m_ordersToFill.empty() || remainingItems)
+		CustomerOrder temp;
+		
+		// move order at the front into m_stationAddresses
+		if (!m_ordersToFill.empty())
 		{
-			// move order to the starting station - power supply in this case
-			*m_stationAddresses[0] += std::move(m_ordersToFill.front());
+			// assign order at front of pending to the first station's customerOrders
+			// delete the order that was assigned from the pending list
+			*m_stationAddresses[m_indexStartingStation] += std::move(m_ordersToFill.front());
 			m_ordersToFill.pop_front();
+		}
 
-			for (auto& s : m_stationAddresses)
-				s->fill(os);
+		// fill the order that is at the front of each order...i.e Elliot - Power Supply
+		try
+		{
+			// BUG: Since only the "Power Supply" station is filled at this point, whenever other stations are attempted to be filled, an error will be found
+			// FACT CHECK: All orders are currently in station 1...
+			// TODO: Fill the order that's at the front of the station
+			for (size_t i = 0; i != m_indexNextStation.size(); ++i)
+				m_stationAddresses[i]->fill(os);
 
-			size_t index = m_indexStartingStation;
-			CustomerOrder temp;
-
-			for (auto& s : m_stationAddresses)
+			// if the current station has an order to release, release it.
+			for (size_t i = 0; i < m_stationAddresses.size(); ++i)
 			{
-				if (s->hasAnOrderToRelease())
-				{
-					s->pop(temp);
+				bool hasOrderForRelease = m_stationAddresses[i]->hasAnOrderToRelease();
+				bool isTheLastStation = m_indexNextStation[i] == m_indexLastStation;
 
-					if (s != m_stationAddresses.back())
+				if (hasOrderForRelease && isTheLastStation)
+				{
+					m_stationAddresses[i]->pop(temp);
+
+					if (temp.isFilled())
 					{
-						auto obj = *(&s + 1);
-						std::string prev = s->getName();
-						std::string next = obj->getName();
-						std::string prodName = temp.getNameProduct();
-						*obj += std::move(temp);
-						os << " --> " << prodName << " moved from " << prev << " to " << next;
+						os << " --> " << temp.getNameProduct() << " moved from " << m_stationAddresses[i]->getName() << " to Completed Set" << std::endl;
+						m_complete.push_back(std::move(temp));
+						m_orderSize--;
 					}
 					else
 					{
-						std::string prodName = temp.getNameProduct();
-						std::string prev = s->getName();
-						os << " --> " << prodName << " moved from " << prev << " to ";
-
-						if (temp.isFilled())
-						{
-							os << "Complete Set" << std::endl;
-							m_complete.push_back(std::move(temp));
-						}
-						else
-						{
-							os << "Incomplete Set" << std::endl;
-							m_incomplete.push_back(std::move(temp));
-						}
-						--remainingItems;
+						os << " --> " << temp.getNameProduct() << " moved from " << m_stationAddresses[i]->getName() << " to Incompleted Set" << std::endl;
+						m_incomplete.push_back(std::move(temp));
+						m_orderSize--;
 					}
 				}
+				if (hasOrderForRelease && !isTheLastStation)
+				{
+					// release the order at the front
+					m_stationAddresses[i]->pop(temp);
+					os << " --> " << temp.getNameProduct() << " moved from " << m_stationAddresses[i]->getName() << " to " << m_stationAddresses[m_indexNextStation[i]]->getName() << std::endl;
+
+					*m_stationAddresses[m_indexNextStation[i]] += std::move(temp);
+				}
 			}
+			
+		}
+		catch (const std::exception& e)
+		{
+			e.what();
 		}
 
-		if (!remainingItems)
+		if (m_orderSize == 0)
 			done = true;
+		else
+			done = false;
 
 		return done;
 	}
@@ -109,7 +118,7 @@ namespace sict
 			indexStartingStation = indexNextStation[indexStartingStation];
 		}
 
-		return m_stationOrder.front();
+		return m_stationOrder.back();
 	}
 }
 
