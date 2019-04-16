@@ -147,7 +147,7 @@ namespace sict {
 		std::string next = "";
 		size_t next_pos;
 		nextStation.resize(line.size());
-		std::fill(nextStation.begin(), nextStation.end(), line.size());
+		std::fill(nextStation.begin(), nextStation.end(), line.size()); // fills the vector with the line.size()
 		while (!file.eof()) {
 			next_pos = 0;
 			std::getline(file, record);

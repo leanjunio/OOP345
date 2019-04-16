@@ -23,7 +23,7 @@
     <ProjectGuid>{08C4C4EC-4B6C-4C08-881F-14A7DC69B7D7}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>MS3</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -143,13 +143,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AssemblyLine.cpp" />
-    <ClCompile Include="CustomerOrder.cpp" />
-    <ClCompile Include="ItemSet.cpp" />
-    <ClCompile Include="LineManager.cpp" />
-    <ClCompile Include="project.cpp" />
-    <ClCompile Include="Station.cpp" />
-    <ClCompile Include="Utilities.cpp" />
+    <Text Include="AssemblyLine.txt" />
+    <Text Include="CustomerOrders.txt" />
+    <Text Include="Inventory.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AssemblyLine.h" />
@@ -160,9 +156,13 @@
     <ClInclude Include="Utilities.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="AssemblyLine.txt" />
-    <Text Include="CustomerOrders.txt" />
-    <Text Include="Inventory.txt" />
+    <ClCompile Include="AssemblyLine.cpp" />
+    <ClCompile Include="CustomerOrder.cpp" />
+    <ClCompile Include="ItemSet.cpp" />
+    <ClCompile Include="LineManager.cpp" />
+    <ClCompile Include="project.cpp" />
+    <ClCompile Include="Station.cpp" />
+    <ClCompile Include="Utilities.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
